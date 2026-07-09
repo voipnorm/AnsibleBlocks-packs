@@ -1,0 +1,1314 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "ansible-posix",
+  "name": "Ansible Posix",
+  "collection": "ansible.posix",
+  "collectionVersion": "2.2.1",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:26:05Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#EE0000",
+  "blockStyleName": "ansible_posix_blocks",
+  "categoryStyleName": "ansible_posix_category",
+  "modules": [
+    {
+      "fqcn": "ansible.posix.acl",
+      "blockType": "ansible_posix_acl",
+      "label": "acl",
+      "tooltip": "Set and retrieve file ACL information.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/acl_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "default",
+          "fieldId": "DEFAULT",
+          "type": "boolean",
+          "label": "default",
+          "default": false,
+          "description": "If O(path) is a directory, setting this to V(true) will make it the default ACL for entities created inside the directory. Setting O(default=true) causes an error if O(path) is a file."
+        },
+        {
+          "key": "entity",
+          "fieldId": "ENTITY",
+          "type": "text",
+          "label": "entity",
+          "description": "The actual user or group that the ACL applies to when matching entity types user or group are selected."
+        },
+        {
+          "key": "entry",
+          "fieldId": "ENTRY",
+          "type": "text",
+          "label": "entry",
+          "description": "DEPRECATED. The ACL to set or remove. This must always be quoted in the form of C(<etype>:<qualifier>:<perms>). The qualifier may be empty for some types, but the type and perms are always required. C(-) can be used as placeholder when you do not care about permissions. This is now superseded by entity, type and permissions fields."
+        },
+        {
+          "key": "etype",
+          "fieldId": "ETYPE",
+          "type": "dropdown",
+          "label": "etype",
+          "description": "The entity type of the ACL to apply, see C(setfacl) documentation for more info.",
+          "options": [
+            [
+              "group",
+              "group"
+            ],
+            [
+              "mask",
+              "mask"
+            ],
+            [
+              "other",
+              "other"
+            ],
+            [
+              "user",
+              "user"
+            ]
+          ]
+        },
+        {
+          "key": "follow",
+          "fieldId": "FOLLOW",
+          "type": "boolean",
+          "label": "follow",
+          "default": true,
+          "description": "Whether to follow symlinks on the path if a symlink is encountered."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "The full path of the file or object.",
+          "required": true,
+          "aliases": [
+            "name"
+          ]
+        },
+        {
+          "key": "permissions",
+          "fieldId": "PERMISSIONS",
+          "type": "text",
+          "label": "permissions",
+          "description": "The permissions to apply/remove can be any combination of C(r), C(w), C(x) (read, write and execute respectively), and C(X) (execute permission if the file is a directory or already has execute permission for some user)"
+        },
+        {
+          "key": "recalculate_mask",
+          "fieldId": "RECALCULATE_MASK",
+          "type": "dropdown",
+          "label": "recalculate mask",
+          "default": "default",
+          "description": "Select if and when to recalculate the effective right masks of the files. See C(setfacl) documentation for more info. Incompatible with O(state=query).",
+          "options": [
+            [
+              "default",
+              "default"
+            ],
+            [
+              "mask",
+              "mask"
+            ],
+            [
+              "no_mask",
+              "no_mask"
+            ]
+          ]
+        },
+        {
+          "key": "recursive",
+          "fieldId": "RECURSIVE",
+          "type": "boolean",
+          "label": "recursive",
+          "default": false,
+          "description": "Recursively sets the specified ACL. Incompatible with O(state=query). Alias O(recurse) added in version 1.3.0.",
+          "aliases": [
+            "recurse"
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "query",
+          "description": "Define whether the ACL should be present or not. The V(query) state gets the current ACL without changing it, for use in C(register) operations.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "query",
+              "query"
+            ]
+          ]
+        },
+        {
+          "key": "use_nfsv4_acls",
+          "fieldId": "USE_NFSV4_ACLS",
+          "type": "boolean",
+          "label": "use nfsv4 acls",
+          "default": false,
+          "description": "Use NFSv4 ACLs instead of POSIX ACLs. This feature uses C(nfs4_setfacl) and C(nfs4_getfacl). The behavior depends on those implementation. And currently it only supports C(A) in ACE, so C(D) must be replaced with the appropriate C(A). Permission is set as optimised ACLs by the system. You can check the actual ACLs that has been set using the return value. More info C(man nfs4_setfacl)"
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.at",
+      "blockType": "ansible_posix_at",
+      "label": "at",
+      "tooltip": "Schedule the execution of a command or script file via the at command",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/at_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "command",
+          "fieldId": "COMMAND",
+          "type": "text",
+          "label": "command",
+          "description": "A command to be executed in the future."
+        },
+        {
+          "key": "count",
+          "fieldId": "COUNT",
+          "type": "number",
+          "label": "count",
+          "description": "The count of units in the future to execute the command or script file."
+        },
+        {
+          "key": "script_file",
+          "fieldId": "SCRIPT_FILE",
+          "type": "text",
+          "label": "script file",
+          "description": "An existing script file to be executed in the future."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The state dictates if the command or script file should be evaluated as V(present) (added) or V(absent) (deleted).",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "unique",
+          "fieldId": "UNIQUE",
+          "type": "boolean",
+          "label": "unique",
+          "default": false,
+          "description": "If a matching job is present a new job will not be added."
+        },
+        {
+          "key": "units",
+          "fieldId": "UNITS",
+          "type": "dropdown",
+          "label": "units",
+          "description": "The type of units in the future to execute the command or script file.",
+          "options": [
+            [
+              "minutes",
+              "minutes"
+            ],
+            [
+              "hours",
+              "hours"
+            ],
+            [
+              "days",
+              "days"
+            ],
+            [
+              "weeks",
+              "weeks"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.authorized_key",
+      "blockType": "ansible_posix_authorized_key",
+      "label": "authorized_key",
+      "tooltip": "Adds or removes an SSH authorized key",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "comment",
+          "fieldId": "COMMENT",
+          "type": "text",
+          "label": "comment",
+          "description": "Change the comment on the public key. Rewriting the comment is useful in cases such as fetching it from GitHub or GitLab. If no comment is specified, the existing comment will be kept."
+        },
+        {
+          "key": "exclusive",
+          "fieldId": "EXCLUSIVE",
+          "type": "boolean",
+          "label": "exclusive",
+          "default": false,
+          "description": "Whether to remove all other non-specified keys from the authorized_keys file. Multiple keys can be specified in a single O(key) string value by separating them by newlines. This option is not loop aware, so if you use C(with_) , it will be exclusive per iteration of the loop. If you want multiple keys in the file you need to pass them all to O(key) in a single batch as mentioned above."
+        },
+        {
+          "key": "follow",
+          "fieldId": "FOLLOW",
+          "type": "boolean",
+          "label": "follow",
+          "default": false,
+          "description": "Follow path symlink instead of replacing it."
+        },
+        {
+          "key": "key",
+          "fieldId": "KEY",
+          "type": "text",
+          "label": "key",
+          "description": "The SSH public key(s), as a string or (since Ansible 1.9) url (https://github.com/username.keys). You can also use V(file://) prefix to search remote for a file with SSH key(s).",
+          "required": true
+        },
+        {
+          "key": "key_options",
+          "fieldId": "KEY_OPTIONS",
+          "type": "text",
+          "label": "key options",
+          "description": "A string of ssh key options to be prepended to the key in the authorized_keys file."
+        },
+        {
+          "key": "manage_dir",
+          "fieldId": "MANAGE_DIR",
+          "type": "boolean",
+          "label": "manage dir",
+          "default": true,
+          "description": "Whether this module should manage the directory of the authorized key file. If set to V(true), the module will create the directory, as well as set the owner and permissions of an existing directory. Be sure to set O(manage_dir=false) if you are using an alternate directory for authorized_keys, as set with O(path), since you could lock yourself out of SSH access. See the example below."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "Alternative path to the authorized_keys file. The default value is the V(.ssh/authorized_keys) of the home of the user specified in the O(user) parameter. Most of the time, it is not necessary to set this key. Use the path to your target authorized_keys if you need to explicitly point on it."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Whether the given key (with the given key_options) should or should not be in the file.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "user",
+          "fieldId": "USER",
+          "type": "text",
+          "label": "user",
+          "description": "The username on the remote host whose authorized_keys file will be modified.",
+          "required": true
+        },
+        {
+          "key": "validate_certs",
+          "fieldId": "VALIDATE_CERTS",
+          "type": "boolean",
+          "label": "validate certs",
+          "default": true,
+          "description": "This only applies if using a https url as the source of the keys. If set to V(false), the SSL certificates will not be validated. This should only set to V(false) used on personally controlled sites using self-signed certificates as it avoids verifying the source site. Prior to 2.1 the code worked as if this was set to V(true)."
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.firewalld",
+      "blockType": "ansible_posix_firewalld",
+      "label": "firewalld",
+      "tooltip": "Manage arbitrary ports/services with firewalld",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "forward",
+          "fieldId": "FORWARD",
+          "type": "boolean",
+          "label": "forward",
+          "description": "The forward setting you would like to enable/disable to/from zones within firewalld. This option only is supported by firewalld v0.9.0 or later. Note that the option type is changed to bool in ansible.posix version 2.0.0 and later."
+        },
+        {
+          "key": "icmp_block",
+          "fieldId": "ICMP_BLOCK",
+          "type": "text",
+          "label": "icmp block",
+          "description": "The ICMP block you would like to add/remove to/from a zone in firewalld."
+        },
+        {
+          "key": "icmp_block_inversion",
+          "fieldId": "ICMP_BLOCK_INVERSION",
+          "type": "boolean",
+          "label": "icmp block inversion",
+          "description": "Enable/Disable inversion of ICMP blocks for a zone in firewalld. Note that the option type is changed to bool in ansible.posix version 2.0.0 and later."
+        },
+        {
+          "key": "immediate",
+          "fieldId": "IMMEDIATE",
+          "type": "boolean",
+          "label": "immediate",
+          "default": false,
+          "description": "Whether to apply this change to the runtime firewalld configuration. Defaults to V(true) if O(permanent=false)."
+        },
+        {
+          "key": "interface",
+          "fieldId": "INTERFACE",
+          "type": "text",
+          "label": "interface",
+          "description": "The interface you would like to add/remove to/from a zone in firewalld."
+        },
+        {
+          "key": "masquerade",
+          "fieldId": "MASQUERADE",
+          "type": "boolean",
+          "label": "masquerade",
+          "description": "The masquerade setting you would like to enable/disable to/from zones within firewalld. Note that the option type is changed to bool in ansible.posix version 2.0.0 and later."
+        },
+        {
+          "key": "offline",
+          "fieldId": "OFFLINE",
+          "type": "boolean",
+          "label": "offline",
+          "default": false,
+          "description": "Ignores O(immediate) if O(permanent=true) and firewalld is not running."
+        },
+        {
+          "key": "permanent",
+          "fieldId": "PERMANENT",
+          "type": "boolean",
+          "label": "permanent",
+          "default": false,
+          "description": "Whether to apply this change to the permanent firewalld configuration. As of Ansible 2.3, permanent operations can operate on firewalld configs when it is not running (requires firewalld >= 0.3.9). Note that if this is V(false), O(immediate=true) by default."
+        },
+        {
+          "key": "protocol",
+          "fieldId": "PROTOCOL",
+          "type": "text",
+          "label": "protocol",
+          "description": "Name of a protocol to add/remove to/from firewalld."
+        },
+        {
+          "key": "rich_rule",
+          "fieldId": "RICH_RULE",
+          "type": "text",
+          "label": "rich rule",
+          "description": "Rich rule to add/remove to/from firewalld. See L(Syntax for firewalld rich language rules,https://firewalld.org/documentation/man-pages/firewalld.richlanguage.html)."
+        },
+        {
+          "key": "service",
+          "fieldId": "SERVICE",
+          "type": "text",
+          "label": "service",
+          "description": "Name of a service to add/remove to/from firewalld. The service must be listed in output of C(firewall-cmd --get-services)."
+        },
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "text",
+          "label": "source",
+          "description": "The source/network you would like to add/remove to/from firewalld."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "Enable or disable a setting. For ports: Should this port accept (V(enabled)) or reject (V(disabled)) connections. The states V(present) and V(absent) can only be used in zone level operations (i.e. when no other parameters but zone and state are set).",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "enabled",
+              "enabled"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "target",
+          "fieldId": "TARGET",
+          "type": "dropdown",
+          "label": "target",
+          "description": "firewalld Zone target. If O(state=absent), this will reset the target to default.",
+          "options": [
+            [
+              "default",
+              "default"
+            ],
+            [
+              "ACCEPT",
+              "ACCEPT"
+            ],
+            [
+              "DROP",
+              "DROP"
+            ],
+            [
+              "%%REJECT%%",
+              "%%REJECT%%"
+            ]
+          ]
+        },
+        {
+          "key": "zone",
+          "fieldId": "ZONE",
+          "type": "text",
+          "label": "zone",
+          "description": "The firewalld zone to add/remove to/from. Note that the default zone can be configured per system but V(public) is default from upstream. Available choices can be extended based on per-system configs, listed here are \"out of the box\" defaults. Possible values include V(block), V(dmz), V(drop), V(external), V(home), V(internal), V(public), V(trusted), V(work)."
+        }
+      ],
+      "unmappedParams": [
+        "port_forward (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.firewalld_info",
+      "blockType": "ansible_posix_firewalld_info",
+      "label": "firewalld_info",
+      "tooltip": "Gather information about firewalld",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "active_zones",
+          "fieldId": "ACTIVE_ZONES",
+          "type": "boolean",
+          "label": "active zones",
+          "default": false,
+          "description": "Gather information about active zones."
+        },
+        {
+          "key": "zones",
+          "fieldId": "ZONES",
+          "type": "text",
+          "label": "zones",
+          "yamlType": "list",
+          "description": "Gather information about specific zones. If only works if O(active_zones=false)."
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.mount",
+      "blockType": "ansible_posix_mount",
+      "label": "mount",
+      "tooltip": "Control active and configured mount points",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/mount_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "backup",
+          "fieldId": "BACKUP",
+          "type": "boolean",
+          "label": "backup",
+          "default": false,
+          "description": "Create a backup file including the timestamp information so you can get the original file back if you somehow clobbered it incorrectly."
+        },
+        {
+          "key": "boot",
+          "fieldId": "BOOT",
+          "type": "boolean",
+          "label": "boot",
+          "default": true,
+          "description": "Determines if the filesystem should be mounted on boot. Only applies to Solaris and Linux systems. For Solaris systems, C(true) will set C(yes) as the value of mount at boot in C(/etc/vfstab). For Linux, FreeBSD, NetBSD and OpenBSD systems, C(false) will add C(noauto) to mount options in C(/etc/fstab). To avoid mount option conflicts, if C(noauto) specified in O(opts), mount module will ignore O(boot). This parameter is ignored when O(state=ephemeral)."
+        },
+        {
+          "key": "dump",
+          "fieldId": "DUMP",
+          "type": "text",
+          "label": "dump",
+          "default": "0",
+          "description": "Dump (see fstab(5)). Note that if set to C(null) and O(state=present), it will cease to work and duplicate entries will be made with subsequent runs. Has no effect on Solaris systems or when used with O(state=ephemeral)."
+        },
+        {
+          "key": "fstab",
+          "fieldId": "FSTAB",
+          "type": "text",
+          "label": "fstab",
+          "description": "File to use instead of C(/etc/fstab). You should not use this option unless you really know what you are doing. This might be useful if you need to configure mountpoints in a chroot environment. OpenBSD does not allow specifying alternate fstab files with mount so do not use this on OpenBSD with any state that operates on the live filesystem. This parameter defaults to C(/etc/fstab) or C(/etc/vfstab) on Solaris. This parameter is ignored when O(state=ephemeral)."
+        },
+        {
+          "key": "fstype",
+          "fieldId": "FSTYPE",
+          "type": "text",
+          "label": "fstype",
+          "description": "Filesystem type. Required when O(state) is V(present), V(mounted), or V(ephemeral)."
+        },
+        {
+          "key": "opts",
+          "fieldId": "OPTS",
+          "type": "text",
+          "label": "opts",
+          "description": "Mount options (see fstab(5), or vfstab(4) on Solaris)."
+        },
+        {
+          "key": "opts_no_log",
+          "fieldId": "OPTS_NO_LOG",
+          "type": "boolean",
+          "label": "opts no log",
+          "default": false,
+          "description": "Do not log opts."
+        },
+        {
+          "key": "passno",
+          "fieldId": "PASSNO",
+          "type": "text",
+          "label": "passno",
+          "default": "0",
+          "description": "Passno (see fstab(5)). Note that if set to C(null) and O(state=present), it will cease to work and duplicate entries will be made with subsequent runs. Deprecated on Solaris systems. Has no effect when used with O(state=ephemeral)."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "Path to the mount point (e.g. C(/mnt/files)). Before Ansible 2.3 this option was only usable as O(ignore:dest), O(ignore:destfile), and O(name).",
+          "required": true,
+          "aliases": [
+            "name"
+          ]
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "Device (or NFS volume, or something else) to be mounted on I(path). Required when O(state) set to V(present), V(mounted), or V(ephemeral). Ignored when O(state) set to V(absent) or V(unmounted)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "If V(mounted), the device will be actively mounted and appropriately configured in I(fstab). If the mount point is not present, the mount point will be created. If V(unmounted), the device will be unmounted without changing I(fstab). V(present) only specifies that the device is to be configured in I(fstab) and does not trigger or require a mount. V(ephemeral) only specifies that the device is to be mounted, without changing I(fstab). If it is already mounted, a remount will be triggered. This will always return RV(ignore:changed=true). If the mount point O(path) has already a device mounted on, and its source is different than O(src), the module will fail to avoid unexpected unmount or mount point override. If the mount point is not present, the mount point will be created. The I(fstab) is completely ignored. This option is added in version 1.5.0. V(absent) specifies that the mount point entry O(path) will be removed from I(fstab) and will also unmount the mounted device and remove the mount point. A mounted device will be unmounted regardless of O(src) or its real source. V(absent) does not unmount recursively, and the module will fail if multiple devices are mounted on the same mount point. Using V(absent) with a mount point that is not registered in the I(fstab) has no effect, use V(unmounted) instead. V(remounted) specifies that the device will be remounted for when you want to force a refresh on the mount itself (added in 2.9). This will always return RV(ignore:changed=true). If O(opts) is set, the options will be applied to the remount, but will not change I(fstab).  Additionally, if O(opts) is set, and the remount command fails, the module will error to prevent unexpected mount changes.  Try using V(mounted) instead to work around this issue.  V(remounted) expects the mount point to be present in the I(fstab). To remount a mount point not registered in I(fstab), use V(ephemeral) instead, especially with BSD nodes. V(absent_from_fstab) specifies that the device mount's entry will be removed from I(fstab). This option does not unmount it or delete the mountpoint.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "absent_from_fstab",
+              "absent_from_fstab"
+            ],
+            [
+              "mounted",
+              "mounted"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "unmounted",
+              "unmounted"
+            ],
+            [
+              "remounted",
+              "remounted"
+            ],
+            [
+              "ephemeral",
+              "ephemeral"
+            ]
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.patch",
+      "blockType": "ansible_posix_patch",
+      "label": "patch",
+      "tooltip": "Apply patch files using the GNU patch tool",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/patch_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "backup",
+          "fieldId": "BACKUP",
+          "type": "boolean",
+          "label": "backup",
+          "default": false,
+          "description": "Passes C(--backup --version-control=numbered) to patch, producing numbered backup copies."
+        },
+        {
+          "key": "basedir",
+          "fieldId": "BASEDIR",
+          "type": "text",
+          "label": "basedir",
+          "description": "Path of a base directory in which the patch file will be applied. May be omitted when O(dest) option is specified, otherwise required."
+        },
+        {
+          "key": "binary",
+          "fieldId": "BINARY",
+          "type": "boolean",
+          "label": "binary",
+          "default": false,
+          "description": "Setting to V(true) will disable patch's heuristic for transforming CRLF line endings into LF. Line endings of O(src) and O(dest) must match. If set to V(false), C(patch) will replace CRLF in O(src) files on POSIX."
+        },
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "description": "Path of the file on the remote machine to be patched. The names of the files to be patched are usually taken from the patch file, but if there's just one file to be patched it can specified with this option.",
+          "aliases": [
+            "originalfile"
+          ]
+        },
+        {
+          "key": "ignore_whitespace",
+          "fieldId": "IGNORE_WHITESPACE",
+          "type": "boolean",
+          "label": "ignore whitespace",
+          "default": false,
+          "description": "Setting to V(true) will ignore white space changes between patch and input."
+        },
+        {
+          "key": "remote_src",
+          "fieldId": "REMOTE_SRC",
+          "type": "boolean",
+          "label": "remote src",
+          "default": false,
+          "description": "If V(false), it will search for src at originating/controller machine, If C(true), it will go to the remote/target machine for the O(src)."
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "Path of the patch file as accepted by the GNU patch tool. If O(remote_src=false), the patch source file is looked up from the module's I(files) directory.",
+          "required": true,
+          "aliases": [
+            "patchfile"
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Whether the patch should be applied or reverted.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "strip",
+          "fieldId": "STRIP",
+          "type": "number",
+          "label": "strip",
+          "default": 0,
+          "description": "Number that indicates the smallest prefix containing leading slashes that will be stripped from each file name found in the patch file. For more information see the strip parameter of the GNU patch tool."
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.rhel_rpm_ostree",
+      "blockType": "ansible_posix_rhel_rpm_ostree",
+      "label": "rhel_rpm_ostree",
+      "tooltip": "Ensure packages exist in a RHEL for Edge rpm-ostree based system",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/rhel_rpm_ostree_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "yamlType": "list",
+          "description": "A package name or package specifier with version, like V(name-1.0). Comparison operators for package version are valid here C(>), C(<), C(>=), C(<=). Example - C(name>=1.0). If a previous version is specified, the task also needs to turn C(allow_downgrade) on. See the C(allow_downgrade) documentation for caveats with downgrading packages. When using O(state=latest), this can be V('*') which means run C(yum -y update). You can also pass a url or a local path to a rpm file (using O(state=present)). To operate on several packages this can accept a comma separated string of packages or (as of 2.0) a list of packages.",
+          "aliases": [
+            "pkg"
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "Whether to install (V(present) or V(installed), V(latest)), or remove (V(absent) or V(removed)) a package. V(present) and V(installed) will simply ensure that a desired package is installed. V(latest) will update the specified package if it's not of the latest available version. V(absent) and V(removed) will remove the specified package. Default is C(null), however in effect the default action is V(present) unless the C(autoremove) option is enabled for this module, then V(absent) is inferred.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "installed",
+              "installed"
+            ],
+            [
+              "latest",
+              "latest"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "removed",
+              "removed"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.rpm_ostree_upgrade",
+      "blockType": "ansible_posix_rpm_ostree_upgrade",
+      "label": "rpm_ostree_upgrade",
+      "tooltip": "Manage rpm-ostree upgrade transactions",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/rpm_ostree_upgrade_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "allow_downgrade",
+          "fieldId": "ALLOW_DOWNGRADE",
+          "type": "boolean",
+          "label": "allow downgrade",
+          "default": false,
+          "description": "Allow for the upgrade to be a chronologically older tree."
+        },
+        {
+          "key": "cache_only",
+          "fieldId": "CACHE_ONLY",
+          "type": "boolean",
+          "label": "cache only",
+          "default": false,
+          "description": "Perform the transaction using only pre-cached data, do not download."
+        },
+        {
+          "key": "os",
+          "fieldId": "OS",
+          "type": "text",
+          "label": "os",
+          "description": "The OSNAME upon which to operate."
+        },
+        {
+          "key": "peer",
+          "fieldId": "PEER",
+          "type": "boolean",
+          "label": "peer",
+          "default": false,
+          "description": "Force peer-to-peer connection instead of using a system message bus."
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.seboolean",
+      "blockType": "ansible_posix_seboolean",
+      "label": "seboolean",
+      "tooltip": "Toggles SELinux booleans",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/seboolean_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "ignore_selinux_state",
+          "fieldId": "IGNORE_SELINUX_STATE",
+          "type": "boolean",
+          "label": "ignore selinux state",
+          "default": false,
+          "description": "Useful for scenarios (chrooted environment) that you can't get the real SELinux state."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the boolean to configure.",
+          "required": true
+        },
+        {
+          "key": "persistent",
+          "fieldId": "PERSISTENT",
+          "type": "boolean",
+          "label": "persistent",
+          "default": false,
+          "description": "Set to V(true) if the boolean setting should survive a reboot."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "boolean",
+          "label": "state",
+          "description": "Desired boolean value.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.selinux",
+      "blockType": "ansible_posix_selinux",
+      "label": "selinux",
+      "tooltip": "Change policy and state of SELinux",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/selinux_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "configfile",
+          "fieldId": "CONFIGFILE",
+          "type": "text",
+          "label": "configfile",
+          "default": "/etc/selinux/config",
+          "description": "The path to the SELinux configuration file, if non-standard.",
+          "aliases": [
+            "conf",
+            "file"
+          ]
+        },
+        {
+          "key": "policy",
+          "fieldId": "POLICY",
+          "type": "text",
+          "label": "policy",
+          "description": "The name of the SELinux policy to use (e.g. C(targeted)) will be required unless O(state=disabled)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "The SELinux mode.",
+          "options": [
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "enforcing",
+              "enforcing"
+            ],
+            [
+              "permissive",
+              "permissive"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "update_kernel_param",
+          "fieldId": "UPDATE_KERNEL_PARAM",
+          "type": "boolean",
+          "label": "update kernel param",
+          "default": false,
+          "description": "If set to V(true), will update also the kernel boot parameters when disabling/enabling SELinux. The C(grubby) tool must be present on the target system for this to work."
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.synchronize",
+      "blockType": "ansible_posix_synchronize",
+      "label": "synchronize",
+      "tooltip": "A wrapper around rsync to make common tasks in your playbooks quick and easy",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/synchronize_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "_local_rsync_password",
+          "fieldId": "_LOCAL_RSYNC_PASSWORD",
+          "type": "text",
+          "label": " local rsync password",
+          "description": "Internal use only, never logged."
+        },
+        {
+          "key": "_local_rsync_path",
+          "fieldId": "_LOCAL_RSYNC_PATH",
+          "type": "text",
+          "label": " local rsync path",
+          "default": "rsync",
+          "description": "Internal use only."
+        },
+        {
+          "key": "_ssh_args",
+          "fieldId": "_SSH_ARGS",
+          "type": "text",
+          "label": " ssh args",
+          "description": "Internal use only. See O(use_ssh_args) for ssh arg settings."
+        },
+        {
+          "key": "_substitute_controller",
+          "fieldId": "_SUBSTITUTE_CONTROLLER",
+          "type": "boolean",
+          "label": " substitute controller",
+          "default": false,
+          "description": "Internal use only."
+        },
+        {
+          "key": "archive",
+          "fieldId": "ARCHIVE",
+          "type": "boolean",
+          "label": "archive",
+          "default": true,
+          "description": "Mirrors the rsync archive flag, enables recursive, links, perms, times, owner, group flags, and C(-D)."
+        },
+        {
+          "key": "checksum",
+          "fieldId": "CHECKSUM",
+          "type": "boolean",
+          "label": "checksum",
+          "default": false,
+          "description": "Skip based on checksum, rather than mod-time & size; Note that that O(archive) option is still enabled by default - the O(checksum) option will not disable it."
+        },
+        {
+          "key": "compress",
+          "fieldId": "COMPRESS",
+          "type": "boolean",
+          "label": "compress",
+          "default": true,
+          "description": "Compress file data during the transfer. In most cases, leave this enabled unless it causes problems."
+        },
+        {
+          "key": "copy_links",
+          "fieldId": "COPY_LINKS",
+          "type": "boolean",
+          "label": "copy links",
+          "default": false,
+          "description": "Copy symlinks as the item that they point to (the referent) is copied, rather than the symlink."
+        },
+        {
+          "key": "delay_updates",
+          "fieldId": "DELAY_UPDATES",
+          "type": "boolean",
+          "label": "delay updates",
+          "default": true,
+          "description": "This option puts the temporary file from each updated file into a holding directory until the end of the transfer, at which time all the files are renamed into place in rapid succession."
+        },
+        {
+          "key": "delete",
+          "fieldId": "DELETE",
+          "type": "boolean",
+          "label": "delete",
+          "default": false,
+          "description": "Delete files in O(dest) that do not exist (after transfer, not before) in the O(src) path. This option requires O(recursive=true). This option ignores excluded files and behaves like the rsync opt C(--delete-after)."
+        },
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "description": "Path on the destination host that will be synchronized from the source. The path can be absolute or relative.",
+          "required": true
+        },
+        {
+          "key": "dest_port",
+          "fieldId": "DEST_PORT",
+          "type": "number",
+          "label": "dest port",
+          "description": "Port number for ssh on the destination host. Prior to Ansible 2.0, the C(ansible_ssh_port) inventory var took precedence over this value. This parameter defaults to the value of C(ansible_port), the C(remote_port) config setting or the value from ssh client configuration if none of the former have been set."
+        },
+        {
+          "key": "dirs",
+          "fieldId": "DIRS",
+          "type": "boolean",
+          "label": "dirs",
+          "default": false,
+          "description": "Transfer directories without recursing."
+        },
+        {
+          "key": "existing_only",
+          "fieldId": "EXISTING_ONLY",
+          "type": "boolean",
+          "label": "existing only",
+          "default": false,
+          "description": "Skip creating new files on receiver."
+        },
+        {
+          "key": "group",
+          "fieldId": "GROUP",
+          "type": "boolean",
+          "label": "group",
+          "description": "Preserve group. This parameter defaults to the value of the archive option."
+        },
+        {
+          "key": "link_dest",
+          "fieldId": "LINK_DEST",
+          "type": "text",
+          "label": "link dest",
+          "yamlType": "list",
+          "description": "Add a destination to hard link against during the rsync."
+        },
+        {
+          "key": "links",
+          "fieldId": "LINKS",
+          "type": "boolean",
+          "label": "links",
+          "description": "Copy symlinks as symlinks. This parameter defaults to the value of the archive option."
+        },
+        {
+          "key": "mode",
+          "fieldId": "MODE",
+          "type": "dropdown",
+          "label": "mode",
+          "default": "push",
+          "description": "Specify the direction of the synchronization. In V(push) mode the localhost or delegate is the source. In V(pull) mode the remote host in context is the source.",
+          "options": [
+            [
+              "pull",
+              "pull"
+            ],
+            [
+              "push",
+              "push"
+            ]
+          ]
+        },
+        {
+          "key": "owner",
+          "fieldId": "OWNER",
+          "type": "boolean",
+          "label": "owner",
+          "description": "Preserve owner (super user only). This parameter defaults to the value of the archive option."
+        },
+        {
+          "key": "partial",
+          "fieldId": "PARTIAL",
+          "type": "boolean",
+          "label": "partial",
+          "default": false,
+          "description": "Tells rsync to keep the partial file which should make a subsequent transfer of the rest of the file much faster."
+        },
+        {
+          "key": "perms",
+          "fieldId": "PERMS",
+          "type": "boolean",
+          "label": "perms",
+          "description": "Preserve permissions. This parameter defaults to the value of the archive option."
+        },
+        {
+          "key": "private_key",
+          "fieldId": "PRIVATE_KEY",
+          "type": "text",
+          "label": "private key",
+          "description": "Specify the private key to use for SSH-based rsync connections (e.g. C(~/.ssh/id_rsa))."
+        },
+        {
+          "key": "recursive",
+          "fieldId": "RECURSIVE",
+          "type": "boolean",
+          "label": "recursive",
+          "description": "Recurse into directories. This parameter defaults to the value of the archive option."
+        },
+        {
+          "key": "rsync_opts",
+          "fieldId": "RSYNC_OPTS",
+          "type": "text",
+          "label": "rsync opts",
+          "yamlType": "list",
+          "description": "Specify additional rsync options by passing in an array. Note that an empty string in C(rsync_opts) will end up transfer the current working directory."
+        },
+        {
+          "key": "rsync_path",
+          "fieldId": "RSYNC_PATH",
+          "type": "text",
+          "label": "rsync path",
+          "description": "Specify the rsync command to run on the remote host. See C(--rsync-path) on the rsync man page. To specify the rsync command to run on the local host, you need to set this your task var C(ansible_rsync_path)."
+        },
+        {
+          "key": "rsync_timeout",
+          "fieldId": "RSYNC_TIMEOUT",
+          "type": "number",
+          "label": "rsync timeout",
+          "default": 0,
+          "description": "Specify a C(--timeout) for the rsync command in seconds."
+        },
+        {
+          "key": "set_remote_user",
+          "fieldId": "SET_REMOTE_USER",
+          "type": "boolean",
+          "label": "set remote user",
+          "default": true,
+          "description": "Put C(user@) for the remote paths. If you have a custom ssh config to define the remote user for a host that does not match the inventory user, you should set this parameter to V(false)."
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "Path on the source host that will be synchronized to the destination. The path can be absolute or relative.",
+          "required": true
+        },
+        {
+          "key": "ssh_connection_multiplexing",
+          "fieldId": "SSH_CONNECTION_MULTIPLEXING",
+          "type": "boolean",
+          "label": "ssh connection multiplexing",
+          "default": false,
+          "description": "SSH connection multiplexing for rsync is disabled by default to prevent misconfigured ControlSockets from resulting in failed SSH connections. This is accomplished by setting the SSH C(ControlSocket) to C(none). Set this option to V(true) to allow multiplexing and reduce SSH connection overhead. Note that simply setting this option to V(true) is not enough; You must also configure SSH connection multiplexing in your SSH client config by setting values for C(ControlMaster), C(ControlPersist) and C(ControlPath)."
+        },
+        {
+          "key": "times",
+          "fieldId": "TIMES",
+          "type": "boolean",
+          "label": "times",
+          "description": "Preserve modification times. This parameter defaults to the value of the archive option."
+        },
+        {
+          "key": "use_ssh_args",
+          "fieldId": "USE_SSH_ARGS",
+          "type": "boolean",
+          "label": "use ssh args",
+          "default": false,
+          "description": "In Ansible 2.10 and lower, it uses the ssh_args specified in C(ansible.cfg). In Ansible 2.11 and onwards, when set to V(true), it uses all SSH connection configurations like C(ansible_ssh_args), C(ansible_ssh_common_args), and C(ansible_ssh_extra_args)."
+        },
+        {
+          "key": "verify_host",
+          "fieldId": "VERIFY_HOST",
+          "type": "boolean",
+          "label": "verify host",
+          "default": false,
+          "description": "Verify destination host key."
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.posix.sysctl",
+      "blockType": "ansible_posix_sysctl",
+      "label": "sysctl",
+      "tooltip": "Manage entries in sysctl.conf.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/posix/sysctl_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "ignoreerrors",
+          "fieldId": "IGNOREERRORS",
+          "type": "boolean",
+          "label": "ignoreerrors",
+          "default": false,
+          "description": "Use this option to ignore errors about unknown keys."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The dot-separated path (also known as O(key)) specifying the sysctl variable.",
+          "required": true,
+          "aliases": [
+            "key"
+          ]
+        },
+        {
+          "key": "reload",
+          "fieldId": "RELOAD",
+          "type": "boolean",
+          "label": "reload",
+          "default": true,
+          "description": "If V(true), performs a C(/sbin/sysctl -p) if the O(sysctl_file) is updated. If V(false), does not reload C(sysctl) even if the O(sysctl_file) is updated. For FreeBSD, can not be used with O(sysctl_file) other than C(/etc/sysctl.conf) or C(/etc/sysctl.conf.local)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Whether the entry should be present or absent in the sysctl file.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "sysctl_file",
+          "fieldId": "SYSCTL_FILE",
+          "type": "text",
+          "label": "sysctl file",
+          "default": "/etc/sysctl.conf",
+          "description": "Specifies the absolute path to C(sysctl.conf), if not C(/etc/sysctl.conf)."
+        },
+        {
+          "key": "sysctl_set",
+          "fieldId": "SYSCTL_SET",
+          "type": "boolean",
+          "label": "sysctl set",
+          "default": false,
+          "description": "Verify token value with the sysctl command and set with C(-w) if necessary."
+        },
+        {
+          "key": "value",
+          "fieldId": "VALUE",
+          "type": "text",
+          "label": "value",
+          "description": "Desired value of the sysctl key.",
+          "aliases": [
+            "val"
+          ]
+        }
+      ]
+    }
+  ]
+}

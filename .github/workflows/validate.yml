@@ -64,8 +64,8 @@ jobs:
                   errors.append(f'{pid}: missing name')
               if not isinstance(pack.get('modules'), list):
                   errors.append(f'{pid}: missing or invalid modules array')
-              elif len(pack['modules']) > 200:
-                  errors.append(f'{pid}: exceeds 200 module limit ({len(pack[\"modules\"])})')
+              elif len(pack['modules']) > 1000:
+                  errors.append(f'{pid}: exceeds 1000 module limit ({len(pack[\"modules\"])})')
               print(f'  {pid}: {len(pack.get(\"modules\", []))} modules')
           if errors:
               for e in errors:

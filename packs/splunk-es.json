@@ -1,0 +1,2127 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "splunk-es",
+  "name": "Splunk ES",
+  "collection": "splunk.es",
+  "collectionVersion": "6.0.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:28:07Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#65A637",
+  "blockStyleName": "splunk_es_blocks",
+  "categoryStyleName": "splunk_es_category",
+  "modules": [
+    {
+      "fqcn": "splunk.es.splunk_adaptive_response_notable_events",
+      "blockType": "splunk_es_splunk_adaptive_response_notable_events",
+      "label": "splunk_adaptive_response_notable_events",
+      "tooltip": "Manage Adaptive Responses notable events resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_adaptive_response_notable_events_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source. There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(running_config) argument allows the implementer to pass in the configuration to use as the base config for comparison. This value of this option should be the output received from device by executing command.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "correlation_search_name",
+          "fieldId": "CORRELATION_SEARCH_NAME",
+          "type": "text",
+          "label": "correlation search name",
+          "description": "Name of correlation search to associate this notable event adaptive response with",
+          "required": true
+        },
+        {
+          "key": "default_owner",
+          "fieldId": "DEFAULT_OWNER",
+          "type": "text",
+          "label": "default owner",
+          "description": "Default owner of the notable event, if unset it will default to Splunk System Defaults"
+        },
+        {
+          "key": "default_status",
+          "fieldId": "DEFAULT_STATUS",
+          "type": "dropdown",
+          "label": "default status",
+          "description": "Default status of the notable event, if unset it will default to Splunk System Defaults",
+          "options": [
+            [
+              "unassigned",
+              "unassigned"
+            ],
+            [
+              "new",
+              "new"
+            ],
+            [
+              "in progress",
+              "in progress"
+            ],
+            [
+              "pending",
+              "pending"
+            ],
+            [
+              "resolved",
+              "resolved"
+            ],
+            [
+              "closed",
+              "closed"
+            ]
+          ]
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Description of the notable event, this will populate the description field for the web console"
+        },
+        {
+          "key": "drilldown_earliest_offset",
+          "fieldId": "DRILLDOWN_EARLIEST_OFFSET",
+          "type": "text",
+          "label": "drilldown earliest offset",
+          "default": "$info_min_time$",
+          "description": "Set the amount of time before the triggering event to search for related events. For example, 2h. Use '$info_min_time$' to set the drill-down time to match the earliest time of the search"
+        },
+        {
+          "key": "drilldown_latest_offset",
+          "fieldId": "DRILLDOWN_LATEST_OFFSET",
+          "type": "text",
+          "label": "drilldown latest offset",
+          "default": "$info_max_time$",
+          "description": "Set the amount of time after the triggering event to search for related events. For example, 1m. Use '$info_max_time$' to set the drill-down time to match the latest time of the search"
+        },
+        {
+          "key": "drilldown_name",
+          "fieldId": "DRILLDOWN_NAME",
+          "type": "text",
+          "label": "drilldown name",
+          "description": "Name for drill down search, Supports variable substitution with fields from the matching event."
+        },
+        {
+          "key": "drilldown_search",
+          "fieldId": "DRILLDOWN_SEARCH",
+          "type": "text",
+          "label": "drilldown search",
+          "description": "Drill down search, Supports variable substitution with fields from the matching event."
+        },
+        {
+          "key": "investigation_profiles",
+          "fieldId": "INVESTIGATION_PROFILES",
+          "type": "text",
+          "label": "investigation profiles",
+          "yamlType": "list",
+          "description": "Investigation profile to associate the notable event with."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of notable event"
+        },
+        {
+          "key": "next_steps",
+          "fieldId": "NEXT_STEPS",
+          "type": "text",
+          "label": "next steps",
+          "yamlType": "list",
+          "description": "List of adaptive responses that should be run next Describe next steps and response actions that an analyst could take to address this threat."
+        },
+        {
+          "key": "recommended_actions",
+          "fieldId": "RECOMMENDED_ACTIONS",
+          "type": "text",
+          "label": "recommended actions",
+          "yamlType": "list",
+          "description": "List of adaptive responses that are recommended to be run next Identifying Recommended Adaptive Responses will highlight those actions for the analyst when looking at the list of response actions available, making it easier to find them among the longer list of available actions."
+        },
+        {
+          "key": "security_domain",
+          "fieldId": "SECURITY_DOMAIN",
+          "type": "dropdown",
+          "label": "security domain",
+          "default": "threat",
+          "description": "Splunk Security Domain",
+          "options": [
+            [
+              "access",
+              "access"
+            ],
+            [
+              "endpoint",
+              "endpoint"
+            ],
+            [
+              "network",
+              "network"
+            ],
+            [
+              "threat",
+              "threat"
+            ],
+            [
+              "identity",
+              "identity"
+            ],
+            [
+              "audit",
+              "audit"
+            ]
+          ]
+        },
+        {
+          "key": "severity",
+          "fieldId": "SEVERITY",
+          "type": "dropdown",
+          "label": "severity",
+          "default": "high",
+          "description": "Severity rating",
+          "options": [
+            [
+              "informational",
+              "informational"
+            ],
+            [
+              "low",
+              "low"
+            ],
+            [
+              "medium",
+              "medium"
+            ],
+            [
+              "high",
+              "high"
+            ],
+            [
+              "critical",
+              "critical"
+            ],
+            [
+              "unknown",
+              "unknown"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "config.extract_artifacts (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_correlation_search_info",
+      "blockType": "splunk_es_splunk_correlation_search_info",
+      "label": "splunk_correlation_search_info",
+      "tooltip": "Gather information about Splunk Enterprise Security Correlation Searches",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_correlation_search_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of correlation search to query. If not specified, returns all correlation searches."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_correlation_searches",
+      "blockType": "splunk_es_splunk_correlation_searches",
+      "label": "splunk_correlation_searches",
+      "tooltip": "Splunk Enterprise Security Correlation searches resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_correlation_searches_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source. There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(running_config) argument allows the implementer to pass in the configuration to use as the base config for comparison. This value of this option should be the output received from device by executing command.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "app",
+          "fieldId": "APP",
+          "type": "text",
+          "label": "app",
+          "default": "SplunkEnterpriseSecuritySuite",
+          "description": "Splunk app to associate the correlation seach with"
+        },
+        {
+          "key": "cron_schedule",
+          "fieldId": "CRON_SCHEDULE",
+          "type": "text",
+          "label": "cron schedule",
+          "default": "*/5 * * * *",
+          "description": "Enter a cron-style schedule. For example C('*/5 * * * *') (every 5 minutes) or C('0 21 * * *') (every day at 9 PM). Real-time searches use a default schedule of C('*/5 * * * *')."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Description of the coorelation search, this will populate the description field for the web console"
+        },
+        {
+          "key": "disabled",
+          "fieldId": "DISABLED",
+          "type": "boolean",
+          "label": "disabled",
+          "default": false,
+          "description": "Disable correlation search"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of correlation search",
+          "required": true
+        },
+        {
+          "key": "schedule_priority",
+          "fieldId": "SCHEDULE_PRIORITY",
+          "type": "dropdown",
+          "label": "schedule priority",
+          "default": "default",
+          "description": "Raise the scheduling priority of a report. Set to \"Higher\" to prioritize it above other searches of the same scheduling mode, or \"Highest\" to prioritize it above other searches regardless of mode. Use with discretion.",
+          "options": [
+            [
+              "default",
+              "default"
+            ],
+            [
+              "higher",
+              "higher"
+            ],
+            [
+              "highest",
+              "highest"
+            ]
+          ]
+        },
+        {
+          "key": "schedule_window",
+          "fieldId": "SCHEDULE_WINDOW",
+          "type": "text",
+          "label": "schedule window",
+          "default": "0",
+          "description": "Let report run at any time within a window that opens at its scheduled run time, to improve efficiency when there are many concurrently scheduled reports. The \"auto\" setting automatically determines the best window width for the report."
+        },
+        {
+          "key": "scheduling",
+          "fieldId": "SCHEDULING",
+          "type": "dropdown",
+          "label": "scheduling",
+          "default": "realtime",
+          "description": "Controls the way the scheduler computes the next execution time of a scheduled search. Learn more: https://docs.splunk.com/Documentation/Splunk/7.2.3/Report/Configurethepriorityofscheduledreports#Real-time_scheduling_and_continuous_scheduling\n",
+          "options": [
+            [
+              "realtime",
+              "realtime"
+            ],
+            [
+              "continuous",
+              "continuous"
+            ]
+          ]
+        },
+        {
+          "key": "search",
+          "fieldId": "SEARCH",
+          "type": "text",
+          "label": "search",
+          "description": "SPL search string"
+        },
+        {
+          "key": "suppress_alerts",
+          "fieldId": "SUPPRESS_ALERTS",
+          "type": "boolean",
+          "label": "suppress alerts",
+          "default": false,
+          "description": "To suppress alerts from this correlation search or not"
+        },
+        {
+          "key": "throttle_fields_to_group_by",
+          "fieldId": "THROTTLE_FIELDS_TO_GROUP_BY",
+          "type": "text",
+          "label": "throttle fields to group by",
+          "yamlType": "list",
+          "description": "Type the fields to consider for matching events for throttling."
+        },
+        {
+          "key": "throttle_window_duration",
+          "fieldId": "THROTTLE_WINDOW_DURATION",
+          "type": "text",
+          "label": "throttle window duration",
+          "description": "How much time to ignore other events that match the field values specified in Fields to group by."
+        },
+        {
+          "key": "time_earliest",
+          "fieldId": "TIME_EARLIEST",
+          "type": "text",
+          "label": "time earliest",
+          "default": "-24h",
+          "description": "Earliest time using relative time modifiers."
+        },
+        {
+          "key": "time_latest",
+          "fieldId": "TIME_LATEST",
+          "type": "text",
+          "label": "time latest",
+          "default": "now",
+          "description": "Latest time using relative time modifiers."
+        },
+        {
+          "key": "trigger_alert",
+          "fieldId": "TRIGGER_ALERT",
+          "type": "dropdown",
+          "label": "trigger alert",
+          "default": "once",
+          "description": "Notable response actions and risk response actions are always triggered for each result. Choose whether the trigger is activated once or for each result.",
+          "options": [
+            [
+              "once",
+              "once"
+            ],
+            [
+              "for each result",
+              "for each result"
+            ]
+          ]
+        },
+        {
+          "key": "trigger_alert_when",
+          "fieldId": "TRIGGER_ALERT_WHEN",
+          "type": "dropdown",
+          "label": "trigger alert when",
+          "default": "number of events",
+          "description": "Raise the scheduling priority of a report. Set to \"Higher\" to prioritize it above other searches of the same scheduling mode, or \"Highest\" to prioritize it above other searches regardless of mode. Use with discretion.",
+          "options": [
+            [
+              "number of events",
+              "number of events"
+            ],
+            [
+              "number of results",
+              "number of results"
+            ],
+            [
+              "number of hosts",
+              "number of hosts"
+            ],
+            [
+              "number of sources",
+              "number of sources"
+            ]
+          ]
+        },
+        {
+          "key": "trigger_alert_when_condition",
+          "fieldId": "TRIGGER_ALERT_WHEN_CONDITION",
+          "type": "dropdown",
+          "label": "trigger alert when condition",
+          "default": "greater than",
+          "description": "Conditional to pass to C(trigger_alert_when)",
+          "options": [
+            [
+              "greater than",
+              "greater than"
+            ],
+            [
+              "less than",
+              "less than"
+            ],
+            [
+              "equal to",
+              "equal to"
+            ],
+            [
+              "not equal to",
+              "not equal to"
+            ],
+            [
+              "drops by",
+              "drops by"
+            ],
+            [
+              "rises by",
+              "rises by"
+            ]
+          ]
+        },
+        {
+          "key": "trigger_alert_when_value",
+          "fieldId": "TRIGGER_ALERT_WHEN_VALUE",
+          "type": "text",
+          "label": "trigger alert when value",
+          "default": "10",
+          "description": "Value to pass to C(trigger_alert_when)"
+        },
+        {
+          "key": "ui_dispatch_context",
+          "fieldId": "UI_DISPATCH_CONTEXT",
+          "type": "text",
+          "label": "ui dispatch context",
+          "description": "Set an app to use for links such as the drill-down search in a notable event or links in an email adaptive response action. If None, uses the Application Context."
+        }
+      ],
+      "unmappedParams": [
+        "config.annotations (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_data_inputs_monitor",
+      "blockType": "splunk_es_splunk_data_inputs_monitor",
+      "label": "splunk_data_inputs_monitor",
+      "tooltip": "Splunk Data Inputs of type Monitor resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_data_inputs_monitor_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source. There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(running_config) argument allows the implementer to pass in the configuration to use as the base config for comparison. This value of this option should be the output received from device by executing command.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "blacklist",
+          "fieldId": "BLACKLIST",
+          "type": "text",
+          "label": "blacklist",
+          "description": "Specify a regular expression for a file path. The file path that matches this regular expression is not indexed."
+        },
+        {
+          "key": "check_index",
+          "fieldId": "CHECK_INDEX",
+          "type": "boolean",
+          "label": "check index",
+          "description": "If set to C(true), the index value is checked to ensure that it is the name of a valid index. This parameter is not returned back by Splunk while obtaining object information. It is therefore left out while performing idempotency checks"
+        },
+        {
+          "key": "check_path",
+          "fieldId": "CHECK_PATH",
+          "type": "boolean",
+          "label": "check path",
+          "description": "If set to C(true), the name value is checked to ensure that it exists. This parameter is not returned back by Splunk while obtaining object information. It is therefore left out while performing idempotency checks"
+        },
+        {
+          "key": "crc_salt",
+          "fieldId": "CRC_SALT",
+          "type": "text",
+          "label": "crc salt",
+          "description": "A string that modifies the file tracking identity for files in this input. The magic value <SOURCE> invokes special behavior (see admin documentation)."
+        },
+        {
+          "key": "disabled",
+          "fieldId": "DISABLED",
+          "type": "boolean",
+          "label": "disabled",
+          "default": false,
+          "description": "Indicates if input monitoring is disabled."
+        },
+        {
+          "key": "follow_tail",
+          "fieldId": "FOLLOW_TAIL",
+          "type": "boolean",
+          "label": "follow tail",
+          "description": "If set to C(true), files that are seen for the first time is read from the end."
+        },
+        {
+          "key": "host_regex",
+          "fieldId": "HOST_REGEX",
+          "type": "text",
+          "label": "host regex",
+          "description": "Specify a regular expression for a file path. If the path for a file matches this regular expression, the captured value is used to populate the host field for events from this data input. The regular expression must have one capture group."
+        },
+        {
+          "key": "host_segment",
+          "fieldId": "HOST_SEGMENT",
+          "type": "number",
+          "label": "host segment",
+          "description": "Use the specified slash-separate segment of the filepath as the host field value."
+        },
+        {
+          "key": "ignore_older_than",
+          "fieldId": "IGNORE_OLDER_THAN",
+          "type": "text",
+          "label": "ignore older than",
+          "description": "Specify a time value. If the modification time of a file being monitored falls outside of this rolling time window, the file is no longer being monitored. This parameter is not returned back by Splunk while obtaining object information. It is therefore left out while performing idempotency checks"
+        },
+        {
+          "key": "index",
+          "fieldId": "INDEX",
+          "type": "text",
+          "label": "index",
+          "default": "default",
+          "description": "Which index events from this input should be stored in. Defaults to default."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The file or directory path to monitor on the system.",
+          "required": true
+        },
+        {
+          "key": "recursive",
+          "fieldId": "RECURSIVE",
+          "type": "boolean",
+          "label": "recursive",
+          "description": "Setting this to False prevents monitoring of any subdirectories encountered within this data input."
+        },
+        {
+          "key": "rename_source",
+          "fieldId": "RENAME_SOURCE",
+          "type": "text",
+          "label": "rename source",
+          "description": "The value to populate in the source field for events from this data input. The same source should not be used for multiple data inputs. This parameter is not returned back by Splunk while obtaining object information. It is therefore left out while performing idempotency checks"
+        },
+        {
+          "key": "sourcetype",
+          "fieldId": "SOURCETYPE",
+          "type": "text",
+          "label": "sourcetype",
+          "description": "The value to populate in the sourcetype field for incoming events."
+        },
+        {
+          "key": "time_before_close",
+          "fieldId": "TIME_BEFORE_CLOSE",
+          "type": "number",
+          "label": "time before close",
+          "description": "When Splunk software reaches the end of a file that is being read, the file is kept open for a minimum of the number of seconds specified in this value. After this period has elapsed, the file is checked again for more data. This parameter is not returned back by Splunk while obtaining object information. It is therefore left out while performing idempotency checks"
+        },
+        {
+          "key": "whitelist",
+          "fieldId": "WHITELIST",
+          "type": "text",
+          "label": "whitelist",
+          "description": "Specify a regular expression for a file path. Only file paths that match this regular expression are indexed."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_data_inputs_network",
+      "blockType": "splunk_es_splunk_data_inputs_network",
+      "label": "splunk_data_inputs_network",
+      "tooltip": "Manage Splunk Data Inputs of type TCP or UDP resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_data_inputs_network_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source. There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(running_config) argument allows the implementer to pass in the configuration to use as the base config for comparison. This value of this option should be the output received from device by executing command.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "cipher_suite",
+          "fieldId": "CIPHER_SUITE",
+          "type": "text",
+          "label": "cipher suite",
+          "description": "Specifies list of acceptable ciphers to use in ssl. Only obtained for TCP SSL configuration present on device."
+        },
+        {
+          "key": "connection_host",
+          "fieldId": "CONNECTION_HOST",
+          "type": "dropdown",
+          "label": "connection host",
+          "description": "Set the host for the remote server that is sending data. C(ip) sets the host to the IP address of the remote server sending data. C(dns) sets the host to the reverse DNS entry for the IP address of the remote server sending data. C(none) leaves the host as specified in inputs.conf, which is typically the Splunk system hostname.",
+          "options": [
+            [
+              "ip",
+              "ip"
+            ],
+            [
+              "dns",
+              "dns"
+            ],
+            [
+              "none",
+              "none"
+            ]
+          ]
+        },
+        {
+          "key": "datatype",
+          "fieldId": "DATATYPE",
+          "type": "dropdown",
+          "label": "datatype",
+          "description": "C(cooked) lets one access cooked TCP input information and create new containers for managing cooked data. C(raw) lets one manage raw tcp inputs from forwarders. C(splunktcptoken) lets one manage receiver access using tokens. C(ssl) Provides access to the SSL configuration of a Splunk server. This option does not support states I(deleted) and I(replaced).",
+          "options": [
+            [
+              "cooked",
+              "cooked"
+            ],
+            [
+              "raw",
+              "raw"
+            ],
+            [
+              "splunktcptoken",
+              "splunktcptoken"
+            ],
+            [
+              "ssl",
+              "ssl"
+            ]
+          ]
+        },
+        {
+          "key": "disabled",
+          "fieldId": "DISABLED",
+          "type": "boolean",
+          "label": "disabled",
+          "description": "Indicates whether the input is disabled."
+        },
+        {
+          "key": "index",
+          "fieldId": "INDEX",
+          "type": "text",
+          "label": "index",
+          "description": "default Index to store generated events."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The input port which receives raw data.",
+          "required": true
+        },
+        {
+          "key": "no_appending_timestamp",
+          "fieldId": "NO_APPENDING_TIMESTAMP",
+          "type": "boolean",
+          "label": "no appending timestamp",
+          "description": "If set to true, prevents Splunk software from prepending a timestamp and hostname to incoming events. Only for UDP data input configuration."
+        },
+        {
+          "key": "no_priority_stripping",
+          "fieldId": "NO_PRIORITY_STRIPPING",
+          "type": "boolean",
+          "label": "no priority stripping",
+          "description": "If set to true, Splunk software does not remove the priority field from incoming syslog events. Only for UDP data input configuration."
+        },
+        {
+          "key": "protocol",
+          "fieldId": "PROTOCOL",
+          "type": "dropdown",
+          "label": "protocol",
+          "description": "Choose whether to manage TCP or UDP inputs",
+          "options": [
+            [
+              "tcp",
+              "tcp"
+            ],
+            [
+              "udp",
+              "udp"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "queue",
+          "fieldId": "QUEUE",
+          "type": "dropdown",
+          "label": "queue",
+          "description": "Specifies where the input processor should deposit the events it reads. Defaults to parsingQueue. Set queue to parsingQueue to apply props.conf and other parsing rules to your data. For more information about props.conf and rules for timestamping and linebreaking, refer to props.conf and the online documentation at \"Monitor files and directories with inputs.conf\" Set queue to indexQueue to send your data directly into the index. Only applicable for \"/tcp/raw\" and \"/udp\" APIs",
+          "options": [
+            [
+              "parsingQueue",
+              "parsingQueue"
+            ],
+            [
+              "indexQueue",
+              "indexQueue"
+            ]
+          ]
+        },
+        {
+          "key": "raw_tcp_done_timeout",
+          "fieldId": "RAW_TCP_DONE_TIMEOUT",
+          "type": "number",
+          "label": "raw tcp done timeout",
+          "description": "Specifies in seconds the timeout value for adding a Done-key. If a connection over the port specified by name remains idle after receiving data for specified number of seconds, it adds a Done-key. This implies the last event is completely received. Only for TCP raw input configuration."
+        },
+        {
+          "key": "require_client_cert",
+          "fieldId": "REQUIRE_CLIENT_CERT",
+          "type": "text",
+          "label": "require client cert",
+          "description": "Determines whether a client must authenticate. Only for TCP SSL configuration."
+        },
+        {
+          "key": "restrict_to_host",
+          "fieldId": "RESTRICT_TO_HOST",
+          "type": "text",
+          "label": "restrict to host",
+          "description": "Allows for restricting this input to only accept data from the host specified here."
+        },
+        {
+          "key": "root_ca",
+          "fieldId": "ROOT_CA",
+          "type": "text",
+          "label": "root ca",
+          "description": "Certificate authority list (root file). Only for TCP SSL configuration."
+        },
+        {
+          "key": "server_cert",
+          "fieldId": "SERVER_CERT",
+          "type": "text",
+          "label": "server cert",
+          "description": "Full path to the server certificate. Only for TCP SSL configuration."
+        },
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "text",
+          "label": "source",
+          "description": "Sets the source key/field for events from this input. Defaults to the input file path. Sets the source key initial value. The key is used during parsing/indexing, in particular to set the source field during indexing. It is also the source field used at search time. As a convenience, the chosen string is prepended with 'source::'. Note that Overriding the source key is generally not recommended. Typically, the input layer provides a more accurate string to aid in problem analysis and investigation, accurately recording the file from which the data was retrieved. Consider use of source types, tagging, and search wildcards before overriding this value."
+        },
+        {
+          "key": "sourcetype",
+          "fieldId": "SOURCETYPE",
+          "type": "text",
+          "label": "sourcetype",
+          "description": "Set the source type for events from this input. \"sourcetype=\" is automatically prepended to <string>. Defaults to audittrail (if signedaudit=true) or fschange (if signedaudit=false)."
+        },
+        {
+          "key": "ssl",
+          "fieldId": "SSL",
+          "type": "boolean",
+          "label": "ssl",
+          "description": "Enable or disble ssl for the data stream"
+        },
+        {
+          "key": "token",
+          "fieldId": "TOKEN",
+          "type": "text",
+          "label": "token",
+          "description": "Token value to use for SplunkTcpToken. If unspecified, a token is generated automatically."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_finding",
+      "blockType": "splunk_es_splunk_finding",
+      "label": "splunk_finding",
+      "tooltip": "Manage Splunk Enterprise Security findings",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_finding_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "SplunkEnterpriseSecuritySuite",
+          "description": "The app portion of the Splunk API path for the findings endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Description of the finding. Required when creating a new finding."
+        },
+        {
+          "key": "disposition",
+          "fieldId": "DISPOSITION",
+          "type": "dropdown",
+          "label": "disposition",
+          "description": "Disposition of the finding. Can be updated on existing findings.",
+          "options": [
+            [
+              "unassigned",
+              "unassigned"
+            ],
+            [
+              "true_positive",
+              "true_positive"
+            ],
+            [
+              "benign_positive",
+              "benign_positive"
+            ],
+            [
+              "false_positive",
+              "false_positive"
+            ],
+            [
+              "false_positive_inaccurate_data",
+              "false_positive_inaccurate_data"
+            ],
+            [
+              "other",
+              "other"
+            ],
+            [
+              "undetermined",
+              "undetermined"
+            ]
+          ]
+        },
+        {
+          "key": "entity",
+          "fieldId": "ENTITY",
+          "type": "text",
+          "label": "entity",
+          "description": "The risk object (entity) associated with the finding. Required when creating a new finding."
+        },
+        {
+          "key": "entity_type",
+          "fieldId": "ENTITY_TYPE",
+          "type": "dropdown",
+          "label": "entity type",
+          "description": "The type of the risk object (entity). Required when creating a new finding.",
+          "options": [
+            [
+              "user",
+              "user"
+            ],
+            [
+              "system",
+              "system"
+            ]
+          ]
+        },
+        {
+          "key": "finding_score",
+          "fieldId": "FINDING_SCORE",
+          "type": "number",
+          "label": "finding score",
+          "description": "The risk score for the finding. Required when creating a new finding."
+        },
+        {
+          "key": "owner",
+          "fieldId": "OWNER",
+          "type": "text",
+          "label": "owner",
+          "description": "Owner of the finding. Use C(admin) for the administrator user. Use C(unassigned) to leave the finding unassigned. Can be updated on existing findings."
+        },
+        {
+          "key": "ref_id",
+          "fieldId": "REF_ID",
+          "type": "text",
+          "label": "ref id",
+          "description": "Reference ID (finding ID / event_id) of an existing finding. Format is typically C(uuid@@notable@@time{timestamp}) (e.g., C(2008e99d-af14-4fec-89da-b9b17a81820a@@notable@@time1768225865)). If provided, the module will verify the finding exists and update it. If not provided, a new finding is created. When updating, only C(owner), C(status), C(urgency), and C(disposition) can be modified."
+        },
+        {
+          "key": "security_domain",
+          "fieldId": "SECURITY_DOMAIN",
+          "type": "dropdown",
+          "label": "security domain",
+          "description": "Security domain for the finding. Required when creating a new finding.",
+          "options": [
+            [
+              "access",
+              "access"
+            ],
+            [
+              "endpoint",
+              "endpoint"
+            ],
+            [
+              "network",
+              "network"
+            ],
+            [
+              "threat",
+              "threat"
+            ],
+            [
+              "identity",
+              "identity"
+            ],
+            [
+              "audit",
+              "audit"
+            ]
+          ]
+        },
+        {
+          "key": "status",
+          "fieldId": "STATUS",
+          "type": "dropdown",
+          "label": "status",
+          "description": "Status of the finding. Can be updated on existing findings.",
+          "options": [
+            [
+              "unassigned",
+              "unassigned"
+            ],
+            [
+              "new",
+              "new"
+            ],
+            [
+              "in_progress",
+              "in_progress"
+            ],
+            [
+              "pending",
+              "pending"
+            ],
+            [
+              "resolved",
+              "resolved"
+            ],
+            [
+              "closed",
+              "closed"
+            ]
+          ]
+        },
+        {
+          "key": "title",
+          "fieldId": "TITLE",
+          "type": "text",
+          "label": "title",
+          "description": "Title of the finding. Required when creating a new finding (without C(ref_id))."
+        },
+        {
+          "key": "urgency",
+          "fieldId": "URGENCY",
+          "type": "dropdown",
+          "label": "urgency",
+          "description": "Urgency level of the finding. Can be updated on existing findings.",
+          "options": [
+            [
+              "informational",
+              "informational"
+            ],
+            [
+              "low",
+              "low"
+            ],
+            [
+              "medium",
+              "medium"
+            ],
+            [
+              "high",
+              "high"
+            ],
+            [
+              "critical",
+              "critical"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "fields (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_finding_info",
+      "blockType": "splunk_es_splunk_finding_info",
+      "label": "splunk_finding_info",
+      "tooltip": "Gather information about Splunk Enterprise Security Findings",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_finding_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "SplunkEnterpriseSecuritySuite",
+          "description": "The app portion of the Splunk API path for the findings endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "earliest",
+          "fieldId": "EARLIEST",
+          "type": "text",
+          "label": "earliest",
+          "description": "The earliest time for findings to return. All findings returned have a _time greater than or equal to this value. Accepts relative time (e.g. C(-30m), C(-7d), C(-1w)), epoch time, or ISO 8601 time. If not provided, defaults to the last 24 hours (C(-24h)). Ignored when querying by C(ref_id) (time is extracted from ref_id automatically). Applies when querying by C(title) or all findings."
+        },
+        {
+          "key": "latest",
+          "fieldId": "LATEST",
+          "type": "text",
+          "label": "latest",
+          "description": "The latest time for findings to return. All findings returned have a _time less than or equal to this value. Accepts relative time (e.g. C(-30m), C(now)), epoch time, or ISO 8601 time. If not provided, defaults to the current time (C(now)). Ignored when querying by C(ref_id) (time is extracted from ref_id automatically). Applies when querying by C(title) or all findings."
+        },
+        {
+          "key": "limit",
+          "fieldId": "LIMIT",
+          "type": "number",
+          "label": "limit",
+          "description": "Maximum number of findings to return. If not specified, all matching findings are returned. Use this to limit large result sets."
+        },
+        {
+          "key": "ref_id",
+          "fieldId": "REF_ID",
+          "type": "text",
+          "label": "ref id",
+          "description": "Reference ID (finding ID) to query a specific finding. If specified, returns only the finding with this ID. Takes precedence over C(title) if both are provided. The time is automatically extracted from the ref_id (format uuid@@notable@@time{timestamp}). When querying by ref_id, the C(earliest) and C(latest) parameters are ignored."
+        },
+        {
+          "key": "title",
+          "fieldId": "TITLE",
+          "type": "text",
+          "label": "title",
+          "description": "Title name to filter findings. Returns all findings with an exact title match. Ignored if C(ref_id) is provided. The C(earliest) and C(latest) time filters still apply when querying by title."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_investigation",
+      "blockType": "splunk_es_splunk_investigation",
+      "label": "splunk_investigation",
+      "tooltip": "Manage Splunk Enterprise Security investigations",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_investigation_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path for the investigations endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "The description of the investigation."
+        },
+        {
+          "key": "disposition",
+          "fieldId": "DISPOSITION",
+          "type": "dropdown",
+          "label": "disposition",
+          "description": "The disposition of the investigation. Can be updated on existing investigations.",
+          "options": [
+            [
+              "unassigned",
+              "unassigned"
+            ],
+            [
+              "true_positive",
+              "true_positive"
+            ],
+            [
+              "benign_positive",
+              "benign_positive"
+            ],
+            [
+              "false_positive",
+              "false_positive"
+            ],
+            [
+              "false_positive_inaccurate_data",
+              "false_positive_inaccurate_data"
+            ],
+            [
+              "other",
+              "other"
+            ],
+            [
+              "undetermined",
+              "undetermined"
+            ]
+          ]
+        },
+        {
+          "key": "finding_ids",
+          "fieldId": "FINDING_IDS",
+          "type": "text",
+          "label": "finding ids",
+          "yamlType": "list",
+          "description": "List of finding IDs (event_ids) to attach to the investigation. When updating, findings are added to the investigation via a separate API call. Finding IDs can only be added, removal is not supported."
+        },
+        {
+          "key": "investigation_ref_id",
+          "fieldId": "INVESTIGATION_REF_ID",
+          "type": "text",
+          "label": "investigation ref id",
+          "description": "Reference ID of an existing investigation. If provided, the module will update the existing investigation. If not provided, a new investigation is created. When updating, all fields except C(name) can be modified."
+        },
+        {
+          "key": "investigation_type",
+          "fieldId": "INVESTIGATION_TYPE",
+          "type": "text",
+          "label": "investigation type",
+          "description": "The type of the investigation. If not specified, the default investigation type is used. Can be updated on existing investigations."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the investigation. Required when creating a new investigation (without C(investigation_ref_id)). Cannot be updated after creation. Note that names are not unique - multiple investigations can have the same name."
+        },
+        {
+          "key": "owner",
+          "fieldId": "OWNER",
+          "type": "text",
+          "label": "owner",
+          "description": "The owner of the investigation. Use C(admin) for the administrator user. Use C(unassigned) to leave the investigation unassigned. Can be updated on existing investigations."
+        },
+        {
+          "key": "sensitivity",
+          "fieldId": "SENSITIVITY",
+          "type": "dropdown",
+          "label": "sensitivity",
+          "description": "The sensitivity of the investigation. Can be updated on existing investigations.",
+          "options": [
+            [
+              "white",
+              "white"
+            ],
+            [
+              "green",
+              "green"
+            ],
+            [
+              "amber",
+              "amber"
+            ],
+            [
+              "red",
+              "red"
+            ],
+            [
+              "unassigned",
+              "unassigned"
+            ]
+          ]
+        },
+        {
+          "key": "status",
+          "fieldId": "STATUS",
+          "type": "dropdown",
+          "label": "status",
+          "description": "The status of the investigation. Can be updated on existing investigations.",
+          "options": [
+            [
+              "unassigned",
+              "unassigned"
+            ],
+            [
+              "new",
+              "new"
+            ],
+            [
+              "in_progress",
+              "in_progress"
+            ],
+            [
+              "pending",
+              "pending"
+            ],
+            [
+              "resolved",
+              "resolved"
+            ],
+            [
+              "closed",
+              "closed"
+            ]
+          ]
+        },
+        {
+          "key": "urgency",
+          "fieldId": "URGENCY",
+          "type": "dropdown",
+          "label": "urgency",
+          "description": "The urgency of the investigation. Can be updated on existing investigations.",
+          "options": [
+            [
+              "informational",
+              "informational"
+            ],
+            [
+              "low",
+              "low"
+            ],
+            [
+              "medium",
+              "medium"
+            ],
+            [
+              "high",
+              "high"
+            ],
+            [
+              "critical",
+              "critical"
+            ],
+            [
+              "unknown",
+              "unknown"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_investigation_info",
+      "blockType": "splunk_es_splunk_investigation_info",
+      "label": "splunk_investigation_info",
+      "tooltip": "Gather information about Splunk Enterprise Security Investigations",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_investigation_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path for the investigations endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "create_time_max",
+          "fieldId": "CREATE_TIME_MAX",
+          "type": "text",
+          "label": "create time max",
+          "description": "The maximum time during which investigations were created. All investigations returned have a creation time less than or equal to this value. Accepts relative time (e.g. C(-30m), C(now)), epoch time, or ISO 8601 time. If not provided, no maximum time filter is applied."
+        },
+        {
+          "key": "create_time_min",
+          "fieldId": "CREATE_TIME_MIN",
+          "type": "text",
+          "label": "create time min",
+          "description": "The minimum time during which investigations were created. All investigations returned have a creation time greater than or equal to this value. Accepts relative time (e.g. C(-30m), C(-7d), C(-1w)), epoch time, or ISO 8601 time. If not provided, no minimum time filter is applied."
+        },
+        {
+          "key": "investigation_ref_id",
+          "fieldId": "INVESTIGATION_REF_ID",
+          "type": "text",
+          "label": "investigation ref id",
+          "description": "Reference ID (investigation ID) to query a specific investigation. If specified, returns only the investigation with this ID. Takes precedence over C(name) if both are provided."
+        },
+        {
+          "key": "limit",
+          "fieldId": "LIMIT",
+          "type": "number",
+          "label": "limit",
+          "description": "Maximum number of investigations to return. If not specified, all matching investigations are returned. Use this to limit large result sets."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name to filter investigations. Returns all investigations with an exact name match. Ignored if C(investigation_ref_id) is provided. The C(create_time_min) and C(create_time_max) time filters still apply when querying by name."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_investigation_type",
+      "blockType": "splunk_es_splunk_investigation_type",
+      "label": "splunk_investigation_type",
+      "tooltip": "Manage Splunk Enterprise Security investigation types",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_investigation_type_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path for the incident types endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "The description of the investigation type."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the investigation type. This is the unique identifier and is always required. The name cannot be changed after creation.",
+          "required": true
+        },
+        {
+          "key": "response_plan_ids",
+          "fieldId": "RESPONSE_PLAN_IDS",
+          "type": "text",
+          "label": "response plan ids",
+          "yamlType": "list",
+          "description": "List of response plan tempalte UUIDs to associate with this investigation type. Use the C(splunk_response_plan_info) module to get response plan template IDs. If not specified or empty, no response plans will be associated. B(Note:) This is declarative - only the IDs listed here will be associated. Any existing associations not in this list will be removed."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_investigation_type_info",
+      "blockType": "splunk_es_splunk_investigation_type_info",
+      "label": "splunk_investigation_type_info",
+      "tooltip": "Gather information about Splunk Enterprise Security investigation types",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_investigation_type_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path for the incident types endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name to filter investigation types. Returns the investigation type with an exact name match. If not specified, returns all investigation types."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_notes",
+      "blockType": "splunk_es_splunk_notes",
+      "label": "splunk_notes",
+      "tooltip": "Manage notes for findings, investigations, and response plan tasks",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_notes_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "content",
+          "fieldId": "CONTENT",
+          "type": "text",
+          "label": "content",
+          "description": "The content/body of the note. Required when C(state=present) (creating or updating a note)."
+        },
+        {
+          "key": "finding_ref_id",
+          "fieldId": "FINDING_REF_ID",
+          "type": "text",
+          "label": "finding ref id",
+          "description": "The reference ID of the finding to attach the note to. Required when C(target_type=finding). Format is typically C(uuid@@notable@@time{timestamp})."
+        },
+        {
+          "key": "investigation_ref_id",
+          "fieldId": "INVESTIGATION_REF_ID",
+          "type": "text",
+          "label": "investigation ref id",
+          "description": "The investigation UUID. Required when C(target_type=investigation) or C(target_type=response_plan_task)."
+        },
+        {
+          "key": "note_id",
+          "fieldId": "NOTE_ID",
+          "type": "text",
+          "label": "note id",
+          "description": "The ID of an existing note. Required when updating or deleting a note. When C(state=present) and C(note_id) is provided, the note is updated. When C(state=absent), C(note_id) is required to identify the note to delete."
+        },
+        {
+          "key": "phase_id",
+          "fieldId": "PHASE_ID",
+          "type": "text",
+          "label": "phase id",
+          "description": "The ID of the phase containing the task. Required when C(target_type=response_plan_task)."
+        },
+        {
+          "key": "response_plan_id",
+          "fieldId": "RESPONSE_PLAN_ID",
+          "type": "text",
+          "label": "response plan id",
+          "description": "The ID of the applied response plan. Required when C(target_type=response_plan_task)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The desired state of the note. Use C(present) to create or update a note. Use C(absent) to delete a note (requires C(note_id)).",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "target_type",
+          "fieldId": "TARGET_TYPE",
+          "type": "dropdown",
+          "label": "target type",
+          "description": "The type of object to attach the note to. Use C(finding) to attach a note to a security finding. Use C(investigation) to attach a note to an investigation. Use C(response_plan_task) to attach a note to a task within an applied response plan.",
+          "options": [
+            [
+              "finding",
+              "finding"
+            ],
+            [
+              "investigation",
+              "investigation"
+            ],
+            [
+              "response_plan_task",
+              "response_plan_task"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "task_id",
+          "fieldId": "TASK_ID",
+          "type": "text",
+          "label": "task id",
+          "description": "The ID of the task to attach the note to. Required when C(target_type=response_plan_task)."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_notes_info",
+      "blockType": "splunk_es_splunk_notes_info",
+      "label": "splunk_notes_info",
+      "tooltip": "Gather information about notes in Splunk Enterprise Security",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_notes_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "finding_ref_id",
+          "fieldId": "FINDING_REF_ID",
+          "type": "text",
+          "label": "finding ref id",
+          "description": "The reference ID of the finding to query notes from. Required when C(target_type=finding). Format is typically C(uuid@@notable@@time{timestamp}). The C(notable_time) query parameter is automatically extracted from this ID."
+        },
+        {
+          "key": "investigation_ref_id",
+          "fieldId": "INVESTIGATION_REF_ID",
+          "type": "text",
+          "label": "investigation ref id",
+          "description": "The investigation UUID. Required when C(target_type=investigation) or C(target_type=response_plan_task)."
+        },
+        {
+          "key": "limit",
+          "fieldId": "LIMIT",
+          "type": "number",
+          "label": "limit",
+          "default": 100,
+          "description": "Maximum number of notes to return. Defaults to 100 if not specified. Ignored when C(note_id) is provided."
+        },
+        {
+          "key": "note_id",
+          "fieldId": "NOTE_ID",
+          "type": "text",
+          "label": "note id",
+          "description": "The ID of a specific note to retrieve. If specified, returns only the note with this ID. For C(response_plan_task), this enables direct API lookup. For C(finding) and C(investigation), notes are fetched and filtered by ID."
+        },
+        {
+          "key": "phase_id",
+          "fieldId": "PHASE_ID",
+          "type": "text",
+          "label": "phase id",
+          "description": "The ID of the phase containing the task. Required when C(target_type=response_plan_task)."
+        },
+        {
+          "key": "response_plan_id",
+          "fieldId": "RESPONSE_PLAN_ID",
+          "type": "text",
+          "label": "response plan id",
+          "description": "The ID of the applied response plan. Required when C(target_type=response_plan_task)."
+        },
+        {
+          "key": "target_type",
+          "fieldId": "TARGET_TYPE",
+          "type": "dropdown",
+          "label": "target type",
+          "description": "The type of object to query notes from. Use C(finding) to query notes from a security finding. Use C(investigation) to query notes from an investigation. Use C(response_plan_task) to query notes from a task within an applied response plan.",
+          "options": [
+            [
+              "finding",
+              "finding"
+            ],
+            [
+              "investigation",
+              "investigation"
+            ],
+            [
+              "response_plan_task",
+              "response_plan_task"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "task_id",
+          "fieldId": "TASK_ID",
+          "type": "text",
+          "label": "task id",
+          "description": "The ID of the task to query notes from. Required when C(target_type=response_plan_task)."
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_response_plan",
+      "blockType": "splunk_es_splunk_response_plan",
+      "label": "splunk_response_plan",
+      "tooltip": "Manage Splunk Enterprise Security response plans",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_response_plan_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path for the response templates endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "The description of the response plan."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the response plan. This is the unique identifier and is always required. Used to look up existing response plans for update or delete operations.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The desired state of the response plan. Use C(present) to create or update the response plan. Use C(absent) to delete the response plan.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "template_status",
+          "fieldId": "TEMPLATE_STATUS",
+          "type": "dropdown",
+          "label": "template status",
+          "default": "draft",
+          "description": "The status of the response plan template. Use C(draft) for work-in-progress plans. Use C(published) for plans ready for use.",
+          "options": [
+            [
+              "published",
+              "published"
+            ],
+            [
+              "draft",
+              "draft"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "phases.tasks (deep nesting)",
+        "phases (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_response_plan_execution",
+      "blockType": "splunk_es_splunk_response_plan_execution",
+      "label": "splunk_response_plan_execution",
+      "tooltip": "Apply response plans to investigations and manage tasks",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_response_plan_execution_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "investigation_ref_id",
+          "fieldId": "INVESTIGATION_REF_ID",
+          "type": "text",
+          "label": "investigation ref id",
+          "description": "The investigation UUID to apply or manage response plans. This is the unique identifier of the investigation in Splunk ES.",
+          "required": true
+        },
+        {
+          "key": "response_plan",
+          "fieldId": "RESPONSE_PLAN",
+          "type": "text",
+          "label": "response plan",
+          "description": "The response plan template to apply or remove. Accepts either a UUID (e.g., \"2dc5530d-8bb0-4a4f-9b53-74745bf4ea6a\") or a name (e.g., \"Incident Response Plan\"). If UUID format is detected, it is used directly as the template ID. If not a UUID, the module performs an API lookup to resolve the name to an ID.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The desired state of the response plan on the investigation. Use C(present) to apply the response plan to the investigation or update the tasks. Use C(absent) to remove the response plan from the investigation.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "tasks (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_response_plan_execution_info",
+      "blockType": "splunk_es_splunk_response_plan_execution_info",
+      "label": "splunk_response_plan_execution_info",
+      "tooltip": "Gather information about applied response plans on an investigation",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_response_plan_execution_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "investigation_ref_id",
+          "fieldId": "INVESTIGATION_REF_ID",
+          "type": "text",
+          "label": "investigation ref id",
+          "description": "The investigation UUID to query for applied response plans. This is the unique identifier of the investigation (incident).",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "splunk.es.splunk_response_plan_info",
+      "blockType": "splunk_es_splunk_response_plan_info",
+      "label": "splunk_response_plan_info",
+      "tooltip": "Gather information about Splunk Enterprise Security response plans",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/splunk/es/splunk_response_plan_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_app",
+          "fieldId": "API_APP",
+          "type": "text",
+          "label": "api app",
+          "default": "missioncontrol",
+          "description": "The app portion of the Splunk API path for the response templates endpoint. Override this if your environment uses a different app name."
+        },
+        {
+          "key": "api_namespace",
+          "fieldId": "API_NAMESPACE",
+          "type": "text",
+          "label": "api namespace",
+          "default": "servicesNS",
+          "description": "The namespace portion of the Splunk API path. Override this if your environment uses a different namespace."
+        },
+        {
+          "key": "api_user",
+          "fieldId": "API_USER",
+          "type": "text",
+          "label": "api user",
+          "default": "nobody",
+          "description": "The user portion of the Splunk API path. Override this if your environment requires a different user context."
+        },
+        {
+          "key": "limit",
+          "fieldId": "LIMIT",
+          "type": "number",
+          "label": "limit",
+          "description": "Maximum number of response plans to return. If not specified, returns all matching response plans. Useful for limiting results when querying large numbers of response plans."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name to filter response plans. Returns the response plan with an exact name match. If not specified, returns all response plans."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4798 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "community-windows",
+  "name": "Community Windows",
+  "collection": "community.windows",
+  "collectionVersion": "3.2.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:26:19Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#357EC7",
+  "blockStyleName": "community_windows_blocks",
+  "categoryStyleName": "community_windows_category",
+  "modules": [
+    {
+      "fqcn": "community.windows.psexec",
+      "blockType": "community_windows_psexec",
+      "label": "psexec",
+      "tooltip": "Runs commands on a remote Windows host based on the PsExec model",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/psexec_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "arguments",
+          "fieldId": "ARGUMENTS",
+          "type": "text",
+          "label": "arguments",
+          "description": "Any arguments as a single string to use when running the executable."
+        },
+        {
+          "key": "asynchronous",
+          "fieldId": "ASYNCHRONOUS",
+          "type": "boolean",
+          "label": "asynchronous",
+          "default": false,
+          "description": "Will run the command as a detached process and the module returns immediately after starting the process while the process continues to run in the background. The I(stdout) and I(stderr) return values will be null when this is set to C(yes). The I(stdin) option does not work with this type of process. The I(rc) return value is not set when this is C(yes)"
+        },
+        {
+          "key": "connection_password",
+          "fieldId": "CONNECTION_PASSWORD",
+          "type": "text",
+          "label": "connection password",
+          "description": "The password for I(connection_user). Required if the Kerberos requirements are not installed or the username is a local account to the Windows host. Can be omitted to use a Kerberos principal ticket for the principal set by I(connection_user) if the Kerberos library is installed and the ticket has already been retrieved with the C(kinit) command before."
+        },
+        {
+          "key": "connection_timeout",
+          "fieldId": "CONNECTION_TIMEOUT",
+          "type": "number",
+          "label": "connection timeout",
+          "default": 60,
+          "description": "The timeout in seconds to wait when receiving the initial SMB negotiate response from the server."
+        },
+        {
+          "key": "connection_username",
+          "fieldId": "CONNECTION_USERNAME",
+          "type": "text",
+          "label": "connection username",
+          "description": "The username to use when connecting to the remote Windows host. This user must be a member of the C(Administrators) group of the Windows host. Required if the Kerberos requirements are not installed or the username is a local account to the Windows host. Can be omitted to use the default Kerberos principal ticket in the local credential cache if the Kerberos library is installed. If I(process_username) is not specified, then the remote process will run under a Network Logon under this account."
+        },
+        {
+          "key": "encrypt",
+          "fieldId": "ENCRYPT",
+          "type": "boolean",
+          "label": "encrypt",
+          "default": true,
+          "description": "Will use SMB encryption to encrypt the SMB messages sent to and from the host. This requires the SMB 3 protocol which is only supported from Windows Server 2012 or Windows 8, older versions like Windows 7 or Windows Server 2008 (R2) must set this to C(no) and use no encryption. When setting to C(no), the packets are in plaintext and can be seen by anyone sniffing the network, any process options are included in this."
+        },
+        {
+          "key": "executable",
+          "fieldId": "EXECUTABLE",
+          "type": "text",
+          "label": "executable",
+          "description": "The executable to run on the Windows host.",
+          "required": true
+        },
+        {
+          "key": "hostname",
+          "fieldId": "HOSTNAME",
+          "type": "text",
+          "label": "hostname",
+          "description": "The remote Windows host to connect to, can be either an IP address or a hostname.",
+          "required": true
+        },
+        {
+          "key": "integrity_level",
+          "fieldId": "INTEGRITY_LEVEL",
+          "type": "dropdown",
+          "label": "integrity level",
+          "default": "default",
+          "description": "The integrity level of the process when I(process_username) is defined and is not equal to C(System). When C(default), the default integrity level based on the system setup. When C(elevated), the command will be run with Administrative rights. When C(limited), the command will be forced to run with non-Administrative rights.",
+          "options": [
+            [
+              "limited",
+              "limited"
+            ],
+            [
+              "default",
+              "default"
+            ],
+            [
+              "elevated",
+              "elevated"
+            ]
+          ]
+        },
+        {
+          "key": "interactive",
+          "fieldId": "INTERACTIVE",
+          "type": "boolean",
+          "label": "interactive",
+          "default": false,
+          "description": "Will run the process as an interactive process that shows a process Window of the Windows session specified by I(interactive_session). The I(stdout) and I(stderr) return values will be null when this is set to C(yes). The I(stdin) option does not work with this type of process."
+        },
+        {
+          "key": "interactive_session",
+          "fieldId": "INTERACTIVE_SESSION",
+          "type": "number",
+          "label": "interactive session",
+          "default": 0,
+          "description": "The Windows session ID to use when displaying the interactive process on the remote Windows host. This is only valid when I(interactive) is C(yes). The default is C(0) which is the console session of the Windows host."
+        },
+        {
+          "key": "load_profile",
+          "fieldId": "LOAD_PROFILE",
+          "type": "boolean",
+          "label": "load profile",
+          "default": true,
+          "description": "Runs the remote command with the user's profile loaded."
+        },
+        {
+          "key": "priority",
+          "fieldId": "PRIORITY",
+          "type": "dropdown",
+          "label": "priority",
+          "default": "normal",
+          "description": "Set the command's priority on the Windows host. See U(https://msdn.microsoft.com/en-us/library/windows/desktop/ms683211.aspx) for more details.",
+          "options": [
+            [
+              "above_normal",
+              "above_normal"
+            ],
+            [
+              "below_normal",
+              "below_normal"
+            ],
+            [
+              "high",
+              "high"
+            ],
+            [
+              "idle",
+              "idle"
+            ],
+            [
+              "normal",
+              "normal"
+            ],
+            [
+              "realtime",
+              "realtime"
+            ]
+          ]
+        },
+        {
+          "key": "process_password",
+          "fieldId": "PROCESS_PASSWORD",
+          "type": "text",
+          "label": "process password",
+          "description": "The password for I(process_username). Required if I(process_username) is defined and not C(System)."
+        },
+        {
+          "key": "process_timeout",
+          "fieldId": "PROCESS_TIMEOUT",
+          "type": "number",
+          "label": "process timeout",
+          "default": 0,
+          "description": "The timeout in seconds that is placed upon the running process. A value of C(0) means no timeout."
+        },
+        {
+          "key": "process_username",
+          "fieldId": "PROCESS_USERNAME",
+          "type": "text",
+          "label": "process username",
+          "description": "The user to run the process as. This can be set to run the process under an Interactive logon of the specified account which bypasses limitations of a Network logon used when this isn't specified. If omitted then the process is run under the same account as I(connection_username) with a Network logon. Set to C(System) to run as the builtin SYSTEM account, no password is required with this account. If I(encrypt) is C(no), the username and password are sent as a simple XOR scrambled byte string that is not encrypted. No special tools are required to get the username and password just knowledge of the protocol."
+        },
+        {
+          "key": "show_ui_on_logon_screen",
+          "fieldId": "SHOW_UI_ON_LOGON_SCREEN",
+          "type": "boolean",
+          "label": "show ui on logon screen",
+          "default": false,
+          "description": "Shows the process UI on the Winlogon secure desktop when I(process_username) is C(System)."
+        },
+        {
+          "key": "stdin",
+          "fieldId": "STDIN",
+          "type": "text",
+          "label": "stdin",
+          "description": "Data to send on the stdin pipe once the process has started. This option has no effect when I(interactive) or I(asynchronous) is C(yes)."
+        },
+        {
+          "key": "working_directory",
+          "fieldId": "WORKING_DIRECTORY",
+          "type": "text",
+          "label": "working directory",
+          "default": "C:\\Windows\\System32",
+          "description": "Changes the working directory set when starting the process."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_data_deduplication",
+      "blockType": "community_windows_win_data_deduplication",
+      "label": "win_data_deduplication",
+      "tooltip": "Module to enable Data Deduplication on a volume.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_data_deduplication_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "drive_letter",
+          "fieldId": "DRIVE_LETTER",
+          "type": "text",
+          "label": "drive letter",
+          "description": "Windows drive letter on which to enable data deduplication.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Wether to enable or disable data deduplication on the selected volume.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "settings (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_defrag",
+      "blockType": "community_windows_win_defrag",
+      "label": "win_defrag",
+      "tooltip": "Consolidate fragmented files on local volumes",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_defrag_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "exclude_volumes",
+          "fieldId": "EXCLUDE_VOLUMES",
+          "type": "text",
+          "label": "exclude volumes",
+          "yamlType": "list",
+          "description": "A list of drive letters or mount point paths to exclude from defragmentation."
+        },
+        {
+          "key": "freespace_consolidation",
+          "fieldId": "FREESPACE_CONSOLIDATION",
+          "type": "boolean",
+          "label": "freespace consolidation",
+          "default": false,
+          "description": "Perform free space consolidation on the specified volumes."
+        },
+        {
+          "key": "include_volumes",
+          "fieldId": "INCLUDE_VOLUMES",
+          "type": "text",
+          "label": "include volumes",
+          "yamlType": "list",
+          "description": "A list of drive letters or mount point paths of the volumes to be defragmented. If this parameter is omitted, all volumes (not excluded) will be fragmented."
+        },
+        {
+          "key": "parallel",
+          "fieldId": "PARALLEL",
+          "type": "boolean",
+          "label": "parallel",
+          "default": false,
+          "description": "Run the operation on each volume in parallel in the background."
+        },
+        {
+          "key": "priority",
+          "fieldId": "PRIORITY",
+          "type": "dropdown",
+          "label": "priority",
+          "default": "low",
+          "description": "Run the operation at low or normal priority.",
+          "options": [
+            [
+              "low",
+              "low"
+            ],
+            [
+              "normal",
+              "normal"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_disk_facts",
+      "blockType": "community_windows_win_disk_facts",
+      "label": "win_disk_facts",
+      "tooltip": "Show the attached disks and disk information of the target host",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_disk_facts_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "filter",
+          "fieldId": "FILTER",
+          "type": "dropdown",
+          "label": "filter",
+          "description": "Allows to filter returned facts by type of disk information. If volumes are selected partitions will be returned as well.",
+          "options": [
+            [
+              "physical_disk",
+              "physical_disk"
+            ],
+            [
+              "virtual_disk",
+              "virtual_disk"
+            ],
+            [
+              "win32_disk_drive",
+              "win32_disk_drive"
+            ],
+            [
+              "partitions",
+              "partitions"
+            ],
+            [
+              "volumes",
+              "volumes"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_disk_image",
+      "blockType": "community_windows_win_disk_image",
+      "label": "win_disk_image",
+      "tooltip": "Manage ISO/VHD/VHDX mounts on Windows hosts",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_disk_image_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "image_path",
+          "fieldId": "IMAGE_PATH",
+          "type": "text",
+          "label": "image path",
+          "description": "Path to an ISO, VHD, or VHDX image on the target Windows host (the file cannot reside on a network share)",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Whether the image should be present as a drive-letter mount or not.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_eventlog_entry",
+      "blockType": "community_windows_win_eventlog_entry",
+      "label": "win_eventlog_entry",
+      "tooltip": "Write entries to Windows event logs",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_eventlog_entry_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "category",
+          "fieldId": "CATEGORY",
+          "type": "number",
+          "label": "category",
+          "description": "A numeric task category associated with the category message file for the log source."
+        },
+        {
+          "key": "entry_type",
+          "fieldId": "ENTRY_TYPE",
+          "type": "dropdown",
+          "label": "entry type",
+          "description": "Indicates the entry being written to the log is of a specific type.",
+          "options": [
+            [
+              "Error",
+              "Error"
+            ],
+            [
+              "FailureAudit",
+              "FailureAudit"
+            ],
+            [
+              "Information",
+              "Information"
+            ],
+            [
+              "SuccessAudit",
+              "SuccessAudit"
+            ],
+            [
+              "Warning",
+              "Warning"
+            ]
+          ]
+        },
+        {
+          "key": "event_id",
+          "fieldId": "EVENT_ID",
+          "type": "number",
+          "label": "event id",
+          "description": "The numeric event identifier for the entry. Value must be between 0 and 65535.",
+          "required": true
+        },
+        {
+          "key": "log",
+          "fieldId": "LOG",
+          "type": "text",
+          "label": "log",
+          "description": "Name of the event log to write an entry to.",
+          "required": true
+        },
+        {
+          "key": "message",
+          "fieldId": "MESSAGE",
+          "type": "text",
+          "label": "message",
+          "description": "The message for the given log entry.",
+          "required": true
+        },
+        {
+          "key": "raw_data",
+          "fieldId": "RAW_DATA",
+          "type": "text",
+          "label": "raw data",
+          "description": "Binary data associated with the log entry. Value must be a comma-separated array of 8-bit unsigned integers (0 to 255)."
+        },
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "text",
+          "label": "source",
+          "description": "Name of the log source to indicate where the entry is from.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_file_version",
+      "blockType": "community_windows_win_file_version",
+      "label": "win_file_version",
+      "tooltip": "Get DLL or EXE file build version",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_file_version_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "File to get version. Always provide absolute path.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_firewall_rule",
+      "blockType": "community_windows_win_firewall_rule",
+      "label": "win_firewall_rule",
+      "tooltip": "Windows firewall automation",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_firewall_rule_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "action",
+          "fieldId": "ACTION",
+          "type": "dropdown",
+          "label": "action",
+          "description": "What to do with the items this rule is for. Defaults to C(allow) when creating a new rule.",
+          "options": [
+            [
+              "allow",
+              "allow"
+            ],
+            [
+              "block",
+              "block"
+            ]
+          ]
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Description for the firewall rule."
+        },
+        {
+          "key": "direction",
+          "fieldId": "DIRECTION",
+          "type": "dropdown",
+          "label": "direction",
+          "description": "Whether this rule is for inbound or outbound traffic. Defaults to C(in) when creating a new rule.",
+          "options": [
+            [
+              "in",
+              "in"
+            ],
+            [
+              "out",
+              "out"
+            ]
+          ]
+        },
+        {
+          "key": "enabled",
+          "fieldId": "ENABLED",
+          "type": "boolean",
+          "label": "enabled",
+          "description": "Whether this firewall rule is enabled or disabled. Defaults to C(true) when creating a new rule.",
+          "aliases": [
+            "enable"
+          ]
+        },
+        {
+          "key": "group",
+          "fieldId": "GROUP",
+          "type": "text",
+          "label": "group",
+          "description": "The group name for the rule. If I(name) is not specified then the module will set the firewall options for all the rules in this group."
+        },
+        {
+          "key": "icmp_type_code",
+          "fieldId": "ICMP_TYPE_CODE",
+          "type": "text",
+          "label": "icmp type code",
+          "yamlType": "list",
+          "description": "The ICMP types and codes for the rule. This is only valid when I(protocol) is C(icmpv4) or C(icmpv6). Each entry follows the format C(type:code) where C(type) is the type number and C(code) is the code number for that type or C(*) for all codes. Set the value to just C(*) to apply the rule for all ICMP type codes. See U(https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml) for a list of ICMP types and the codes that apply to them. ICMP types and codes for IPV6 can be found at U(https://www.iana.org/assignments/icmpv6-parameters/icmpv6-parameters.xhtml)."
+        },
+        {
+          "key": "localip",
+          "fieldId": "LOCALIP",
+          "type": "text",
+          "label": "localip",
+          "description": "The local ip address this rule applies to. Set to C(any) to apply to all local ip addresses. Defaults to C(any) when creating a new rule."
+        },
+        {
+          "key": "localport",
+          "fieldId": "LOCALPORT",
+          "type": "text",
+          "label": "localport",
+          "description": "The local port this rule applies to. Set to C(any) to apply to all local ports. Defaults to C(any) when creating a new rule. Must have I(protocol) set"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The rule's display name. This is required unless I(group) is specified."
+        },
+        {
+          "key": "profiles",
+          "fieldId": "PROFILES",
+          "type": "text",
+          "label": "profiles",
+          "yamlType": "list",
+          "description": "The profile this rule applies to. Defaults to C(domain,private,public) when creating a new rule.",
+          "aliases": [
+            "profile"
+          ]
+        },
+        {
+          "key": "program",
+          "fieldId": "PROGRAM",
+          "type": "text",
+          "label": "program",
+          "description": "The program this rule applies to. Set to C(any) to apply to all programs. Defaults to C(any) when creating a new rule."
+        },
+        {
+          "key": "protocol",
+          "fieldId": "PROTOCOL",
+          "type": "text",
+          "label": "protocol",
+          "description": "The protocol this rule applies to. Set to C(any) to apply to all services. Defaults to C(any) when creating a new rule."
+        },
+        {
+          "key": "remoteip",
+          "fieldId": "REMOTEIP",
+          "type": "text",
+          "label": "remoteip",
+          "description": "The remote ip address/range this rule applies to. Set to C(any) to apply to all remote ip addresses. Defaults to C(any) when creating a new rule."
+        },
+        {
+          "key": "remoteport",
+          "fieldId": "REMOTEPORT",
+          "type": "text",
+          "label": "remoteport",
+          "description": "The remote port this rule applies to. Set to C(any) to apply to all remote ports. Defaults to C(any) when creating a new rule. Must have I(protocol) set"
+        },
+        {
+          "key": "service",
+          "fieldId": "SERVICE",
+          "type": "text",
+          "label": "service",
+          "description": "The service this rule applies to. Set to C(any) to apply to all services. Defaults to C(any) when creating a new rule."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Should this rule be added or removed.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_format",
+      "blockType": "community_windows_win_format",
+      "label": "win_format",
+      "tooltip": "Formats an existing volume or a new volume on an existing partition on Windows",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_format_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "allocation_unit_size",
+          "fieldId": "ALLOCATION_UNIT_SIZE",
+          "type": "number",
+          "label": "allocation unit size",
+          "description": "Specifies the cluster size to use when formatting the volume. If no cluster size is specified when you format a partition, defaults are selected based on the size of the partition. This value must be a multiple of the physical sector size of the disk."
+        },
+        {
+          "key": "compress",
+          "fieldId": "COMPRESS",
+          "type": "boolean",
+          "label": "compress",
+          "description": "Enable compression on the resulting NTFS volume. NTFS compression is not supported where I(allocation_unit_size) is more than 4096."
+        },
+        {
+          "key": "drive_letter",
+          "fieldId": "DRIVE_LETTER",
+          "type": "text",
+          "label": "drive letter",
+          "description": "Used to specify the drive letter of the volume to be formatted."
+        },
+        {
+          "key": "file_system",
+          "fieldId": "FILE_SYSTEM",
+          "type": "dropdown",
+          "label": "file system",
+          "description": "Used to specify the file system to be used when formatting the target volume.",
+          "options": [
+            [
+              "ntfs",
+              "ntfs"
+            ],
+            [
+              "refs",
+              "refs"
+            ],
+            [
+              "exfat",
+              "exfat"
+            ],
+            [
+              "fat32",
+              "fat32"
+            ],
+            [
+              "fat",
+              "fat"
+            ]
+          ]
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "Specify if formatting should be forced for volumes that are not created from new partitions or if the source and target file system are different."
+        },
+        {
+          "key": "full",
+          "fieldId": "FULL",
+          "type": "boolean",
+          "label": "full",
+          "default": false,
+          "description": "A full format writes to every sector of the disk, takes much longer to perform than the default (quick) format, and is not recommended on storage that is thinly provisioned. Specify C(true) for full format."
+        },
+        {
+          "key": "integrity_streams",
+          "fieldId": "INTEGRITY_STREAMS",
+          "type": "boolean",
+          "label": "integrity streams",
+          "description": "Enable integrity streams on the resulting ReFS volume."
+        },
+        {
+          "key": "label",
+          "fieldId": "LABEL",
+          "type": "text",
+          "label": "label",
+          "description": "Used to specify the label of the volume to be formatted."
+        },
+        {
+          "key": "large_frs",
+          "fieldId": "LARGE_FRS",
+          "type": "boolean",
+          "label": "large frs",
+          "description": "Specifies that large File Record System (FRS) should be used."
+        },
+        {
+          "key": "new_label",
+          "fieldId": "NEW_LABEL",
+          "type": "text",
+          "label": "new label",
+          "description": "Used to specify the new file system label of the formatted volume."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "Used to specify the path to the volume to be formatted."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_iis_virtualdirectory",
+      "blockType": "community_windows_win_iis_virtualdirectory",
+      "label": "win_iis_virtualdirectory",
+      "tooltip": "Configures a virtual directory in IIS",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_iis_virtualdirectory_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "application",
+          "fieldId": "APPLICATION",
+          "type": "text",
+          "label": "application",
+          "description": "The application under which the virtual directory is created or exists."
+        },
+        {
+          "key": "connect_as",
+          "fieldId": "CONNECT_AS",
+          "type": "dropdown",
+          "label": "connect as",
+          "description": "The type of authentication to use for the virtual directory. Either C(pass_through) or C(specific_user) If C(pass_through), IIS will use the identity of the user or application pool identity to access the physical path. If C(specific_user), IIS will use the credentials provided in I(username) and I(password) to access the physical path.",
+          "options": [
+            [
+              "pass_through",
+              "pass_through"
+            ],
+            [
+              "specific_user",
+              "specific_user"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the virtual directory to create or remove.",
+          "required": true
+        },
+        {
+          "key": "physical_path",
+          "fieldId": "PHYSICAL_PATH",
+          "type": "text",
+          "label": "physical path",
+          "description": "The physical path to the folder in which the new virtual directory is created. The specified folder must already exist."
+        },
+        {
+          "key": "site",
+          "fieldId": "SITE",
+          "type": "text",
+          "label": "site",
+          "description": "The site name under which the virtual directory is created or exists.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Whether to add or remove the specified virtual directory. Removing will remove the virtual directory and all under it (Recursively).",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_iis_webapplication",
+      "blockType": "community_windows_win_iis_webapplication",
+      "label": "win_iis_webapplication",
+      "tooltip": "Configures IIS web applications",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_iis_webapplication_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "application_pool",
+          "fieldId": "APPLICATION_POOL",
+          "type": "text",
+          "label": "application pool",
+          "description": "The application pool in which the new site executes. If not specified, the application pool of the current website will be used."
+        },
+        {
+          "key": "connect_as",
+          "fieldId": "CONNECT_AS",
+          "type": "dropdown",
+          "label": "connect as",
+          "description": "The type of authentication to use for this application. Either C(pass_through) or C(specific_user) If C(pass_through), IIS will use the identity of the user or application pool identity to access the file system or network. If C(specific_user), IIS will use the credentials provided in I(username) and I(password) to access the file system or network.",
+          "options": [
+            [
+              "pass_through",
+              "pass_through"
+            ],
+            [
+              "specific_user",
+              "specific_user"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the web application.",
+          "required": true
+        },
+        {
+          "key": "physical_path",
+          "fieldId": "PHYSICAL_PATH",
+          "type": "text",
+          "label": "physical path",
+          "description": "The physical path on the remote host to use for the new application. The specified folder must already exist."
+        },
+        {
+          "key": "site",
+          "fieldId": "SITE",
+          "type": "text",
+          "label": "site",
+          "description": "Name of the site on which the application is created.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the web application.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_iis_webapppool",
+      "blockType": "community_windows_win_iis_webapppool",
+      "label": "win_iis_webapppool",
+      "tooltip": "Configure IIS Web Application Pools",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_iis_webapppool_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "attributes",
+          "fieldId": "ATTRIBUTES",
+          "type": "text",
+          "label": "attributes",
+          "description": "This field is a free form dictionary value for the application pool attributes. These attributes are based on the naming standard at U(https://www.iis.net/configreference/system.applicationhost/applicationpools/add#005), see the examples section for more details on how to set this. You can also set the attributes of child elements like cpu and processModel, see the examples to see how it is done. While you can use the numeric values for enums it is recommended to use the enum name itself, e.g. use SpecificUser instead of 3 for processModel.identityType. managedPipelineMode may be either \"Integrated\" or \"Classic\". startMode may be either \"OnDemand\" or \"AlwaysRunning\". Use C(state) module parameter to modify the state of the app pool. When trying to set 'processModel.password' and you receive a 'Value does fall within the expected range' error, you have a corrupted keystore. Please follow U(http://structuredsight.com/2014/10/26/im-out-of-range-youre-out-of-range/) to help fix your host."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the application pool.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The state of the application pool. If C(absent) will ensure the app pool is removed. If C(present) will ensure the app pool is configured and exists. If C(restarted) will ensure the app pool exists and will restart, this is never idempotent. If C(started) will ensure the app pool exists and is started. If C(stopped) will ensure the app pool exists and is stopped.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "restarted",
+              "restarted"
+            ],
+            [
+              "started",
+              "started"
+            ],
+            [
+              "stopped",
+              "stopped"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_iis_webbinding",
+      "blockType": "community_windows_win_iis_webbinding",
+      "label": "win_iis_webbinding",
+      "tooltip": "Configures a IIS Web site binding",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_iis_webbinding_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "certificate_hash",
+          "fieldId": "CERTIFICATE_HASH",
+          "type": "text",
+          "label": "certificate hash",
+          "description": "Certificate hash (thumbprint) for the SSL binding. The certificate hash is the unique identifier for the certificate."
+        },
+        {
+          "key": "certificate_store_name",
+          "fieldId": "CERTIFICATE_STORE_NAME",
+          "type": "text",
+          "label": "certificate store name",
+          "default": "my",
+          "description": "Name of the certificate store where the certificate for the binding is located."
+        },
+        {
+          "key": "host_header",
+          "fieldId": "HOST_HEADER",
+          "type": "text",
+          "label": "host header",
+          "description": "The host header to bind to / use for the new site. If you are creating/removing a catch-all binding, omit this parameter rather than defining it as '*'."
+        },
+        {
+          "key": "ip",
+          "fieldId": "IP",
+          "type": "text",
+          "label": "ip",
+          "default": "*",
+          "description": "The IP address to bind to / use for the new site."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Names of web site.",
+          "required": true,
+          "aliases": [
+            "website"
+          ]
+        },
+        {
+          "key": "protocol",
+          "fieldId": "PROTOCOL",
+          "type": "text",
+          "label": "protocol",
+          "default": "http",
+          "description": "The protocol to be used for the Web binding (usually HTTP, HTTPS, or FTP)."
+        },
+        {
+          "key": "ssl_flags",
+          "fieldId": "SSL_FLAGS",
+          "type": "text",
+          "label": "ssl flags",
+          "description": "This parameter is only valid on Server 2012 and newer. Primarily used for enabling and disabling server name indication (SNI). Set to C(0) to disable SNI. Set to C(1) to enable SNI."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the binding.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_iis_website",
+      "blockType": "community_windows_win_iis_website",
+      "label": "win_iis_website",
+      "tooltip": "Configures a IIS Web site",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_iis_website_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "application_pool",
+          "fieldId": "APPLICATION_POOL",
+          "type": "text",
+          "label": "application pool",
+          "description": "The application pool in which the new site executes."
+        },
+        {
+          "key": "hostname",
+          "fieldId": "HOSTNAME",
+          "type": "text",
+          "label": "hostname",
+          "description": "The host header to bind to / use for the new site."
+        },
+        {
+          "key": "ip",
+          "fieldId": "IP",
+          "type": "text",
+          "label": "ip",
+          "description": "The IP address to bind to / use for the new site."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Names of web site.",
+          "required": true
+        },
+        {
+          "key": "parameters",
+          "fieldId": "PARAMETERS",
+          "type": "text",
+          "label": "parameters",
+          "description": "Custom site Parameters from string where properties are separated by a pipe and property name/values by colon Ex. \"foo:1|bar:2\" Some custom parameters that you can use are listed below, this isn't a definitive list but some common parameters. C(logfile.directory) - Physical path to store Logs, e.g. C(D:\\IIS-LOGs\\). C(logfile.period) - Log file rollover scheduled accepting these values, how frequently the log file should be rolled-over, e.g. C(Hourly, Daily, Weekly, Monthly). C(logfile.LogFormat) - Log file format, by default IIS uses C(W3C). C(logfile.truncateSize) - The size at which the log file contents will be trunsted, expressed in bytes."
+        },
+        {
+          "key": "physical_path",
+          "fieldId": "PHYSICAL_PATH",
+          "type": "text",
+          "label": "physical path",
+          "description": "The physical path on the remote host to use for the new site. The specified folder must already exist."
+        },
+        {
+          "key": "site_id",
+          "fieldId": "SITE_ID",
+          "type": "text",
+          "label": "site id",
+          "description": "Explicitly set the IIS numeric ID for a site. Note that this value cannot be changed after the website has been created."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "State of the web site",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "started",
+              "started"
+            ],
+            [
+              "stopped",
+              "stopped"
+            ],
+            [
+              "restarted",
+              "restarted"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_initialize_disk",
+      "blockType": "community_windows_win_initialize_disk",
+      "label": "win_initialize_disk",
+      "tooltip": "Initializes disks on Windows Server",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_initialize_disk_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "disk_number",
+          "fieldId": "DISK_NUMBER",
+          "type": "number",
+          "label": "disk number",
+          "description": "Used to specify the disk number of the disk to be initialized."
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "Specify if initializing should be forced for disks that are already initialized."
+        },
+        {
+          "key": "online",
+          "fieldId": "ONLINE",
+          "type": "boolean",
+          "label": "online",
+          "default": true,
+          "description": "If the disk is offline and/or readonly update the disk to be online and not readonly."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "Used to specify the path to the disk to be initialized."
+        },
+        {
+          "key": "style",
+          "fieldId": "STYLE",
+          "type": "dropdown",
+          "label": "style",
+          "default": "gpt",
+          "description": "The partition style to use for the disk. Valid options are mbr or gpt.",
+          "options": [
+            [
+              "gpt",
+              "gpt"
+            ],
+            [
+              "mbr",
+              "mbr"
+            ]
+          ]
+        },
+        {
+          "key": "uniqueid",
+          "fieldId": "UNIQUEID",
+          "type": "text",
+          "label": "uniqueid",
+          "description": "Used to specify the uniqueid of the disk to be initialized."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_lineinfile",
+      "blockType": "community_windows_win_lineinfile",
+      "label": "win_lineinfile",
+      "tooltip": "Ensure a particular line is in a file, or replace an existing line using a back-referenced regular expression",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_lineinfile_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "backrefs",
+          "fieldId": "BACKREFS",
+          "type": "boolean",
+          "label": "backrefs",
+          "default": false,
+          "description": "Used with C(state=present). If set, line can contain backreferences (both positional and named) that will get populated if the C(regexp) matches. This flag changes the operation of the module slightly; C(insertbefore) and C(insertafter) will be ignored, and if the C(regexp) doesn't match anywhere in the file, the file will be left unchanged. If the C(regexp) does match, the last matching line will be replaced by the expanded line parameter."
+        },
+        {
+          "key": "backup",
+          "fieldId": "BACKUP",
+          "type": "boolean",
+          "label": "backup",
+          "default": false,
+          "description": "Determine whether a backup should be created. When set to C(yes), create a backup file including the timestamp information so you can get the original file back if you somehow clobbered it incorrectly."
+        },
+        {
+          "key": "create",
+          "fieldId": "CREATE",
+          "type": "boolean",
+          "label": "create",
+          "default": false,
+          "description": "Used with C(state=present). If specified, the file will be created if it does not already exist. By default it will fail if the file is missing."
+        },
+        {
+          "key": "encoding",
+          "fieldId": "ENCODING",
+          "type": "text",
+          "label": "encoding",
+          "default": "auto",
+          "description": "Specifies the encoding of the source text file to operate on (and thus what the output encoding will be). The default of C(auto) will cause the module to auto-detect the encoding of the source file and ensure that the modified file is written with the same encoding. An explicit encoding can be passed as a string that is a valid value to pass to the .NET framework System.Text.Encoding.GetEncoding() method - see U(https://msdn.microsoft.com/en-us/library/system.text.encoding%28v=vs.110%29.aspx). This is mostly useful with C(create=yes) if you want to create a new file with a specific encoding. If C(create=yes) is specified without a specific encoding, the default encoding (UTF-8, no BOM) will be used."
+        },
+        {
+          "key": "insertafter",
+          "fieldId": "INSERTAFTER",
+          "type": "dropdown",
+          "label": "insertafter",
+          "default": "EOF",
+          "description": "Used with C(state=present). If specified, the line will be inserted after the last match of specified regular expression. A special value is available; C(EOF) for inserting the line at the end of the file. If specified regular expression has no matches, EOF will be used instead. May not be used with C(backrefs).",
+          "options": [
+            [
+              "EOF",
+              "EOF"
+            ],
+            [
+              "*regex*",
+              "*regex*"
+            ]
+          ]
+        },
+        {
+          "key": "insertbefore",
+          "fieldId": "INSERTBEFORE",
+          "type": "dropdown",
+          "label": "insertbefore",
+          "description": "Used with C(state=present). If specified, the line will be inserted before the last match of specified regular expression. A value is available; C(BOF) for inserting the line at the beginning of the file. If specified regular expression has no matches, the line will be inserted at the end of the file. May not be used with C(backrefs).",
+          "options": [
+            [
+              "BOF",
+              "BOF"
+            ],
+            [
+              "*regex*",
+              "*regex*"
+            ]
+          ]
+        },
+        {
+          "key": "line",
+          "fieldId": "LINE",
+          "type": "text",
+          "label": "line",
+          "description": "Required for C(state=present). The line to insert/replace into the file. If C(backrefs) is set, may contain backreferences that will get expanded with the C(regexp) capture groups if the regexp matches. Be aware that the line is processed first on the controller and thus is dependent on yaml quoting rules. Any double quoted line will have control characters, such as '\\r\\n', expanded. To print such characters literally, use single or no quotes."
+        },
+        {
+          "key": "newline",
+          "fieldId": "NEWLINE",
+          "type": "dropdown",
+          "label": "newline",
+          "default": "windows",
+          "description": "Specifies the line separator style to use for the modified file. This defaults to the windows line separator (C(\\r\\n)). Note that the indicated line separator will be used for file output regardless of the original line separator that appears in the input file.",
+          "options": [
+            [
+              "unix",
+              "unix"
+            ],
+            [
+              "windows",
+              "windows"
+            ]
+          ]
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "The path of the file to modify. Note that the Windows path delimiter C(\\) must be escaped as C(\\\\) when the line is double quoted.",
+          "required": true,
+          "aliases": [
+            "dest",
+            "destfile",
+            "name"
+          ]
+        },
+        {
+          "key": "regex",
+          "fieldId": "REGEX",
+          "type": "text",
+          "label": "regex",
+          "description": "The regular expression to look for in every line of the file. For C(state=present), the pattern to replace if found; only the last line found will be replaced. For C(state=absent), the pattern of the line to remove. Uses .NET compatible regular expressions; see U(https://msdn.microsoft.com/en-us/library/hs600312%28v=vs.110%29.aspx).",
+          "aliases": [
+            "regexp"
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Whether the line should be there or not.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "validate",
+          "fieldId": "VALIDATE",
+          "type": "text",
+          "label": "validate",
+          "description": "Validation to run before copying into place. Use %s in the command to indicate the current file to validate. The command is passed securely so shell features like expansion and pipes won't work."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_msg",
+      "blockType": "community_windows_win_msg",
+      "label": "win_msg",
+      "tooltip": "Sends a message to logged in users on Windows hosts",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_msg_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "display_seconds",
+          "fieldId": "DISPLAY_SECONDS",
+          "type": "number",
+          "label": "display seconds",
+          "default": 10,
+          "description": "How long to wait for receiver to acknowledge message, in seconds."
+        },
+        {
+          "key": "msg",
+          "fieldId": "MSG",
+          "type": "text",
+          "label": "msg",
+          "default": "Hello world!",
+          "description": "The text of the message to be displayed. The message must be less than 256 characters."
+        },
+        {
+          "key": "to",
+          "fieldId": "TO",
+          "type": "text",
+          "label": "to",
+          "default": "*",
+          "description": "Who to send the message to. Can be a username, sessionname or sessionid."
+        },
+        {
+          "key": "wait",
+          "fieldId": "WAIT",
+          "type": "boolean",
+          "label": "wait",
+          "default": true,
+          "description": "Whether to wait for users to respond.  Module will only wait for the number of seconds specified in display_seconds or 10 seconds if not specified. However, if I(wait) is C(yes), the message is sent to each logged on user in turn, waiting for the user to either press 'ok' or for the timeout to elapse before moving on to the next user."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_net_adapter_feature",
+      "blockType": "community_windows_win_net_adapter_feature",
+      "label": "win_net_adapter_feature",
+      "tooltip": "Enable or disable certain network adapters.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_net_adapter_feature_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "component_id",
+          "fieldId": "COMPONENT_ID",
+          "type": "text",
+          "label": "component id",
+          "yamlType": "list",
+          "description": "Specify the below component_id of network adapters. component_id (DisplayName) C(ms_implat) (Microsoft Network Adapter Multiplexor Protocol) C(ms_lltdio) (Link-Layer Topology Discovery Mapper I/O Driver) C(ms_tcpip6) (Internet Protocol Version 6 (TCP/IPv6)) C(ms_tcpip) (Internet Protocol Version 4 (TCP/IPv4)) C(ms_lldp) (Microsoft LLDP Protocol Driver) C(ms_rspndr) (Link-Layer Topology Discovery Responder) C(ms_msclient) (Client for Microsoft Networks) C(ms_pacer) (QoS Packet Scheduler) If you'd like to set custom adapters like 'Juniper Network Service', get the I(component_id) by running the C(Get-NetAdapterBinding) cmdlet.",
+          "required": true
+        },
+        {
+          "key": "interface",
+          "fieldId": "INTERFACE",
+          "type": "text",
+          "label": "interface",
+          "yamlType": "list",
+          "description": "Name of Network Adapter Interface. For example, C(Ethernet0) or C(*).",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "enabled",
+          "description": "Specify the state of ms_tcpip6 of interfaces.",
+          "options": [
+            [
+              "enabled",
+              "enabled"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_netbios",
+      "blockType": "community_windows_win_netbios",
+      "label": "win_netbios",
+      "tooltip": "Manage NetBIOS over TCP/IP settings on Windows.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_netbios_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "adapter_names",
+          "fieldId": "ADAPTER_NAMES",
+          "type": "text",
+          "label": "adapter names",
+          "yamlType": "list",
+          "description": "List of adapter names for which to manage NetBIOS settings. If this option is omitted then configuration is applied to all adapters on the system. The adapter name used is the connection caption in the Network Control Panel or via C(Get-NetAdapter), eg C(Ethernet 2)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "Whether NetBIOS should be enabled, disabled, or default (use setting from DHCP server or if static IP address is assigned enable NetBIOS).",
+          "options": [
+            [
+              "enabled",
+              "enabled"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "default",
+              "default"
+            ]
+          ],
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_nssm",
+      "blockType": "community_windows_win_nssm",
+      "label": "win_nssm",
+      "tooltip": "Install a service using NSSM",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_nssm_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "app_environment",
+          "fieldId": "APP_ENVIRONMENT",
+          "type": "text",
+          "label": "app environment",
+          "yamlType": "dict",
+          "description": "Key/Value pairs which will be added to the environment of the service application."
+        },
+        {
+          "key": "app_rotate_bytes",
+          "fieldId": "APP_ROTATE_BYTES",
+          "type": "number",
+          "label": "app rotate bytes",
+          "default": 104858,
+          "description": "NSSM will not rotate any file which is smaller than the configured number of bytes."
+        },
+        {
+          "key": "app_rotate_online",
+          "fieldId": "APP_ROTATE_ONLINE",
+          "type": "dropdown",
+          "label": "app rotate online",
+          "default": 0,
+          "description": "If set to 1, nssm can rotate files which grow to the configured file size limit while the service is running.",
+          "options": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ]
+        },
+        {
+          "key": "app_stop_method_console",
+          "fieldId": "APP_STOP_METHOD_CONSOLE",
+          "type": "number",
+          "label": "app stop method console",
+          "description": "Time to wait after sending Control-C."
+        },
+        {
+          "key": "app_stop_method_skip",
+          "fieldId": "APP_STOP_METHOD_SKIP",
+          "type": "dropdown",
+          "label": "app stop method skip",
+          "description": "To disable service shutdown methods, set to the sum of one or more of the numbers 1 - Don't send Control-C to the console. 2 - Don't send WM_CLOSE to windows. 4 - Don't send WM_QUIT to threads. 8 - Don't call TerminateProcess().",
+          "options": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "5",
+              "5"
+            ],
+            [
+              "6",
+              "6"
+            ],
+            [
+              "7",
+              "7"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "9",
+              "9"
+            ],
+            [
+              "10",
+              "10"
+            ],
+            [
+              "11",
+              "11"
+            ],
+            [
+              "12",
+              "12"
+            ],
+            [
+              "13",
+              "13"
+            ],
+            [
+              "14",
+              "14"
+            ],
+            [
+              "15",
+              "15"
+            ]
+          ]
+        },
+        {
+          "key": "application",
+          "fieldId": "APPLICATION",
+          "type": "text",
+          "label": "application",
+          "description": "The application binary to run as a service Required when I(state) is C(present), C(started), C(stopped), or C(restarted)."
+        },
+        {
+          "key": "arguments",
+          "fieldId": "ARGUMENTS",
+          "type": "text",
+          "label": "arguments",
+          "description": "Parameters to be passed to the application when it starts. This can be either a simple string or a list.",
+          "aliases": [
+            "app_parameters_free_form"
+          ]
+        },
+        {
+          "key": "dependencies",
+          "fieldId": "DEPENDENCIES",
+          "type": "text",
+          "label": "dependencies",
+          "yamlType": "list",
+          "description": "Service dependencies that has to be started to trigger startup, separated by comma."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "The description to set for the service."
+        },
+        {
+          "key": "display_name",
+          "fieldId": "DISPLAY_NAME",
+          "type": "text",
+          "label": "display name",
+          "description": "The display name to set for the service."
+        },
+        {
+          "key": "executable",
+          "fieldId": "EXECUTABLE",
+          "type": "text",
+          "label": "executable",
+          "default": "nssm.exe",
+          "description": "The location of the NSSM utility (in case it is not located in your PATH)."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the service to operate on.",
+          "required": true
+        },
+        {
+          "key": "start_mode",
+          "fieldId": "START_MODE",
+          "type": "dropdown",
+          "label": "start mode",
+          "default": "auto",
+          "description": "If C(auto) is selected, the service will start at bootup. C(delayed) causes a delayed but automatic start after boot. C(manual) means that the service will start only when another service needs it. C(disabled) means that the service will stay off, regardless if it is needed or not.",
+          "options": [
+            [
+              "auto",
+              "auto"
+            ],
+            [
+              "delayed",
+              "delayed"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "manual",
+              "manual"
+            ]
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the service on the system.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "started",
+              "started"
+            ],
+            [
+              "stopped",
+              "stopped"
+            ],
+            [
+              "restarted",
+              "restarted"
+            ]
+          ]
+        },
+        {
+          "key": "stderr_file",
+          "fieldId": "STDERR_FILE",
+          "type": "text",
+          "label": "stderr file",
+          "description": "Path to receive error output."
+        },
+        {
+          "key": "stdout_file",
+          "fieldId": "STDOUT_FILE",
+          "type": "text",
+          "label": "stdout file",
+          "description": "Path to receive output."
+        },
+        {
+          "key": "working_directory",
+          "fieldId": "WORKING_DIRECTORY",
+          "type": "text",
+          "label": "working directory",
+          "description": "The working directory to run the service executable from (defaults to the directory containing the application binary)",
+          "aliases": [
+            "app_directory",
+            "chdir"
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_pagefile",
+      "blockType": "community_windows_win_pagefile",
+      "label": "win_pagefile",
+      "tooltip": "Query or change pagefile configuration",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_pagefile_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "automatic",
+          "fieldId": "AUTOMATIC",
+          "type": "boolean",
+          "label": "automatic",
+          "description": "Configures AutomaticManagedPagefile for the entire system."
+        },
+        {
+          "key": "drive",
+          "fieldId": "DRIVE",
+          "type": "text",
+          "label": "drive",
+          "description": "The drive of the pagefile."
+        },
+        {
+          "key": "initial_size",
+          "fieldId": "INITIAL_SIZE",
+          "type": "number",
+          "label": "initial size",
+          "description": "The initial size of the pagefile in megabytes."
+        },
+        {
+          "key": "maximum_size",
+          "fieldId": "MAXIMUM_SIZE",
+          "type": "number",
+          "label": "maximum size",
+          "description": "The maximum size of the pagefile in megabytes."
+        },
+        {
+          "key": "override",
+          "fieldId": "OVERRIDE",
+          "type": "boolean",
+          "label": "override",
+          "default": true,
+          "description": "Override the current pagefile on the drive."
+        },
+        {
+          "key": "remove_all",
+          "fieldId": "REMOVE_ALL",
+          "type": "boolean",
+          "label": "remove all",
+          "default": false,
+          "description": "Remove all pagefiles in the system, not including automatic managed."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "query",
+          "description": "State of the pagefile.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "query",
+              "query"
+            ]
+          ]
+        },
+        {
+          "key": "system_managed",
+          "fieldId": "SYSTEM_MANAGED",
+          "type": "boolean",
+          "label": "system managed",
+          "default": false,
+          "description": "Configures current pagefile to be managed by the system."
+        },
+        {
+          "key": "test_path",
+          "fieldId": "TEST_PATH",
+          "type": "boolean",
+          "label": "test path",
+          "default": true,
+          "description": "Use Test-Path on the drive to make sure the drive is accessible before creating the pagefile."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_partition",
+      "blockType": "community_windows_win_partition",
+      "label": "win_partition",
+      "tooltip": "Creates, changes and removes partitions on Windows Server",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_partition_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "active",
+          "fieldId": "ACTIVE",
+          "type": "boolean",
+          "label": "active",
+          "description": "Specifies if the partition is active and can be used to start the system. This property is only valid when the disk's partition style is MBR."
+        },
+        {
+          "key": "disk_number",
+          "fieldId": "DISK_NUMBER",
+          "type": "number",
+          "label": "disk number",
+          "description": "Disk number is mandatory for creating new partitions. A combination of I(disk_number) and I(partition_number) can be used to specify the partition instead of I(drive_letter) if required."
+        },
+        {
+          "key": "drive_letter",
+          "fieldId": "DRIVE_LETTER",
+          "type": "text",
+          "label": "drive letter",
+          "description": "Used for accessing partitions if I(disk_number) and I(partition_number) are not provided. Use C(auto) for automatically assigning a drive letter, or a letter A-Z for manually assigning a drive letter to a new partition. If not specified, no drive letter is assigned when creating a new partition."
+        },
+        {
+          "key": "gpt_type",
+          "fieldId": "GPT_TYPE",
+          "type": "dropdown",
+          "label": "gpt type",
+          "description": "Specify the partition's GPT type if the disk's partition style is GPT. This only applies to new partitions. This does not relate to the partitions file system formatting.",
+          "options": [
+            [
+              "system_partition",
+              "system_partition"
+            ],
+            [
+              "microsoft_reserved",
+              "microsoft_reserved"
+            ],
+            [
+              "basic_data",
+              "basic_data"
+            ],
+            [
+              "microsoft_recovery",
+              "microsoft_recovery"
+            ]
+          ]
+        },
+        {
+          "key": "hidden",
+          "fieldId": "HIDDEN",
+          "type": "boolean",
+          "label": "hidden",
+          "description": "Hides the target partition, making it undetectable by the mount manager."
+        },
+        {
+          "key": "mbr_type",
+          "fieldId": "MBR_TYPE",
+          "type": "dropdown",
+          "label": "mbr type",
+          "description": "Specify the partition's MBR type if the disk's partition style is MBR. This only applies to new partitions. This does not relate to the partitions file system formatting.",
+          "options": [
+            [
+              "fat12",
+              "fat12"
+            ],
+            [
+              "fat16",
+              "fat16"
+            ],
+            [
+              "extended",
+              "extended"
+            ],
+            [
+              "huge",
+              "huge"
+            ],
+            [
+              "ifs",
+              "ifs"
+            ],
+            [
+              "fat32",
+              "fat32"
+            ]
+          ]
+        },
+        {
+          "key": "offline",
+          "fieldId": "OFFLINE",
+          "type": "boolean",
+          "label": "offline",
+          "description": "Sets the partition offline. Adding a mount point (such as a drive letter) will cause the partition to go online again."
+        },
+        {
+          "key": "partition_number",
+          "fieldId": "PARTITION_NUMBER",
+          "type": "number",
+          "label": "partition number",
+          "description": "Used in conjunction with I(disk_number) to uniquely identify a partition."
+        },
+        {
+          "key": "partition_size",
+          "fieldId": "PARTITION_SIZE",
+          "type": "text",
+          "label": "partition size",
+          "description": "Specify size of the partition in B, KB, KiB, MB, MiB, GB, GiB, TB or TiB. Use -1 to specify maximum supported size. Partition size is mandatory for creating a new partition but not for updating or deleting a partition. The decimal SI prefixes kilo, mega, giga, tera, etc., are powers of 10^3 = 1000. The binary prefixes kibi, mebi, gibi, tebi, etc. respectively refer to the corresponding power of 2^10 = 1024. Thus, a gigabyte (GB) is 1000000000 (1000^3) bytes while 1 gibibyte (GiB) is 1073741824 (1024^3) bytes."
+        },
+        {
+          "key": "read_only",
+          "fieldId": "READ_ONLY",
+          "type": "boolean",
+          "label": "read only",
+          "description": "Make the partition read only, restricting changes from being made to the partition."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Used to specify the state of the partition. Use C(absent) to specify if a partition should be removed and C(present) to specify if the partition should be created or updated.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_pester",
+      "blockType": "community_windows_win_pester",
+      "label": "win_pester",
+      "tooltip": "Run Pester tests on Windows hosts",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_pester_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "output_file",
+          "fieldId": "OUTPUT_FILE",
+          "type": "text",
+          "label": "output file",
+          "description": "Generates an output test report."
+        },
+        {
+          "key": "output_format",
+          "fieldId": "OUTPUT_FORMAT",
+          "type": "text",
+          "label": "output format",
+          "default": "NunitXML",
+          "description": "Format of the test report to be generated. This parameter is to be used with output_file option."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "Path to a pester test file or a folder where tests can be found. If the path is a folder, the module will consider all ps1 files as Pester tests.",
+          "required": true
+        },
+        {
+          "key": "tags",
+          "fieldId": "TAGS",
+          "type": "text",
+          "label": "tags",
+          "yamlType": "list",
+          "description": "Runs only tests in Describe blocks with specified Tags values. Accepts multiple comma separated tags."
+        },
+        {
+          "key": "test_parameters",
+          "fieldId": "TEST_PARAMETERS",
+          "type": "text",
+          "label": "test parameters",
+          "yamlType": "dict",
+          "description": "Allows to specify parameters to the test script."
+        },
+        {
+          "key": "version",
+          "fieldId": "VERSION",
+          "type": "text",
+          "label": "version",
+          "description": "Minimum version of the pester module that has to be available on the remote host.",
+          "aliases": [
+            "minimum_version"
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_power_plan",
+      "blockType": "community_windows_win_power_plan",
+      "label": "win_power_plan",
+      "tooltip": "Changes the power plan of a Windows system",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_power_plan_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "guid",
+          "fieldId": "GUID",
+          "type": "text",
+          "label": "guid",
+          "description": "String value that indicates the desired power plan by guid. The power plan must already be present on the system. For out of box guids see U(https://docs.microsoft.com/en-us/windows/win32/power/power-policy-settings)."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "String value that indicates the desired power plan by name. The power plan must already be present on the system. Commonly there will be options for C(balanced) and C(high performance)."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psexec",
+      "blockType": "community_windows_win_psexec",
+      "label": "win_psexec",
+      "tooltip": "Runs commands (remotely) as another (privileged) user",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psexec_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "chdir",
+          "fieldId": "CHDIR",
+          "type": "text",
+          "label": "chdir",
+          "description": "Run the command from this (remote) directory."
+        },
+        {
+          "key": "command",
+          "fieldId": "COMMAND",
+          "type": "text",
+          "label": "command",
+          "description": "The command line to run through PsExec (limited to 260 characters).",
+          "required": true
+        },
+        {
+          "key": "elevated",
+          "fieldId": "ELEVATED",
+          "type": "boolean",
+          "label": "elevated",
+          "default": false,
+          "description": "Run the command with elevated privileges."
+        },
+        {
+          "key": "executable",
+          "fieldId": "EXECUTABLE",
+          "type": "text",
+          "label": "executable",
+          "default": "psexec.exe",
+          "description": "The location of the PsExec utility (in case it is not located in your PATH)."
+        },
+        {
+          "key": "hostnames",
+          "fieldId": "HOSTNAMES",
+          "type": "text",
+          "label": "hostnames",
+          "yamlType": "list",
+          "description": "The hostnames to run the command. If not provided, the command is run locally."
+        },
+        {
+          "key": "interactive",
+          "fieldId": "INTERACTIVE",
+          "type": "boolean",
+          "label": "interactive",
+          "default": false,
+          "description": "Run the program so that it interacts with the desktop on the remote system."
+        },
+        {
+          "key": "limited",
+          "fieldId": "LIMITED",
+          "type": "boolean",
+          "label": "limited",
+          "default": false,
+          "description": "Run the command as limited user (strips the Administrators group and allows only privileges assigned to the Users group)."
+        },
+        {
+          "key": "nobanner",
+          "fieldId": "NOBANNER",
+          "type": "boolean",
+          "label": "nobanner",
+          "default": false,
+          "description": "Do not display the startup banner and copyright message. This only works for specific versions of the PsExec binary."
+        },
+        {
+          "key": "noprofile",
+          "fieldId": "NOPROFILE",
+          "type": "boolean",
+          "label": "noprofile",
+          "default": false,
+          "description": "Run the command without loading the account's profile."
+        },
+        {
+          "key": "priority",
+          "fieldId": "PRIORITY",
+          "type": "dropdown",
+          "label": "priority",
+          "description": "Used to run the command at a different priority.",
+          "options": [
+            [
+              "abovenormal",
+              "abovenormal"
+            ],
+            [
+              "background",
+              "background"
+            ],
+            [
+              "belownormal",
+              "belownormal"
+            ],
+            [
+              "high",
+              "high"
+            ],
+            [
+              "low",
+              "low"
+            ],
+            [
+              "realtime",
+              "realtime"
+            ]
+          ]
+        },
+        {
+          "key": "session",
+          "fieldId": "SESSION",
+          "type": "number",
+          "label": "session",
+          "description": "Specifies the session ID to use. This parameter works in conjunction with I(interactive). It has no effect when I(interactive) is set to C(no)."
+        },
+        {
+          "key": "system",
+          "fieldId": "SYSTEM",
+          "type": "boolean",
+          "label": "system",
+          "default": false,
+          "description": "Run the remote command in the System account."
+        },
+        {
+          "key": "wait",
+          "fieldId": "WAIT",
+          "type": "boolean",
+          "label": "wait",
+          "default": true,
+          "description": "Wait for the application to terminate. Only use for non-interactive applications."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psmodule",
+      "blockType": "community_windows_win_psmodule",
+      "label": "win_psmodule",
+      "tooltip": "Adds or removes a Windows PowerShell module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psmodule_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "accept_license",
+          "fieldId": "ACCEPT_LICENSE",
+          "type": "boolean",
+          "label": "accept license",
+          "default": false,
+          "description": "Accepts the module's license. Required for modules that require license acceptance, since interactively answering the prompt is not possible. Corresponds to the C(-AcceptLicense) parameter of C(Install-Module). Installation of a module or a dependency that requires license acceptance cannot be detected in check mode, but will cause a failure at runtime unless I(accept_license=true)."
+        },
+        {
+          "key": "allow_clobber",
+          "fieldId": "ALLOW_CLOBBER",
+          "type": "boolean",
+          "label": "allow clobber",
+          "default": false,
+          "description": "If C(yes) allows install modules that contains commands those have the same names as commands that already exists."
+        },
+        {
+          "key": "allow_prerelease",
+          "fieldId": "ALLOW_PRERELEASE",
+          "type": "boolean",
+          "label": "allow prerelease",
+          "default": false,
+          "description": "If C(yes) installs modules marked as prereleases. It doesn't work with the parameters C(minimum_version) and/or C(maximum_version). It doesn't work with the C(state) set to absent."
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "Overrides warning messages about module installation conflicts If there is an existing module with the same name and version, force overwrites that version Corresponds to the C(-Force) parameter of C(Install-Module). If module as dependency, it will also force reinstallation of dependency. Updating them to latest if version isn't specified in module manifest."
+        },
+        {
+          "key": "maximum_version",
+          "fieldId": "MAXIMUM_VERSION",
+          "type": "text",
+          "label": "maximum version",
+          "description": "The maximum version of the PowerShell module that has to be installed."
+        },
+        {
+          "key": "minimum_version",
+          "fieldId": "MINIMUM_VERSION",
+          "type": "text",
+          "label": "minimum version",
+          "description": "The minimum version of the PowerShell module that has to be installed."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Windows PowerShell module that has to be installed.",
+          "required": true
+        },
+        {
+          "key": "repository",
+          "fieldId": "REPOSITORY",
+          "type": "text",
+          "label": "repository",
+          "description": "Name of the custom repository to use."
+        },
+        {
+          "key": "required_version",
+          "fieldId": "REQUIRED_VERSION",
+          "type": "text",
+          "label": "required version",
+          "description": "The exact version of the PowerShell module that has to be installed."
+        },
+        {
+          "key": "skip_publisher_check",
+          "fieldId": "SKIP_PUBLISHER_CHECK",
+          "type": "boolean",
+          "label": "skip publisher check",
+          "default": false,
+          "description": "If C(yes), allows you to install a different version of a module that already exists on your computer in the case when a different one is not digitally signed by a trusted publisher and the newest existing module is digitally signed by a trusted publisher."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "If C(present) a new module is installed. If C(absent) a module is removed. If C(latest) a module is updated to the newest version.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "latest",
+              "latest"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psmodule_info",
+      "blockType": "community_windows_win_psmodule_info",
+      "label": "win_psmodule_info",
+      "tooltip": "Gather information about PowerShell Modules",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psmodule_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "default": "*",
+          "description": "The name of the module to retrieve. Supports any wildcard pattern supported by C(Get-Module). If omitted then all modules will returned."
+        },
+        {
+          "key": "repository",
+          "fieldId": "REPOSITORY",
+          "type": "text",
+          "label": "repository",
+          "description": "The name of the PSRepository the modules were installed from. This acts as a filter against the modules that would be returned based on the I(name) option. Modules that were not installed from a repository will not be returned if this option is set. Only modules installed from a registered repository will be returned. If the repository was re-registered after module installation with a new C(SourceLocation), this will not match."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psrepository",
+      "blockType": "community_windows_win_psrepository",
+      "label": "win_psrepository",
+      "tooltip": "Adds, removes or updates a Windows PowerShell repository.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psrepository_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "If C(True), any differences from the desired state will result in the repository being unregistered, and then re-registered. I(force) has no effect when I(state=absent). See notes for additional context."
+        },
+        {
+          "key": "installation_policy",
+          "fieldId": "INSTALLATION_POLICY",
+          "type": "dropdown",
+          "label": "installation policy",
+          "description": "Sets the C(InstallationPolicy) of a repository. Will default to C(trusted) when creating a new repository or used with I(force=True).",
+          "options": [
+            [
+              "trusted",
+              "trusted"
+            ],
+            [
+              "untrusted",
+              "untrusted"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the repository to work with.",
+          "required": true
+        },
+        {
+          "key": "proxy",
+          "fieldId": "PROXY",
+          "type": "text",
+          "label": "proxy",
+          "description": "Proxy to use for repository."
+        },
+        {
+          "key": "publish_location",
+          "fieldId": "PUBLISH_LOCATION",
+          "type": "text",
+          "label": "publish location",
+          "description": "Specifies the URI for publishing modules to this repository."
+        },
+        {
+          "key": "script_publish_location",
+          "fieldId": "SCRIPT_PUBLISH_LOCATION",
+          "type": "text",
+          "label": "script publish location",
+          "description": "Specifies the URI for publishing scripts to this repository."
+        },
+        {
+          "key": "script_source_location",
+          "fieldId": "SCRIPT_SOURCE_LOCATION",
+          "type": "text",
+          "label": "script source location",
+          "description": "Specifies the URI for discovering and installing scripts from this repository."
+        },
+        {
+          "key": "source_location",
+          "fieldId": "SOURCE_LOCATION",
+          "type": "text",
+          "label": "source location",
+          "description": "Specifies the URI for discovering and installing modules from this repository. A URI can be a NuGet server feed (most common situation), HTTP, HTTPS, FTP or file location. Required when registering a new repository or using I(force=True).",
+          "aliases": [
+            "source"
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "If C(present) a new repository is added or updated. If C(absent) a repository is removed.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psrepository_copy",
+      "blockType": "community_windows_win_psrepository_copy",
+      "label": "win_psrepository_copy",
+      "tooltip": "Copies registered PSRepositories to other user profiles",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psrepository_copy_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "exclude",
+          "fieldId": "EXCLUDE",
+          "type": "text",
+          "label": "exclude",
+          "yamlType": "list",
+          "description": "The names of repositories to exclude. Names are interpreted as wildcards. If a name matches both an include (I(name)) and I(exclude), it will be excluded."
+        },
+        {
+          "key": "exclude_profiles",
+          "fieldId": "EXCLUDE_PROFILES",
+          "type": "text",
+          "label": "exclude profiles",
+          "yamlType": "list",
+          "description": "The names of user profiles to exclude. If a profile matches both an include (I(profiles)) and I(exclude_profiles), it will be excluded. By default, the service account profiles are excluded. To explcitly exclude nothing, set I(exclude_profiles=[])."
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "If C(True), this deletes repositories that are not present in the source."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "yamlType": "list",
+          "description": "The names of repositories to copy. Names are interpreted as wildcards."
+        },
+        {
+          "key": "profiles",
+          "fieldId": "PROFILES",
+          "type": "text",
+          "label": "profiles",
+          "yamlType": "list",
+          "description": "The names of user profiles to populate with repositories. Names are interpreted as wildcards. The C(Default) profile can also be matched. The C(Public) and C(All Users) profiles cannot be targeted, as PSRepositories are not loaded from them."
+        },
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "text",
+          "label": "source",
+          "default": "%LOCALAPPDATA%\\Microsoft\\Windows\\PowerShell\\PowerShellGet\\PSRepositories.xml",
+          "description": "The full path to the source repositories XML file. Defaults to the repositories registered to the current user."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psrepository_info",
+      "blockType": "community_windows_win_psrepository_info",
+      "label": "win_psrepository_info",
+      "tooltip": "Gather information about PSRepositories",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psrepository_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "default": "*",
+          "description": "The name of the repository to retrieve. Supports any wildcard pattern supported by C(Get-PSRepository). If omitted then all repositories will returned."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psscript",
+      "blockType": "community_windows_win_psscript",
+      "label": "win_psscript",
+      "tooltip": "Install and manage PowerShell scripts from a PSRepository",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psscript_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "allow_prerelease",
+          "fieldId": "ALLOW_PRERELEASE",
+          "type": "boolean",
+          "label": "allow prerelease",
+          "default": false,
+          "description": "If C(yes) installs scripts flagged as prereleases."
+        },
+        {
+          "key": "maximum_version",
+          "fieldId": "MAXIMUM_VERSION",
+          "type": "text",
+          "label": "maximum version",
+          "description": "The maximum version of the script to install. Cannot be used when I(state=latest)."
+        },
+        {
+          "key": "minimum_version",
+          "fieldId": "MINIMUM_VERSION",
+          "type": "text",
+          "label": "minimum version",
+          "description": "The minimum version of the script to install. Cannot be used when I(state=latest)."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the script you want to install or remove.",
+          "required": true
+        },
+        {
+          "key": "repository",
+          "fieldId": "REPOSITORY",
+          "type": "text",
+          "label": "repository",
+          "description": "The registered name of the repository you want to install from. Cannot be used when I(state=absent). If ommitted, all repositories will be searched. To register a repository, use M(community.windows.win_psrepository)."
+        },
+        {
+          "key": "required_version",
+          "fieldId": "REQUIRED_VERSION",
+          "type": "text",
+          "label": "required version",
+          "description": "The exact version of the script to install. Cannot be used with I(minimum_version) or I(maximum_version). Cannot be used when I(state=latest)."
+        },
+        {
+          "key": "scope",
+          "fieldId": "SCOPE",
+          "type": "dropdown",
+          "label": "scope",
+          "default": "all_users",
+          "description": "Determines whether the script is installed for only the C(current_user) or for C(all_users).",
+          "options": [
+            [
+              "current_user",
+              "current_user"
+            ],
+            [
+              "all_users",
+              "all_users"
+            ]
+          ]
+        },
+        {
+          "key": "source_password",
+          "fieldId": "SOURCE_PASSWORD",
+          "type": "text",
+          "label": "source password",
+          "description": "The password portion of the credential required to access the repository. Must be used together with I(source_username)."
+        },
+        {
+          "key": "source_username",
+          "fieldId": "SOURCE_USERNAME",
+          "type": "text",
+          "label": "source username",
+          "description": "The username portion of the credential required to access the repository. Must be used together with I(source_password)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The desired state of the script. C(absent) removes the script. C(latest) will ensure the most recent version available is installed. C(present) only installs if the script is missing.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "latest",
+              "latest"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_psscript_info",
+      "blockType": "community_windows_win_psscript_info",
+      "label": "win_psscript_info",
+      "tooltip": "Gather information about installed PowerShell Scripts",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_psscript_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "default": "*",
+          "description": "The name of the script. Supports any wildcard pattern supported by C(Get-InstalledScript). If omitted then all scripts will returned."
+        },
+        {
+          "key": "repository",
+          "fieldId": "REPOSITORY",
+          "type": "text",
+          "label": "repository",
+          "description": "The name of the PSRepository the scripts were installed from. This acts as a filter against the scripts that would be returned based on the I(name) option. Only scripts installed from a registered repository will be returned. If the repository was re-registered after script installation with a new C(SourceLocation), this will not match."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_pssession_configuration",
+      "blockType": "community_windows_win_pssession_configuration",
+      "label": "win_pssession_configuration",
+      "tooltip": "Manage PSSession Configurations",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_pssession_configuration_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "access_mode",
+          "fieldId": "ACCESS_MODE",
+          "type": "dropdown",
+          "label": "access mode",
+          "description": "Controls whether the session configuration allows connection from the C(local) machine only, both local and C(remote), or none (C(disabled)).",
+          "options": [
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "local",
+              "local"
+            ],
+            [
+              "remote",
+              "remote"
+            ]
+          ]
+        },
+        {
+          "key": "alias_definitions",
+          "fieldId": "ALIAS_DEFINITIONS",
+          "type": "text",
+          "label": "alias definitions",
+          "yamlType": "dict",
+          "description": "A dict that defines aliases for each session."
+        },
+        {
+          "key": "assemblies_to_load",
+          "fieldId": "ASSEMBLIES_TO_LOAD",
+          "type": "text",
+          "label": "assemblies to load",
+          "yamlType": "list",
+          "description": "The assemblies that should be loaded into each session."
+        },
+        {
+          "key": "async_poll",
+          "fieldId": "ASYNC_POLL",
+          "type": "number",
+          "label": "async poll",
+          "default": 1,
+          "description": "Sets a delay in seconds between each check of the asynchronous execution status. Replicates the functionality of the C(poll) keyword. Has no effect in check mode. I(async_poll=0) is not supported."
+        },
+        {
+          "key": "async_timeout",
+          "fieldId": "ASYNC_TIMEOUT",
+          "type": "number",
+          "label": "async timeout",
+          "default": 300,
+          "description": "Sets a timeout for how long in seconds to wait for asynchronous module execution and waiting for the connection to recover. Replicates the functionality of the C(async) keyword. Has no effect in check mode."
+        },
+        {
+          "key": "author",
+          "fieldId": "AUTHOR",
+          "type": "text",
+          "label": "author",
+          "description": "The author of the session configuration. This value is metadata and does not affect the functionality of the session configuration. If not set, a value may be generated automatically. See also I(lenient_config_fields)."
+        },
+        {
+          "key": "company_name",
+          "fieldId": "COMPANY_NAME",
+          "type": "text",
+          "label": "company name",
+          "description": "The company that authored the session configuration. This value is metadata and does not affect the functionality of the session configuration. If not set, a value may be generated automatically. See also I(lenient_config_fields)."
+        },
+        {
+          "key": "copyright",
+          "fieldId": "COPYRIGHT",
+          "type": "text",
+          "label": "copyright",
+          "description": "The copyright statement of the session configuration. This value is metadata and does not affect the functionality of the session configuration. If not set, a value may be generated automatically. See also I(lenient_config_fields)."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "The description of the session configuration. This value is metadata and does not affect the functionality of the session configuration. See also I(lenient_config_fields)."
+        },
+        {
+          "key": "environment_variables",
+          "fieldId": "ENVIRONMENT_VARIABLES",
+          "type": "text",
+          "label": "environment variables",
+          "yamlType": "dict",
+          "description": "A dict that defines environment variables for each session."
+        },
+        {
+          "key": "execution_policy",
+          "fieldId": "EXECUTION_POLICY",
+          "type": "dropdown",
+          "label": "execution policy",
+          "description": "The execution policy controlling script execution in the PowerShell session.",
+          "options": [
+            [
+              "default",
+              "default"
+            ],
+            [
+              "remote_signed",
+              "remote_signed"
+            ],
+            [
+              "restricted",
+              "restricted"
+            ],
+            [
+              "undefined",
+              "undefined"
+            ],
+            [
+              "unrestricted",
+              "unrestricted"
+            ]
+          ]
+        },
+        {
+          "key": "formats_to_process",
+          "fieldId": "FORMATS_TO_PROCESS",
+          "type": "text",
+          "label": "formats to process",
+          "yamlType": "list",
+          "description": "Paths to format definition files to process for each session."
+        },
+        {
+          "key": "function_definitions",
+          "fieldId": "FUNCTION_DEFINITIONS",
+          "type": "text",
+          "label": "function definitions",
+          "yamlType": "dict",
+          "description": "A dict that defines functions for each session."
+        },
+        {
+          "key": "group_managed_service_account",
+          "fieldId": "GROUP_MANAGED_SERVICE_ACCOUNT",
+          "type": "text",
+          "label": "group managed service account",
+          "description": "If the session will run as a group managed service account (gMSA) then this is the name. Do not use I(run_as_credential_username) and I(run_as_credential_password) to specify a gMSA."
+        },
+        {
+          "key": "guid",
+          "fieldId": "GUID",
+          "type": "text",
+          "label": "guid",
+          "multiline": true,
+          "description": "The GUID (UUID) of the session configuration file. This value is metadata, so it only matters if you use it externally. If not set, a value will be generated automatically. Acceptable GUID formats are flexible. Any string of 32 hexadecimal digits will be accepted, with all hyphens C(-) and opening/closing C({}) ignored. See also I(lenient_config_fields)."
+        },
+        {
+          "key": "language_mode",
+          "fieldId": "LANGUAGE_MODE",
+          "type": "dropdown",
+          "label": "language mode",
+          "description": "Determines the language mode of the PowerShell session.",
+          "options": [
+            [
+              "no_language",
+              "no_language"
+            ],
+            [
+              "restricted_language",
+              "restricted_language"
+            ],
+            [
+              "constrained_language",
+              "constrained_language"
+            ],
+            [
+              "full_language",
+              "full_language"
+            ]
+          ]
+        },
+        {
+          "key": "lenient_config_fields",
+          "fieldId": "LENIENT_CONFIG_FIELDS",
+          "type": "text",
+          "label": "lenient config fields",
+          "yamlType": "list",
+          "description": "Some fields used in the session configuration do not affect its function, and are sometimes auto-generated when not specified. To avoid unnecessarily changing the configuration on each run, the values of these options will only be enforced when they are explicitly specified."
+        },
+        {
+          "key": "maximum_received_data_size_per_command_mb",
+          "fieldId": "MAXIMUM_RECEIVED_DATA_SIZE_PER_COMMAND_MB",
+          "type": "text",
+          "label": "maximum received data size per command mb",
+          "multiline": true,
+          "description": "Sets the maximum received data size per command in MB. Must fit into a double precision floating point value."
+        },
+        {
+          "key": "maximum_received_object_size_mb",
+          "fieldId": "MAXIMUM_RECEIVED_OBJECT_SIZE_MB",
+          "type": "text",
+          "label": "maximum received object size mb",
+          "multiline": true,
+          "description": "Sets the maximum object size in MB. Must fit into a double precision floating point value."
+        },
+        {
+          "key": "modules_to_import",
+          "fieldId": "MODULES_TO_IMPORT",
+          "type": "text",
+          "label": "modules to import",
+          "yamlType": "list",
+          "description": "A list of modules that should be imported into the session. Any valid PowerShell module spec can be used here, so simple str names or dicts can be used. If a dict is used, no snake_case conversion is done, so the original PowerShell names must be used."
+        },
+        {
+          "key": "mount_user_drive",
+          "fieldId": "MOUNT_USER_DRIVE",
+          "type": "boolean",
+          "label": "mount user drive",
+          "description": "If C(yes) the session creates and mounts a user-specific PSDrive for use with file transfers."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the session configuration to manage.",
+          "required": true
+        },
+        {
+          "key": "powershell_version",
+          "fieldId": "POWERSHELL_VERSION",
+          "type": "text",
+          "label": "powershell version",
+          "multiline": true,
+          "description": "The minimum required PowerShell version for this session. Must be a valid .Net System.Version string. This only works if targeting PowerShell 5.1, PowerShell 7.x does not support this option."
+        },
+        {
+          "key": "processor_architecure",
+          "fieldId": "PROCESSOR_ARCHITECURE",
+          "type": "dropdown",
+          "label": "processor architecure",
+          "description": "The processor architecture of the session (32 bit vs. 64 bit).",
+          "options": [
+            [
+              "amd64",
+              "amd64"
+            ],
+            [
+              "x86",
+              "x86"
+            ]
+          ]
+        },
+        {
+          "key": "required_groups",
+          "fieldId": "REQUIRED_GROUPS",
+          "type": "text",
+          "label": "required groups",
+          "yamlType": "dict",
+          "description": "For JEA sessions, defines conditional access rules about which groups a connecting user must belong to. For more information see U(https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/jea/session-configurations#conditional-access-rules)."
+        },
+        {
+          "key": "role_definitions",
+          "fieldId": "ROLE_DEFINITIONS",
+          "type": "text",
+          "label": "role definitions",
+          "yamlType": "dict",
+          "description": "A dict defining the roles for JEA sessions. For more information see U(https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/jea/session-configurations#role-definitions)."
+        },
+        {
+          "key": "run_as_credential_password",
+          "fieldId": "RUN_AS_CREDENTIAL_PASSWORD",
+          "type": "text",
+          "label": "run as credential password",
+          "description": "The password for I(run_as_credential_username)."
+        },
+        {
+          "key": "run_as_credential_username",
+          "fieldId": "RUN_AS_CREDENTIAL_USERNAME",
+          "type": "text",
+          "label": "run as credential username",
+          "description": "Used to set a RunAs account for the session. All commands executed in the session will be run as this user. To use a gMSA, see I(group_managed_service_account). To use a virtual account, see I(run_as_virtual_account) and I(run_as_virtual_account_groups). Status will always be C(changed) when a RunAs credential is set because the password cannot be retrieved for comparison."
+        },
+        {
+          "key": "run_as_virtual_account",
+          "fieldId": "RUN_AS_VIRTUAL_ACCOUNT",
+          "type": "boolean",
+          "label": "run as virtual account",
+          "description": "If C(yes) the session runs as a virtual account. Do not use I(run_as_credential_username) and I(run_as_credential_password) to specify a virtual account."
+        },
+        {
+          "key": "run_as_virtual_account_groups",
+          "fieldId": "RUN_AS_VIRTUAL_ACCOUNT_GROUPS",
+          "type": "text",
+          "label": "run as virtual account groups",
+          "yamlType": "list",
+          "description": "If I(run_as_virtual_account=yes) this is a list of groups to add the virtual account to."
+        },
+        {
+          "key": "schema_version",
+          "fieldId": "SCHEMA_VERSION",
+          "type": "text",
+          "label": "schema version",
+          "multiline": true,
+          "description": "The schema version of the session configuration file. If not set, a value will be generated automatically. Must be a valid .Net System.Version string."
+        },
+        {
+          "key": "scripts_to_process",
+          "fieldId": "SCRIPTS_TO_PROCESS",
+          "type": "text",
+          "label": "scripts to process",
+          "yamlType": "list",
+          "description": "A list of paths to script files ending in C(.ps1) that should be applied to the session."
+        },
+        {
+          "key": "security_descriptor_sddl",
+          "fieldId": "SECURITY_DESCRIPTOR_SDDL",
+          "type": "text",
+          "label": "security descriptor sddl",
+          "description": "An SDDL string that controls which users and groups can connect to the session. If I(role_definitions) is specified the security descriptor will be set based on that. If this option is not specified the default security descriptor will be applied."
+        },
+        {
+          "key": "session_type",
+          "fieldId": "SESSION_TYPE",
+          "type": "dropdown",
+          "label": "session type",
+          "description": "Controls what type of session this is.",
+          "options": [
+            [
+              "default",
+              "default"
+            ],
+            [
+              "empty",
+              "empty"
+            ],
+            [
+              "restricted_remote_server",
+              "restricted_remote_server"
+            ]
+          ]
+        },
+        {
+          "key": "startup_script",
+          "fieldId": "STARTUP_SCRIPT",
+          "type": "text",
+          "label": "startup script",
+          "description": "A script that gets run on session startup."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The desired state of the configuration.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "thread_apartment_state",
+          "fieldId": "THREAD_APARTMENT_STATE",
+          "type": "dropdown",
+          "label": "thread apartment state",
+          "description": "The apartment state for the PowerShell session.",
+          "options": [
+            [
+              "mta",
+              "mta"
+            ],
+            [
+              "sta",
+              "sta"
+            ]
+          ]
+        },
+        {
+          "key": "thread_options",
+          "fieldId": "THREAD_OPTIONS",
+          "type": "dropdown",
+          "label": "thread options",
+          "description": "Sets thread options for the session.",
+          "options": [
+            [
+              "default",
+              "default"
+            ],
+            [
+              "reuse_thread",
+              "reuse_thread"
+            ],
+            [
+              "use_current_thread",
+              "use_current_thread"
+            ],
+            [
+              "use_new_thread",
+              "use_new_thread"
+            ]
+          ]
+        },
+        {
+          "key": "transcript_directory",
+          "fieldId": "TRANSCRIPT_DIRECTORY",
+          "type": "text",
+          "label": "transcript directory",
+          "description": "Automatic session transcripts will be written to this directory."
+        },
+        {
+          "key": "types_to_process",
+          "fieldId": "TYPES_TO_PROCESS",
+          "type": "text",
+          "label": "types to process",
+          "yamlType": "list",
+          "description": "Paths to type definition files to process for each session."
+        },
+        {
+          "key": "use_shared_process",
+          "fieldId": "USE_SHARED_PROCESS",
+          "type": "boolean",
+          "label": "use shared process",
+          "description": "If C(yes) then the session shares a process for each session."
+        },
+        {
+          "key": "user_drive_maximum_size",
+          "fieldId": "USER_DRIVE_MAXIMUM_SIZE",
+          "type": "text",
+          "label": "user drive maximum size",
+          "multiline": true,
+          "description": "The maximum size of the user drive in bytes. Must fit into an Int64."
+        },
+        {
+          "key": "variable_definitions",
+          "fieldId": "VARIABLE_DEFINITIONS",
+          "type": "text",
+          "label": "variable definitions",
+          "yamlType": "list",
+          "description": "A list of dicts where each elements defines a variable for each session."
+        },
+        {
+          "key": "visible_aliases",
+          "fieldId": "VISIBLE_ALIASES",
+          "type": "text",
+          "label": "visible aliases",
+          "yamlType": "list",
+          "description": "The aliases that can be used in the session. For more information see U(https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/jea/role-capabilities)."
+        },
+        {
+          "key": "visible_cmdlets",
+          "fieldId": "VISIBLE_CMDLETS",
+          "type": "text",
+          "label": "visible cmdlets",
+          "yamlType": "list",
+          "description": "The cmdlets that can be used in the session. The elements can be simple names or complex command specifications. For more information see U(https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/jea/role-capabilities)."
+        },
+        {
+          "key": "visible_external_commands",
+          "fieldId": "VISIBLE_EXTERNAL_COMMANDS",
+          "type": "text",
+          "label": "visible external commands",
+          "yamlType": "list",
+          "description": "The external commands and scripts that can be used in the session. For more information see U(https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/jea/role-capabilities)."
+        },
+        {
+          "key": "visible_functions",
+          "fieldId": "VISIBLE_FUNCTIONS",
+          "type": "text",
+          "label": "visible functions",
+          "yamlType": "list",
+          "description": "The functions that can be used in the session. The elements can be simple names or complex command specifications. For more information see U(https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/jea/role-capabilities)."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_rabbitmq_plugin",
+      "blockType": "community_windows_win_rabbitmq_plugin",
+      "label": "win_rabbitmq_plugin",
+      "tooltip": "Manage RabbitMQ plugins",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_rabbitmq_plugin_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "names",
+          "fieldId": "NAMES",
+          "type": "text",
+          "label": "names",
+          "description": "Comma-separated list of plugin names.",
+          "required": true,
+          "aliases": [
+            "name"
+          ]
+        },
+        {
+          "key": "new_only",
+          "fieldId": "NEW_ONLY",
+          "type": "boolean",
+          "label": "new only",
+          "default": false,
+          "description": "Only enable missing plugins. Does not disable plugins that are not in the names list."
+        },
+        {
+          "key": "prefix",
+          "fieldId": "PREFIX",
+          "type": "text",
+          "label": "prefix",
+          "description": "Specify a custom install prefix to a Rabbit."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "enabled",
+          "description": "Specify if plugins are to be enabled or disabled.",
+          "options": [
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "enabled",
+              "enabled"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_rds_cap",
+      "blockType": "community_windows_win_rds_cap",
+      "label": "win_rds_cap",
+      "tooltip": "Manage Connection Authorization Policies (CAP) on a Remote Desktop Gateway server",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_rds_cap_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "allow_only_sdrts_servers",
+          "fieldId": "ALLOW_ONLY_SDRTS_SERVERS",
+          "type": "boolean",
+          "label": "allow only sdrts servers",
+          "description": "Specifies whether connections are allowed only to Remote Desktop Session Host servers that enforce Remote Desktop Gateway redirection policy."
+        },
+        {
+          "key": "auth_method",
+          "fieldId": "AUTH_METHOD",
+          "type": "dropdown",
+          "label": "auth method",
+          "description": "Specifies how the RD Gateway server authenticates users. When a new CAP is created, the default value is C(password).",
+          "options": [
+            [
+              "both",
+              "both"
+            ],
+            [
+              "none",
+              "none"
+            ],
+            [
+              "password",
+              "password"
+            ],
+            [
+              "smartcard",
+              "smartcard"
+            ]
+          ]
+        },
+        {
+          "key": "computer_groups",
+          "fieldId": "COMPUTER_GROUPS",
+          "type": "text",
+          "label": "computer groups",
+          "yamlType": "list",
+          "description": "A list of computer groups that is allowed to connect to the Remote Gateway server."
+        },
+        {
+          "key": "idle_timeout",
+          "fieldId": "IDLE_TIMEOUT",
+          "type": "number",
+          "label": "idle timeout",
+          "description": "Specifies the time interval, in minutes, after which an idle session is disconnected. A value of zero disables idle timeout."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the connection authorization policy.",
+          "required": true
+        },
+        {
+          "key": "order",
+          "fieldId": "ORDER",
+          "type": "number",
+          "label": "order",
+          "description": "Evaluation order of the policy. The CAP in which I(order) is set to a value of '1' is evaluated first. By default, a newly created CAP will take the first position. If the given value exceed the total number of existing policies, the policy will take the last position but the evaluation order will be capped to this number."
+        },
+        {
+          "key": "redirect_clipboard",
+          "fieldId": "REDIRECT_CLIPBOARD",
+          "type": "boolean",
+          "label": "redirect clipboard",
+          "description": "Allow clipboard redirection."
+        },
+        {
+          "key": "redirect_drives",
+          "fieldId": "REDIRECT_DRIVES",
+          "type": "boolean",
+          "label": "redirect drives",
+          "description": "Allow disk drive redirection."
+        },
+        {
+          "key": "redirect_pnp",
+          "fieldId": "REDIRECT_PNP",
+          "type": "boolean",
+          "label": "redirect pnp",
+          "description": "Allow Plug and Play devices redirection."
+        },
+        {
+          "key": "redirect_printers",
+          "fieldId": "REDIRECT_PRINTERS",
+          "type": "boolean",
+          "label": "redirect printers",
+          "description": "Allow printers redirection."
+        },
+        {
+          "key": "redirect_serial",
+          "fieldId": "REDIRECT_SERIAL",
+          "type": "boolean",
+          "label": "redirect serial",
+          "description": "Allow serial port redirection."
+        },
+        {
+          "key": "session_timeout",
+          "fieldId": "SESSION_TIMEOUT",
+          "type": "number",
+          "label": "session timeout",
+          "description": "The maximum time, in minutes, that a session can be idle. A value of zero disables session timeout."
+        },
+        {
+          "key": "session_timeout_action",
+          "fieldId": "SESSION_TIMEOUT_ACTION",
+          "type": "dropdown",
+          "label": "session timeout action",
+          "default": "disconnect",
+          "description": "The action the server takes when a session times out. C(disconnect): disconnect the session. C(reauth): silently reauthenticate and reauthorize the session.",
+          "options": [
+            [
+              "disconnect",
+              "disconnect"
+            ],
+            [
+              "reauth",
+              "reauth"
+            ]
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The state of connection authorization policy. If C(absent) will ensure the policy is removed. If C(present) will ensure the policy is configured and exists. If C(enabled) will ensure the policy is configured, exists and enabled. If C(disabled) will ensure the policy is configured, exists, but disabled.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "enabled",
+              "enabled"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "user_groups",
+          "fieldId": "USER_GROUPS",
+          "type": "text",
+          "label": "user groups",
+          "yamlType": "list",
+          "description": "A list of user groups that is allowed to connect to the Remote Gateway server. Required when a new CAP is created."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_rds_rap",
+      "blockType": "community_windows_win_rds_rap",
+      "label": "win_rds_rap",
+      "tooltip": "Manage Resource Authorization Policies (RAP) on a Remote Desktop Gateway server",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_rds_rap_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "allowed_ports",
+          "fieldId": "ALLOWED_PORTS",
+          "type": "text",
+          "label": "allowed ports",
+          "yamlType": "list",
+          "description": "List of port numbers through which connections are allowed for this policy. To allow connections through any port, specify 'any'."
+        },
+        {
+          "key": "computer_group",
+          "fieldId": "COMPUTER_GROUP",
+          "type": "text",
+          "label": "computer group",
+          "description": "The computer group name that is associated with this resource authorization policy (RAP). This is required when I(computer_group_type) is C(rdg_group) or C(ad_network_resource_group)."
+        },
+        {
+          "key": "computer_group_type",
+          "fieldId": "COMPUTER_GROUP_TYPE",
+          "type": "dropdown",
+          "label": "computer group type",
+          "description": "The computer group type: C(rdg_group): RD Gateway-managed group C(ad_network_resource_group): Active Directory Domain Services network resource group C(allow_any): Allow users to connect to any network resource.",
+          "options": [
+            [
+              "rdg_group",
+              "rdg_group"
+            ],
+            [
+              "ad_network_resource_group",
+              "ad_network_resource_group"
+            ],
+            [
+              "allow_any",
+              "allow_any"
+            ]
+          ]
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Optional description of the resource authorization policy."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the resource authorization policy.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "The state of resource authorization policy. If C(absent) will ensure the policy is removed. If C(present) will ensure the policy is configured and exists. If C(enabled) will ensure the policy is configured, exists and enabled. If C(disabled) will ensure the policy is configured, exists, but disabled.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ],
+            [
+              "enabled",
+              "enabled"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "user_groups",
+          "fieldId": "USER_GROUPS",
+          "type": "text",
+          "label": "user groups",
+          "yamlType": "list",
+          "description": "List of user groups that are associated with this resource authorization policy (RAP). A user must belong to one of these groups to access the RD Gateway server. Required when a new RAP is created."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_rds_settings",
+      "blockType": "community_windows_win_rds_settings",
+      "label": "win_rds_settings",
+      "tooltip": "Manage main settings of a Remote Desktop Gateway server",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_rds_settings_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "certificate_hash",
+          "fieldId": "CERTIFICATE_HASH",
+          "type": "text",
+          "label": "certificate hash",
+          "description": "Certificate hash (thumbprint) for the Remote Desktop Gateway server. The certificate hash is the unique identifier for the certificate."
+        },
+        {
+          "key": "enable_only_messaging_capable_clients",
+          "fieldId": "ENABLE_ONLY_MESSAGING_CAPABLE_CLIENTS",
+          "type": "boolean",
+          "label": "enable only messaging capable clients",
+          "description": "If enabled, only clients that support logon messages and administrator messages can connect."
+        },
+        {
+          "key": "max_connections",
+          "fieldId": "MAX_CONNECTIONS",
+          "type": "number",
+          "label": "max connections",
+          "description": "The maximum number of connections allowed. If set to C(0), no new connections are allowed. If set to C(-1), the number of connections is unlimited."
+        },
+        {
+          "key": "ssl_bridging",
+          "fieldId": "SSL_BRIDGING",
+          "type": "dropdown",
+          "label": "ssl bridging",
+          "description": "Specifies whether to use SSL Bridging. C(none): no SSL bridging. C(https_http): HTTPS-HTTP bridging. C(https_https): HTTPS-HTTPS bridging.",
+          "options": [
+            [
+              "https_http",
+              "https_http"
+            ],
+            [
+              "https_https",
+              "https_https"
+            ],
+            [
+              "none",
+              "none"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_regmerge",
+      "blockType": "community_windows_win_regmerge",
+      "label": "win_regmerge",
+      "tooltip": "Merges the contents of a registry file into the Windows registry",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_regmerge_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "compare_to",
+          "fieldId": "COMPARE_TO",
+          "type": "text",
+          "label": "compare to",
+          "description": "The parent key to use when comparing the contents of the registry to the contents of the file.  Needs to be in HKLM or HKCU part of registry. Use a PS-Drive style path for example HKLM:\\SOFTWARE not HKEY_LOCAL_MACHINE\\SOFTWARE If not supplied, or the registry key is not found, no comparison will be made, and the module will report changed."
+        },
+        {
+          "key": "content",
+          "fieldId": "CONTENT",
+          "type": "text",
+          "label": "content",
+          "description": "When used instead of O(path), merges the value specified into the Windows registry. It must not include the Byte Order Mark."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "The full path including file name to the registry file on the remote machine to be merged"
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_robocopy",
+      "blockType": "community_windows_win_robocopy",
+      "label": "win_robocopy",
+      "tooltip": "Synchronizes the contents of two directories using Robocopy",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_robocopy_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "description": "Destination file/directory to sync (Will receive contents of src).",
+          "required": true
+        },
+        {
+          "key": "flags",
+          "fieldId": "FLAGS",
+          "type": "text",
+          "label": "flags",
+          "description": "Directly supply Robocopy flags. If set, C(purge) and C(recurse) will be ignored."
+        },
+        {
+          "key": "purge",
+          "fieldId": "PURGE",
+          "type": "boolean",
+          "label": "purge",
+          "default": false,
+          "description": "Deletes any files/directories found in the destination that do not exist in the source. Toggles the C(/purge) flag to RoboCopy. If C(flags) is set, this will be ignored."
+        },
+        {
+          "key": "recurse",
+          "fieldId": "RECURSE",
+          "type": "boolean",
+          "label": "recurse",
+          "default": false,
+          "description": "Includes all subdirectories (Toggles the C(/e) flag to RoboCopy). If C(flags) is set, this will be ignored."
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "Source file/directory to sync.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_say",
+      "blockType": "community_windows_win_say",
+      "label": "win_say",
+      "tooltip": "Text to speech module for Windows to speak messages and optionally play sounds",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_say_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "end_sound_path",
+          "fieldId": "END_SOUND_PATH",
+          "type": "text",
+          "label": "end sound path",
+          "description": "Full path to a C(.wav) file containing a sound to play after the text has been spoken. Useful on conference calls to alert other speakers that ansible has finished speaking."
+        },
+        {
+          "key": "msg",
+          "fieldId": "MSG",
+          "type": "text",
+          "label": "msg",
+          "description": "The text to be spoken. Use either C(msg) or C(msg_file). Optional so that you can use this module just to play sounds."
+        },
+        {
+          "key": "msg_file",
+          "fieldId": "MSG_FILE",
+          "type": "text",
+          "label": "msg file",
+          "description": "Full path to a windows format text file containing the text to be spoken. Use either C(msg) or C(msg_file). Optional so that you can use this module just to play sounds."
+        },
+        {
+          "key": "speech_speed",
+          "fieldId": "SPEECH_SPEED",
+          "type": "number",
+          "label": "speech speed",
+          "default": 0,
+          "description": "How fast or slow to speak the text. Must be an integer value in the range -10 to 10. -10 is slowest, 10 is fastest."
+        },
+        {
+          "key": "start_sound_path",
+          "fieldId": "START_SOUND_PATH",
+          "type": "text",
+          "label": "start sound path",
+          "description": "Full path to a C(.wav) file containing a sound to play before the text is spoken. Useful on conference calls to alert other speakers that ansible has something to say."
+        },
+        {
+          "key": "voice",
+          "fieldId": "VOICE",
+          "type": "text",
+          "label": "voice",
+          "description": "Which voice to use. See notes for how to discover installed voices. If the requested voice is not available the default voice will be used. Example voice names from Windows 10 are C(Microsoft Zira Desktop) and C(Microsoft Hazel Desktop)."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_scheduled_task",
+      "blockType": "community_windows_win_scheduled_task",
+      "label": "win_scheduled_task",
+      "tooltip": "Manage scheduled tasks",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_scheduled_task_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "allow_demand_start",
+          "fieldId": "ALLOW_DEMAND_START",
+          "type": "boolean",
+          "label": "allow demand start",
+          "description": "Whether the task can be started by using either the Run command or the Context menu."
+        },
+        {
+          "key": "allow_hard_terminate",
+          "fieldId": "ALLOW_HARD_TERMINATE",
+          "type": "boolean",
+          "label": "allow hard terminate",
+          "description": "Whether the task can be terminated by using TerminateProcess."
+        },
+        {
+          "key": "author",
+          "fieldId": "AUTHOR",
+          "type": "text",
+          "label": "author",
+          "description": "The author of the task."
+        },
+        {
+          "key": "compatibility",
+          "fieldId": "COMPATIBILITY",
+          "type": "dropdown",
+          "label": "compatibility",
+          "description": "The integer value with indicates which version of Task Scheduler a task is compatible with. C(0) means the task is compatible with the AT command. C(1) means the task is compatible with Task Scheduler 1.0(Windows Vista, Windows Server 2008 and older). C(2) means the task is compatible with Task Scheduler 2.0(Windows Vista, Windows Server 2008). C(3) means the task is compatible with Task Scheduler 2.0(Windows 7, Windows Server 2008 R2). C(4) means the task is compatible with Task Scheduler 2.0(Windows 10, Windows Server 2016, Windows Server 2019).",
+          "options": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ]
+        },
+        {
+          "key": "date",
+          "fieldId": "DATE",
+          "type": "text",
+          "label": "date",
+          "description": "The date when the task was registered."
+        },
+        {
+          "key": "delete_expired_task_after",
+          "fieldId": "DELETE_EXPIRED_TASK_AFTER",
+          "type": "text",
+          "label": "delete expired task after",
+          "description": "The amount of time that the Task Scheduler will wait before deleting the task after it expires. A task expires after the end_boundary has been exceeded for all triggers associated with the task. This is in the ISO 8601 Duration format C(P[n]Y[n]M[n]DT[n]H[n]M[n]S)."
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "The description of the task."
+        },
+        {
+          "key": "disallow_start_if_on_batteries",
+          "fieldId": "DISALLOW_START_IF_ON_BATTERIES",
+          "type": "boolean",
+          "label": "disallow start if on batteries",
+          "description": "Whether the task will not be started if the computer is running on battery power."
+        },
+        {
+          "key": "display_name",
+          "fieldId": "DISPLAY_NAME",
+          "type": "text",
+          "label": "display name",
+          "description": "The name of the user/group that is displayed in the Task Scheduler UI."
+        },
+        {
+          "key": "enabled",
+          "fieldId": "ENABLED",
+          "type": "boolean",
+          "label": "enabled",
+          "description": "Whether the task is enabled, the task can only run when C(yes)."
+        },
+        {
+          "key": "execution_time_limit",
+          "fieldId": "EXECUTION_TIME_LIMIT",
+          "type": "text",
+          "label": "execution time limit",
+          "description": "The amount of time allowed to complete the task. When set to C(PT0S), the time limit is infinite. When omitted, the default time limit is 72 hours. This is in the ISO 8601 Duration format C(P[n]Y[n]M[n]DT[n]H[n]M[n]S)."
+        },
+        {
+          "key": "group",
+          "fieldId": "GROUP",
+          "type": "text",
+          "label": "group",
+          "description": "The group that will run the task. C(group) and C(username) are exclusive to each other and cannot be set at the same time. C(logon_type) can either be not set or equal C(group)."
+        },
+        {
+          "key": "hidden",
+          "fieldId": "HIDDEN",
+          "type": "boolean",
+          "label": "hidden",
+          "description": "Whether the task will be hidden in the UI."
+        },
+        {
+          "key": "logon_type",
+          "fieldId": "LOGON_TYPE",
+          "type": "dropdown",
+          "label": "logon type",
+          "description": "The logon method that the task will run with. C(password) means the password will be stored and the task has access to network resources. C(s4u) means the existing token will be used to run the task and no password will be stored with the task. Means no network or encrypted files access. C(interactive_token) means the user must already be logged on interactively and will run in an existing interactive session. C(group) means that the task will run as a group. C(service_account) means that a service account like System, Local Service or Network Service will run the task.",
+          "options": [
+            [
+              "none",
+              "none"
+            ],
+            [
+              "password",
+              "password"
+            ],
+            [
+              "s4u",
+              "s4u"
+            ],
+            [
+              "interactive_token",
+              "interactive_token"
+            ],
+            [
+              "group",
+              "group"
+            ],
+            [
+              "service_account",
+              "service_account"
+            ],
+            [
+              "token_or_password",
+              "token_or_password"
+            ]
+          ]
+        },
+        {
+          "key": "multiple_instances",
+          "fieldId": "MULTIPLE_INSTANCES",
+          "type": "dropdown",
+          "label": "multiple instances",
+          "description": "An integer that indicates the behaviour when starting a task that is already running. C(0) will start a new instance in parallel with existing instances of that task. C(1) will wait until other instances of that task to finish running before starting itself. C(2) will not start a new instance if another is running. C(3) will stop other instances of the task and start the new one.",
+          "options": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "1",
+              "1"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "3",
+              "3"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the scheduled task without the path.",
+          "required": true
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "default": "\\",
+          "description": "Task folder in which this task will be stored. Will create the folder when C(state=present) and the folder does not already exist. Will remove the folder when C(state=absent) and there are no tasks left in the folder."
+        },
+        {
+          "key": "priority",
+          "fieldId": "PRIORITY",
+          "type": "number",
+          "label": "priority",
+          "description": "The priority level (0-10) of the task. When creating a new task the default is C(7). See U(https://msdn.microsoft.com/en-us/library/windows/desktop/aa383512.aspx) for details on the priority levels."
+        },
+        {
+          "key": "restart_count",
+          "fieldId": "RESTART_COUNT",
+          "type": "number",
+          "label": "restart count",
+          "description": "The number of times that the Task Scheduler will attempt to restart the task."
+        },
+        {
+          "key": "restart_interval",
+          "fieldId": "RESTART_INTERVAL",
+          "type": "text",
+          "label": "restart interval",
+          "description": "How long the Task Scheduler will attempt to restart the task. If this is set then C(restart_count) must also be set. The maximum allowed time is 31 days. The minimum allowed time is 1 minute. This is in the ISO 8601 Duration format C(P[n]Y[n]M[n]DT[n]H[n]M[n]S)."
+        },
+        {
+          "key": "run_level",
+          "fieldId": "RUN_LEVEL",
+          "type": "dropdown",
+          "label": "run level",
+          "description": "The level of user rights used to run the task. If not specified the task will be created with limited rights.",
+          "options": [
+            [
+              "limited",
+              "limited"
+            ],
+            [
+              "highest",
+              "highest"
+            ]
+          ],
+          "aliases": [
+            "runlevel"
+          ]
+        },
+        {
+          "key": "run_only_if_idle",
+          "fieldId": "RUN_ONLY_IF_IDLE",
+          "type": "boolean",
+          "label": "run only if idle",
+          "description": "Whether the task will run the task only if the computer is in an idle state."
+        },
+        {
+          "key": "run_only_if_network_available",
+          "fieldId": "RUN_ONLY_IF_NETWORK_AVAILABLE",
+          "type": "boolean",
+          "label": "run only if network available",
+          "description": "Whether the task will run only when a network is available."
+        },
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "text",
+          "label": "source",
+          "description": "The source of the task."
+        },
+        {
+          "key": "start_when_available",
+          "fieldId": "START_WHEN_AVAILABLE",
+          "type": "boolean",
+          "label": "start when available",
+          "description": "Whether the task can start at any time after its scheduled time has passed."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "When C(state=present) will ensure the task exists. When C(state=absent) will ensure the task does not exist.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "stop_if_going_on_batteries",
+          "fieldId": "STOP_IF_GOING_ON_BATTERIES",
+          "type": "boolean",
+          "label": "stop if going on batteries",
+          "description": "Whether the task will be stopped if the computer begins to run on battery power."
+        },
+        {
+          "key": "update_password",
+          "fieldId": "UPDATE_PASSWORD",
+          "type": "boolean",
+          "label": "update password",
+          "default": true,
+          "description": "Whether to update the password even when not other changes have occurred. When C(yes) will always result in a change when executing the module."
+        },
+        {
+          "key": "version",
+          "fieldId": "VERSION",
+          "type": "text",
+          "label": "version",
+          "description": "The version number of the task."
+        },
+        {
+          "key": "wake_to_run",
+          "fieldId": "WAKE_TO_RUN",
+          "type": "boolean",
+          "label": "wake to run",
+          "description": "Whether the task will wake the computer when it is time to run the task."
+        }
+      ],
+      "unmappedParams": [
+        "triggers.repetition (deep nesting)",
+        "actions (has suboptions)",
+        "triggers (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_scheduled_task_stat",
+      "blockType": "community_windows_win_scheduled_task_stat",
+      "label": "win_scheduled_task_stat",
+      "tooltip": "Get information about Windows Scheduled Tasks",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_scheduled_task_stat_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the scheduled task to get information for. If C(name) is set and exists, will return information on the task itself."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "default": "\\",
+          "description": "The folder path where the task lives."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_scoop",
+      "blockType": "community_windows_win_scoop",
+      "label": "win_scoop",
+      "tooltip": "Manage packages using Scoop",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_scoop_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "architecture",
+          "fieldId": "ARCHITECTURE",
+          "type": "dropdown",
+          "label": "architecture",
+          "description": "Force Scoop to install the package of a specific process architecture.",
+          "options": [
+            [
+              "32bit",
+              "32bit"
+            ],
+            [
+              "64bit",
+              "64bit"
+            ]
+          ],
+          "aliases": [
+            "arch"
+          ]
+        },
+        {
+          "key": "global",
+          "fieldId": "GLOBAL",
+          "type": "boolean",
+          "label": "global",
+          "default": false,
+          "description": "Install the app globally"
+        },
+        {
+          "key": "independent",
+          "fieldId": "INDEPENDENT",
+          "type": "boolean",
+          "label": "independent",
+          "default": false,
+          "description": "Don't install dependencies automatically"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "yamlType": "list",
+          "description": "Name of the package(s) to be installed.",
+          "required": true
+        },
+        {
+          "key": "no_cache",
+          "fieldId": "NO_CACHE",
+          "type": "boolean",
+          "label": "no cache",
+          "default": false,
+          "description": "Don't use the download cache"
+        },
+        {
+          "key": "purge",
+          "fieldId": "PURGE",
+          "type": "boolean",
+          "label": "purge",
+          "default": false,
+          "description": "Remove all persistent data"
+        },
+        {
+          "key": "skip_checksum",
+          "fieldId": "SKIP_CHECKSUM",
+          "type": "boolean",
+          "label": "skip checksum",
+          "default": false,
+          "description": "Skip hash validation"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the package on the system. When C(absent), will ensure the package is not installed. When C(present), will ensure the package is installed.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_scoop_bucket",
+      "blockType": "community_windows_win_scoop_bucket",
+      "label": "win_scoop_bucket",
+      "tooltip": "Manage Scoop buckets",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_scoop_bucket_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Scoop bucket.",
+          "required": true
+        },
+        {
+          "key": "repo",
+          "fieldId": "REPO",
+          "type": "text",
+          "label": "repo",
+          "description": "Git repository that contains the scoop bucket"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Scoop bucket. When C(absent), will ensure the package is not installed. When C(present), will ensure the package is installed.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_security_policy",
+      "blockType": "community_windows_win_security_policy",
+      "label": "win_security_policy",
+      "tooltip": "Change local security policy settings",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_security_policy_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "key",
+          "fieldId": "KEY",
+          "type": "text",
+          "label": "key",
+          "description": "The ini key of the section or policy name to modify. The module will return an error if this key is invalid.",
+          "required": true
+        },
+        {
+          "key": "section",
+          "fieldId": "SECTION",
+          "type": "text",
+          "label": "section",
+          "description": "The ini section the key exists in. If the section does not exist then the module will return an error. Example sections to use are 'Account Policies', 'Local Policies', 'Event Log', 'Restricted Groups', 'System Services', 'Registry' and 'File System' If wanting to edit the C(Privilege Rights) section, use the M(ansible.windows.win_user_right) module instead.",
+          "required": true
+        },
+        {
+          "key": "value",
+          "fieldId": "VALUE",
+          "type": "text",
+          "label": "value",
+          "description": "The value for the ini key or policy name. If the key takes in a boolean value then 0 = False and 1 = True.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_shortcut",
+      "blockType": "community_windows_win_shortcut",
+      "label": "win_shortcut",
+      "tooltip": "Manage shortcuts on Windows",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_shortcut_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "arguments",
+          "fieldId": "ARGUMENTS",
+          "type": "text",
+          "label": "arguments",
+          "description": "Additional arguments for the executable defined in C(src).",
+          "aliases": [
+            "args"
+          ]
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Description for the shortcut. This is usually shown when hoovering the icon."
+        },
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "description": "Destination file for the shortcuting file. File name should have a C(.lnk) or C(.url) extension.",
+          "required": true
+        },
+        {
+          "key": "directory",
+          "fieldId": "DIRECTORY",
+          "type": "text",
+          "label": "directory",
+          "description": "Working directory for executable defined in C(src)."
+        },
+        {
+          "key": "hotkey",
+          "fieldId": "HOTKEY",
+          "type": "text",
+          "label": "hotkey",
+          "description": "Key combination for the shortcut. This is a combination of one or more modifiers and a key. Possible modifiers are Alt, Ctrl, Shift, Ext. Possible keys are [A-Z] and [0-9]."
+        },
+        {
+          "key": "icon",
+          "fieldId": "ICON",
+          "type": "text",
+          "label": "icon",
+          "description": "Icon used for the shortcut. File name should have a C(.ico) extension. The file name is followed by a comma and the number in the library file (.dll) or use 0 for an image file."
+        },
+        {
+          "key": "run_as_admin",
+          "fieldId": "RUN_AS_ADMIN",
+          "type": "boolean",
+          "label": "run as admin",
+          "default": false,
+          "description": "When C(src) is an executable, this can control whether the shortcut will be opened as an administrator or not."
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "Executable or URL the shortcut points to. The executable needs to be in your PATH, or has to be an absolute path to the executable."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "When C(absent), removes the shortcut if it exists. When C(present), creates or updates the shortcut.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "windowstyle",
+          "fieldId": "WINDOWSTYLE",
+          "type": "dropdown",
+          "label": "windowstyle",
+          "description": "Influences how the application is displayed when it is launched.",
+          "options": [
+            [
+              "maximized",
+              "maximized"
+            ],
+            [
+              "minimized",
+              "minimized"
+            ],
+            [
+              "normal",
+              "normal"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_snmp",
+      "blockType": "community_windows_win_snmp",
+      "label": "win_snmp",
+      "tooltip": "Configures the Windows SNMP service",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_snmp_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "action",
+          "fieldId": "ACTION",
+          "type": "dropdown",
+          "label": "action",
+          "default": "set",
+          "description": "C(add) will add new SNMP community strings and/or SNMP managers C(set) will replace SNMP community strings and/or SNMP managers. An empty list for either C(community_strings) or C(permitted_managers) will result in the respective lists being removed entirely. C(remove) will remove SNMP community strings and/or SNMP managers",
+          "options": [
+            [
+              "add",
+              "add"
+            ],
+            [
+              "set",
+              "set"
+            ],
+            [
+              "remove",
+              "remove"
+            ]
+          ]
+        },
+        {
+          "key": "community_strings",
+          "fieldId": "COMMUNITY_STRINGS",
+          "type": "text",
+          "label": "community strings",
+          "yamlType": "list",
+          "description": "The list of read-only SNMP community strings."
+        },
+        {
+          "key": "permitted_managers",
+          "fieldId": "PERMITTED_MANAGERS",
+          "type": "text",
+          "label": "permitted managers",
+          "yamlType": "list",
+          "description": "The list of permitted SNMP managers."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_toast",
+      "blockType": "community_windows_win_toast",
+      "label": "win_toast",
+      "tooltip": "Sends Toast windows notification to logged in users on Windows 10 or later hosts",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_toast_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "expire",
+          "fieldId": "EXPIRE",
+          "type": "number",
+          "label": "expire",
+          "default": 45,
+          "description": "How long in seconds before the notification expires."
+        },
+        {
+          "key": "group",
+          "fieldId": "GROUP",
+          "type": "text",
+          "label": "group",
+          "default": "Powershell",
+          "description": "Which notification group to add the notification to."
+        },
+        {
+          "key": "msg",
+          "fieldId": "MSG",
+          "type": "text",
+          "label": "msg",
+          "default": "Hello, World!",
+          "description": "The message to appear inside the notification. May include \\n to format the message to appear within the Action Center."
+        },
+        {
+          "key": "popup",
+          "fieldId": "POPUP",
+          "type": "boolean",
+          "label": "popup",
+          "default": true,
+          "description": "If C(no), the notification will not pop up and will only appear in the Action Center."
+        },
+        {
+          "key": "tag",
+          "fieldId": "TAG",
+          "type": "text",
+          "label": "tag",
+          "default": "Ansible",
+          "description": "The tag to add to the notification."
+        },
+        {
+          "key": "title",
+          "fieldId": "TITLE",
+          "type": "text",
+          "label": "title",
+          "default": "Notification HH:mm",
+          "description": "The notification title, which appears in the pop up.."
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_unzip",
+      "blockType": "community_windows_win_unzip",
+      "label": "win_unzip",
+      "tooltip": "Unzips compressed files and archives on the Windows node",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_unzip_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "creates",
+          "fieldId": "CREATES",
+          "type": "text",
+          "label": "creates",
+          "description": "If this file or directory exists the specified src will not be extracted."
+        },
+        {
+          "key": "delete_archive",
+          "fieldId": "DELETE_ARCHIVE",
+          "type": "boolean",
+          "label": "delete archive",
+          "default": false,
+          "description": "Remove the zip file, after unzipping.",
+          "aliases": [
+            "rm"
+          ]
+        },
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "description": "Destination of zip file (provide absolute path of directory). If it does not exist, the directory will be created.",
+          "required": true
+        },
+        {
+          "key": "recurse",
+          "fieldId": "RECURSE",
+          "type": "boolean",
+          "label": "recurse",
+          "default": false,
+          "description": "Recursively expand zipped files within the src file. Setting to a value of C(yes) requires the PSCX module to be installed."
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "File to be unzipped (provide absolute path).",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_wait_for_process",
+      "blockType": "community_windows_win_wait_for_process",
+      "label": "win_wait_for_process",
+      "tooltip": "Waits for a process to exist or not exist before continuing.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_wait_for_process_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "owner",
+          "fieldId": "OWNER",
+          "type": "text",
+          "label": "owner",
+          "description": "The owner of the process. Requires PowerShell version 4.0 or newer."
+        },
+        {
+          "key": "pid",
+          "fieldId": "PID",
+          "type": "number",
+          "label": "pid",
+          "default": 0,
+          "description": "The PID of the process."
+        },
+        {
+          "key": "post_wait_delay",
+          "fieldId": "POST_WAIT_DELAY",
+          "type": "number",
+          "label": "post wait delay",
+          "default": 0,
+          "description": "Seconds to wait after checking for processes."
+        },
+        {
+          "key": "pre_wait_delay",
+          "fieldId": "PRE_WAIT_DELAY",
+          "type": "number",
+          "label": "pre wait delay",
+          "default": 0,
+          "description": "Seconds to wait before checking processes."
+        },
+        {
+          "key": "process_min_count",
+          "fieldId": "PROCESS_MIN_COUNT",
+          "type": "number",
+          "label": "process min count",
+          "default": 1,
+          "description": "Minimum number of process matching the supplied pattern to satisfy C(present) condition. Only applies to C(present)."
+        },
+        {
+          "key": "process_name_exact",
+          "fieldId": "PROCESS_NAME_EXACT",
+          "type": "text",
+          "label": "process name exact",
+          "yamlType": "list",
+          "description": "The name of the process(es) for which to wait.  The name of the process(es) should not include the file extension suffix."
+        },
+        {
+          "key": "process_name_pattern",
+          "fieldId": "PROCESS_NAME_PATTERN",
+          "type": "text",
+          "label": "process name pattern",
+          "description": "RegEx pattern matching desired process(es)."
+        },
+        {
+          "key": "sleep",
+          "fieldId": "SLEEP",
+          "type": "number",
+          "label": "sleep",
+          "default": 1,
+          "description": "Number of seconds to sleep between checks. Only applies when waiting for a process to start.  Waiting for a process to start does not have a native non-polling mechanism. Waiting for a stop uses native PowerShell and does not require polling."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "When checking for a running process C(present) will block execution until the process exists, or until the timeout has been reached. C(absent) will block execution until the process no longer exists, or until the timeout has been reached. When waiting for C(present), the module will return changed only if the process was not present on the initial check but became present on subsequent checks. If, while waiting for C(absent), new processes matching the supplied pattern are started, these new processes will not be included in the action.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_wakeonlan",
+      "blockType": "community_windows_win_wakeonlan",
+      "label": "win_wakeonlan",
+      "tooltip": "Send a magic Wake-on-LAN (WoL) broadcast packet",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_wakeonlan_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "broadcast",
+          "fieldId": "BROADCAST",
+          "type": "text",
+          "label": "broadcast",
+          "default": "255.255.255.255",
+          "description": "Network broadcast address to use for broadcasting magic Wake-on-LAN packet."
+        },
+        {
+          "key": "mac",
+          "fieldId": "MAC",
+          "type": "text",
+          "label": "mac",
+          "description": "MAC address to send Wake-on-LAN broadcast packet for.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_webpicmd",
+      "blockType": "community_windows_win_webpicmd",
+      "label": "win_webpicmd",
+      "tooltip": "Installs packages using Web Platform Installer command-line",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_webpicmd_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the package to be installed.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_xml",
+      "blockType": "community_windows_win_xml",
+      "label": "win_xml",
+      "tooltip": "Manages XML file content on Windows hosts",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_xml_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "attribute",
+          "fieldId": "ATTRIBUTE",
+          "type": "text",
+          "label": "attribute",
+          "description": "The attribute name if the type is 'attribute'. Required if C(type=attribute)."
+        },
+        {
+          "key": "backup",
+          "fieldId": "BACKUP",
+          "type": "boolean",
+          "label": "backup",
+          "default": false,
+          "description": "Determine whether a backup should be created. When set to C(yes), create a backup file including the timestamp information so you can get the original file back if you somehow clobbered it incorrectly."
+        },
+        {
+          "key": "content",
+          "fieldId": "CONTENT",
+          "type": "dropdown",
+          "label": "content",
+          "description": "Returns the content of the nodes matched by I(xpath).",
+          "options": [
+            [
+              "attribute",
+              "attribute"
+            ],
+            [
+              "text",
+              "text"
+            ]
+          ]
+        },
+        {
+          "key": "count",
+          "fieldId": "COUNT",
+          "type": "boolean",
+          "label": "count",
+          "default": false,
+          "description": "When set to C(yes), return the number of nodes matched by I(xpath)."
+        },
+        {
+          "key": "fragment",
+          "fieldId": "FRAGMENT",
+          "type": "text",
+          "label": "fragment",
+          "description": "The string representation of the XML fragment expected at xpath.  Since ansible 2.9 not required when I(state=absent) or when I(count=yes). Not required when I(content) is set.",
+          "aliases": [
+            "xmlstring"
+          ]
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "Path to the file to operate on.",
+          "required": true,
+          "aliases": [
+            "dest",
+            "file"
+          ]
+        },
+        {
+          "key": "preserve_whitespace",
+          "fieldId": "PRESERVE_WHITESPACE",
+          "type": "boolean",
+          "label": "preserve whitespace",
+          "default": false,
+          "description": "Whether to preserve whitespace in the XML."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Set or remove the nodes (or attributes) matched by I(xpath).",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "dropdown",
+          "label": "type",
+          "default": "element",
+          "description": "The type of XML node you are working with.",
+          "options": [
+            [
+              "attribute",
+              "attribute"
+            ],
+            [
+              "element",
+              "element"
+            ],
+            [
+              "text",
+              "text"
+            ]
+          ]
+        },
+        {
+          "key": "xpath",
+          "fieldId": "XPATH",
+          "type": "text",
+          "label": "xpath",
+          "description": "Xpath to select the node or nodes to operate on.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "community.windows.win_zip",
+      "blockType": "community_windows_win_zip",
+      "label": "win_zip",
+      "tooltip": "Compress file or directory as zip archive on the Windows node",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/community/windows/win_zip_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "description": "Destination path of zip file (provide absolute path of zip file on the target node).",
+          "required": true
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "File or directory path to be zipped (provide absolute path on the target node). When a directory path the directory is zipped as the root entry in the archive. Specify C(\\*) to the end of I(src) to zip the contents of the directory and not the directory itself.",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

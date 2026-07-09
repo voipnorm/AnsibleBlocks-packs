@@ -1,0 +1,3454 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "hetzner-hcloud",
+  "name": "Hetzner Hcloud",
+  "collection": "hetzner.hcloud",
+  "collectionVersion": "6.10.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:26:11Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#D50C2D",
+  "blockStyleName": "hetzner_hcloud_blocks",
+  "categoryStyleName": "hetzner_hcloud_category",
+  "modules": [
+    {
+      "fqcn": "hetzner.hcloud.certificate",
+      "blockType": "hetzner_hcloud_certificate",
+      "label": "certificate",
+      "tooltip": "Create and manage certificates on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/certificate_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "certificate",
+          "fieldId": "CERTIFICATE",
+          "type": "text",
+          "label": "certificate",
+          "description": "Certificate and chain in PEM format, in order so that each record directly certifies the one preceding. Required if certificate does not exist and I(type=uploaded)."
+        },
+        {
+          "key": "domain_names",
+          "fieldId": "DOMAIN_NAMES",
+          "type": "text",
+          "label": "domain names",
+          "yamlType": "list",
+          "description": "Domains and subdomains that should be contained in the Certificate issued by Let's Encrypt. Required if I(type=managed)."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud certificate to manage. Only required if no certificate I(name) is given"
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud certificate to manage. Only required if no certificate I(id) is given or a certificate does not exist."
+        },
+        {
+          "key": "private_key",
+          "fieldId": "PRIVATE_KEY",
+          "type": "text",
+          "label": "private key",
+          "description": "Certificate key in PEM format. Required if certificate does not exist and I(type=uploaded)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the certificate.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "dropdown",
+          "label": "type",
+          "default": "uploaded",
+          "description": "Choose between uploading a Certificate in PEM format or requesting a managed Let's Encrypt Certificate.",
+          "options": [
+            [
+              "uploaded",
+              "uploaded"
+            ],
+            [
+              "managed",
+              "managed"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.certificate_info",
+      "blockType": "hetzner_hcloud_certificate_info",
+      "label": "certificate_info",
+      "tooltip": "Gather infos about your Hetzner Cloud certificates.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/certificate_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the certificate you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the certificate you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the certificate you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.datacenter_info",
+      "blockType": "hetzner_hcloud_datacenter_info",
+      "label": "datacenter_info",
+      "tooltip": "Gather info about the Hetzner Cloud datacenters.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/datacenter_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the datacenter you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the datacenter you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.firewall",
+      "blockType": "hetzner_hcloud_firewall",
+      "label": "firewall",
+      "tooltip": "Create and manage firewalls on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/firewall_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "Force the deletion of the Firewall when still in use."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud Firewall to manage. Only required if no firewall O(name) is given."
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud Firewall to manage. Only required if no firewall O(id) is given, or the firewall does not exist."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the firewall.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "rules (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.firewall_info",
+      "blockType": "hetzner_hcloud_firewall_info",
+      "label": "firewall_info",
+      "tooltip": "Gather infos about the Hetzner Cloud Firewalls.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/firewall_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Firewall you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the Firewalls you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name for the Firewall you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.firewall_resource",
+      "blockType": "hetzner_hcloud_firewall_resource",
+      "label": "firewall_resource",
+      "tooltip": "Manage Resources a Hetzner Cloud Firewall is applied to.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/firewall_resource_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "firewall",
+          "fieldId": "FIREWALL",
+          "type": "text",
+          "label": "firewall",
+          "description": "Name or ID of the Hetzner Cloud Firewall.",
+          "required": true
+        },
+        {
+          "key": "label_selectors",
+          "fieldId": "LABEL_SELECTORS",
+          "type": "text",
+          "label": "label selectors",
+          "yamlType": "list",
+          "description": "List of Label Selector."
+        },
+        {
+          "key": "servers",
+          "fieldId": "SERVERS",
+          "type": "text",
+          "label": "servers",
+          "yamlType": "list",
+          "description": "List of Server Name or ID."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the firewall resources.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.floating_ip_info",
+      "blockType": "hetzner_hcloud_floating_ip_info",
+      "label": "floating_ip_info",
+      "tooltip": "Gather infos about the Hetzner Cloud Floating IPs.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/floating_ip_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Floating IP you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the Floating IP you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name for the Floating IP you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.image_info",
+      "blockType": "hetzner_hcloud_image_info",
+      "label": "image_info",
+      "tooltip": "Gather infos about your Hetzner Cloud images.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/image_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "architecture",
+          "fieldId": "ARCHITECTURE",
+          "type": "dropdown",
+          "label": "architecture",
+          "description": "The architecture for the images you want to get.",
+          "options": [
+            [
+              "x86",
+              "x86"
+            ],
+            [
+              "arm",
+              "arm"
+            ]
+          ]
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the image you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the images you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the image you want to get."
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "dropdown",
+          "label": "type",
+          "default": "system",
+          "description": "The type for the images you want to get.",
+          "options": [
+            [
+              "system",
+              "system"
+            ],
+            [
+              "snapshot",
+              "snapshot"
+            ],
+            [
+              "backup",
+              "backup"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.iso_info",
+      "blockType": "hetzner_hcloud_iso_info",
+      "label": "iso_info",
+      "tooltip": "Gather infos about the Hetzner Cloud ISO list.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/iso_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "architecture",
+          "fieldId": "ARCHITECTURE",
+          "type": "dropdown",
+          "label": "architecture",
+          "description": "Filter ISOs with compatible architecture.",
+          "options": [
+            [
+              "x86",
+              "x86"
+            ],
+            [
+              "arm",
+              "arm"
+            ]
+          ]
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the ISO image you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "include_architecture_wildcard",
+          "fieldId": "INCLUDE_ARCHITECTURE_WILDCARD",
+          "type": "boolean",
+          "label": "include architecture wildcard",
+          "description": "Include ISOs with wildcard architecture (architecture is null). Works only if architecture filter is specified."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the ISO you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.load_balancer",
+      "blockType": "hetzner_hcloud_load_balancer",
+      "label": "load_balancer",
+      "tooltip": "Create and manage cloud Load Balancers on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/load_balancer_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "algorithm",
+          "fieldId": "ALGORITHM",
+          "type": "dropdown",
+          "label": "algorithm",
+          "default": "round_robin",
+          "description": "Algorithm of the Load Balancer.",
+          "options": [
+            [
+              "round_robin",
+              "round_robin"
+            ],
+            [
+              "least_connections",
+              "least_connections"
+            ]
+          ]
+        },
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "delete_protection",
+          "fieldId": "DELETE_PROTECTION",
+          "type": "boolean",
+          "label": "delete protection",
+          "description": "Protect the Load Balancer for deletion."
+        },
+        {
+          "key": "disable_public_interface",
+          "fieldId": "DISABLE_PUBLIC_INTERFACE",
+          "type": "boolean",
+          "label": "disable public interface",
+          "default": false,
+          "description": "Disables the public interface."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud Load Balancer to manage. Only required if no Load Balancer I(name) is given"
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)."
+        },
+        {
+          "key": "load_balancer_type",
+          "fieldId": "LOAD_BALANCER_TYPE",
+          "type": "text",
+          "label": "load balancer type",
+          "description": "The Load Balancer Type of the Hetzner Cloud Load Balancer to manage. Required if Load Balancer does not exist."
+        },
+        {
+          "key": "location",
+          "fieldId": "LOCATION",
+          "type": "text",
+          "label": "location",
+          "description": "Location of Load Balancer. Required if no I(network_zone) is given and Load Balancer does not exist."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud Load Balancer to manage. Only required if no Load Balancer I(id) is given or a Load Balancer does not exist."
+        },
+        {
+          "key": "network_zone",
+          "fieldId": "NETWORK_ZONE",
+          "type": "text",
+          "label": "network zone",
+          "description": "Network Zone of Load Balancer. Required of no I(location) is given and Load Balancer does not exist."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Load Balancer.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.load_balancer_info",
+      "blockType": "hetzner_hcloud_load_balancer_info",
+      "label": "load_balancer_info",
+      "tooltip": "Gather infos about your Hetzner Cloud Load Balancers.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/load_balancer_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Load Balancers you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the Load Balancers you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the Load Balancers you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.load_balancer_network",
+      "blockType": "hetzner_hcloud_load_balancer_network",
+      "label": "load_balancer_network",
+      "tooltip": "Manage the relationship between Hetzner Cloud Networks and Load Balancers",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/load_balancer_network_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "ip",
+          "fieldId": "IP",
+          "type": "text",
+          "label": "ip",
+          "description": "The IP the Load Balancer should have."
+        },
+        {
+          "key": "ip_range",
+          "fieldId": "IP_RANGE",
+          "type": "text",
+          "label": "ip range",
+          "description": "IP range in CIDR block notation of the subnet to attach to."
+        },
+        {
+          "key": "load_balancer",
+          "fieldId": "LOAD_BALANCER",
+          "type": "text",
+          "label": "load balancer",
+          "description": "Name or ID of the Hetzner Cloud Load Balancer.",
+          "required": true
+        },
+        {
+          "key": "network",
+          "fieldId": "NETWORK",
+          "type": "text",
+          "label": "network",
+          "description": "Name or ID of the Hetzner Cloud Networks.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the load_balancer_network.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.load_balancer_service",
+      "blockType": "hetzner_hcloud_load_balancer_service",
+      "label": "load_balancer_service",
+      "tooltip": "Create and manage the services of cloud Load Balancers on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/load_balancer_service_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "destination_port",
+          "fieldId": "DESTINATION_PORT",
+          "type": "number",
+          "label": "destination port",
+          "description": "The port traffic is forwarded to, i.e. the port the targets are listening and accepting connections on. Required if services does not exist and protocol is tcp."
+        },
+        {
+          "key": "listen_port",
+          "fieldId": "LISTEN_PORT",
+          "type": "number",
+          "label": "listen port",
+          "description": "The port the service listens on, i.e. the port users can connect to.",
+          "required": true
+        },
+        {
+          "key": "load_balancer",
+          "fieldId": "LOAD_BALANCER",
+          "type": "text",
+          "label": "load balancer",
+          "description": "Name or ID of the Hetzner Cloud Load Balancer the service belongs to",
+          "required": true
+        },
+        {
+          "key": "protocol",
+          "fieldId": "PROTOCOL",
+          "type": "dropdown",
+          "label": "protocol",
+          "description": "Protocol of the service. Required if Load Balancer does not exist.",
+          "options": [
+            [
+              "http",
+              "http"
+            ],
+            [
+              "https",
+              "https"
+            ],
+            [
+              "tcp",
+              "tcp"
+            ]
+          ]
+        },
+        {
+          "key": "proxyprotocol",
+          "fieldId": "PROXYPROTOCOL",
+          "type": "boolean",
+          "label": "proxyprotocol",
+          "default": false,
+          "description": "Enable the PROXY protocol."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Load Balancer.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "health_check.http (deep nesting)",
+        "health_check (has suboptions)",
+        "http (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.load_balancer_target",
+      "blockType": "hetzner_hcloud_load_balancer_target",
+      "label": "load_balancer_target",
+      "tooltip": "Manage Hetzner Cloud Load Balancer targets",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/load_balancer_target_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "ip",
+          "fieldId": "IP",
+          "type": "text",
+          "label": "ip",
+          "description": "An IP from a Hetzner Dedicated Server, needs to belongs to the same user as the project. Required if I(type) is ip"
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "A Label Selector that will be used to determine the targets dynamically Required if I(type) is label_selector"
+        },
+        {
+          "key": "load_balancer",
+          "fieldId": "LOAD_BALANCER",
+          "type": "text",
+          "label": "load balancer",
+          "description": "Name or ID of the Hetzner Cloud Load Balancer.",
+          "required": true
+        },
+        {
+          "key": "server",
+          "fieldId": "SERVER",
+          "type": "text",
+          "label": "server",
+          "description": "Name or ID of the Hetzner Cloud Server. Required if I(type) is server"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the load_balancer_network.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "dropdown",
+          "label": "type",
+          "description": "The type of the target.",
+          "options": [
+            [
+              "server",
+              "server"
+            ],
+            [
+              "label_selector",
+              "label_selector"
+            ],
+            [
+              "ip",
+              "ip"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "use_private_ip",
+          "fieldId": "USE_PRIVATE_IP",
+          "type": "boolean",
+          "label": "use private ip",
+          "default": false,
+          "description": "Route the traffic over the private IP of the Load Balancer through a Hetzner Cloud Network. Load Balancer needs to be attached to a network. See M(hetzner.hcloud.load_balancer_network)"
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.load_balancer_type_info",
+      "blockType": "hetzner_hcloud_load_balancer_type_info",
+      "label": "load_balancer_type_info",
+      "tooltip": "Gather infos about the Hetzner Cloud Load Balancer types.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/load_balancer_type_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Load Balancer type you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the Load Balancer type you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.location_info",
+      "blockType": "hetzner_hcloud_location_info",
+      "label": "location_info",
+      "tooltip": "Gather infos about your Hetzner Cloud locations.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/location_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the location you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the location you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.network",
+      "blockType": "hetzner_hcloud_network",
+      "label": "network",
+      "tooltip": "Create and manage cloud Networks on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/network_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "delete_protection",
+          "fieldId": "DELETE_PROTECTION",
+          "type": "boolean",
+          "label": "delete protection",
+          "description": "Protect the Network for deletion."
+        },
+        {
+          "key": "expose_routes_to_vswitch",
+          "fieldId": "EXPOSE_ROUTES_TO_VSWITCH",
+          "type": "boolean",
+          "label": "expose routes to vswitch",
+          "description": "Indicates if the routes from this network should be exposed to the vSwitch connection. The exposing only takes effect if a vSwitch connection is active."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud Networks to manage. Only required if no Network I(name) is given."
+        },
+        {
+          "key": "ip_range",
+          "fieldId": "IP_RANGE",
+          "type": "text",
+          "label": "ip range",
+          "description": "IP range of the Network. Required if Network does not exist."
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud Network to manage. Only required if no Network I(id) is given or a Network does not exist."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Network.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.network_info",
+      "blockType": "hetzner_hcloud_network_info",
+      "label": "network_info",
+      "tooltip": "Gather info about your Hetzner Cloud networks.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/network_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the network you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the network you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the network you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.placement_group",
+      "blockType": "hetzner_hcloud_placement_group",
+      "label": "placement_group",
+      "tooltip": "Create and manage placement groups on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/placement_group_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud placement group to manage. Only required if no placement group I(name) is given"
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud placement group to manage. Only required if no placement group I(id) is given, or a placement group does not exist."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the placement group.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "text",
+          "label": "type",
+          "description": "The Type of the Hetzner Cloud placement group."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.primary_ip_info",
+      "blockType": "hetzner_hcloud_primary_ip_info",
+      "label": "primary_ip_info",
+      "tooltip": "Gather infos about the Hetzner Cloud Primary IPs.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/primary_ip_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Primary IP you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the Primary IP you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name for the Primary IP you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.rdns",
+      "blockType": "hetzner_hcloud_rdns",
+      "label": "rdns",
+      "tooltip": "Create and manage reverse DNS entries on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/rdns_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "dns_ptr",
+          "fieldId": "DNS_PTR",
+          "type": "text",
+          "label": "dns ptr",
+          "description": "The DNS address the I(ip_address) should resolve to. Omit the param to reset the reverse DNS entry to the default value."
+        },
+        {
+          "key": "floating_ip",
+          "fieldId": "FLOATING_IP",
+          "type": "text",
+          "label": "floating ip",
+          "description": "Name or ID of the Hetzner Cloud Floating IP you want to add the reverse DNS entry to."
+        },
+        {
+          "key": "ip_address",
+          "fieldId": "IP_ADDRESS",
+          "type": "text",
+          "label": "ip address",
+          "description": "The IP address that should point to I(dns_ptr).",
+          "required": true
+        },
+        {
+          "key": "load_balancer",
+          "fieldId": "LOAD_BALANCER",
+          "type": "text",
+          "label": "load balancer",
+          "description": "Name or ID of the Hetzner Cloud Load Balancer you want to add the reverse DNS entry to."
+        },
+        {
+          "key": "primary_ip",
+          "fieldId": "PRIMARY_IP",
+          "type": "text",
+          "label": "primary ip",
+          "description": "Name or ID of the Hetzner Cloud Primary IP you want to add the reverse DNS entry to."
+        },
+        {
+          "key": "server",
+          "fieldId": "SERVER",
+          "type": "text",
+          "label": "server",
+          "description": "Name or ID of the Hetzner Cloud server you want to add the reverse DNS entry to."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the reverse DNS entry.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.route",
+      "blockType": "hetzner_hcloud_route",
+      "label": "route",
+      "tooltip": "Create and delete cloud routes on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/route_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "destination",
+          "fieldId": "DESTINATION",
+          "type": "text",
+          "label": "destination",
+          "description": "Destination network or host of this route.",
+          "required": true
+        },
+        {
+          "key": "gateway",
+          "fieldId": "GATEWAY",
+          "type": "text",
+          "label": "gateway",
+          "description": "Gateway for the route.",
+          "required": true
+        },
+        {
+          "key": "network",
+          "fieldId": "NETWORK",
+          "type": "text",
+          "label": "network",
+          "description": "Name or ID of the Hetzner Cloud Network.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the route.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.server",
+      "blockType": "hetzner_hcloud_server",
+      "label": "server",
+      "tooltip": "Create and manage cloud servers on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/server_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "backups",
+          "fieldId": "BACKUPS",
+          "type": "boolean",
+          "label": "backups",
+          "description": "Enable or disable Backups for the given Server."
+        },
+        {
+          "key": "datacenter",
+          "fieldId": "DATACENTER",
+          "type": "text",
+          "label": "datacenter",
+          "description": "B(Deprecated:) The O(datacenter) argument is deprecated and will be removed after 1 July 2026. Please use the O(location) argument instead. See https://docs.hetzner.cloud/changelog#2025-12-16-phasing-out-datacenters. Hetzner Cloud Datacenter (name or ID) to create the server in. Required if no O(location) is given and the server does not exist. Only used during the server creation."
+        },
+        {
+          "key": "delete_protection",
+          "fieldId": "DELETE_PROTECTION",
+          "type": "boolean",
+          "label": "delete protection",
+          "description": "Protect the Server for deletion. Needs to be the same as O(rebuild_protection)."
+        },
+        {
+          "key": "enable_ipv4",
+          "fieldId": "ENABLE_IPV4",
+          "type": "boolean",
+          "label": "enable ipv4",
+          "default": true,
+          "description": "Enables the public ipv4 address."
+        },
+        {
+          "key": "enable_ipv6",
+          "fieldId": "ENABLE_IPV6",
+          "type": "boolean",
+          "label": "enable ipv6",
+          "default": true,
+          "description": "Enables the public ipv6 address."
+        },
+        {
+          "key": "firewalls",
+          "fieldId": "FIREWALLS",
+          "type": "text",
+          "label": "firewalls",
+          "yamlType": "list",
+          "description": "List of Hetzner Cloud Firewalls (name or ID) that should be attached to the server."
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "Force the update of the server. May power off the server if update is applied."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Hetzner Cloud Server to manage. Only required if no server O(name) is given"
+        },
+        {
+          "key": "image",
+          "fieldId": "IMAGE",
+          "type": "text",
+          "label": "image",
+          "description": "Hetzner Cloud Image (name or ID) to create the server from. Required if server does not exist or when O(state=rebuild)."
+        },
+        {
+          "key": "image_allow_deprecated",
+          "fieldId": "IMAGE_ALLOW_DEPRECATED",
+          "type": "boolean",
+          "label": "image allow deprecated",
+          "default": false,
+          "description": "Allows the creation of servers with deprecated images.",
+          "aliases": [
+            "allow_deprecated_image"
+          ]
+        },
+        {
+          "key": "ipv4",
+          "fieldId": "IPV4",
+          "type": "text",
+          "label": "ipv4",
+          "description": "Hetzner Cloud Primary IPv4 (name or ID) to use. If omitted and O(enable_ipv4=true), a new ipv4 Primary IP will automatically be created."
+        },
+        {
+          "key": "ipv6",
+          "fieldId": "IPV6",
+          "type": "text",
+          "label": "ipv6",
+          "description": "Hetzner Cloud Primary IPv6 (name or ID) to use. If omitted and O(enable_ipv6=true), a new ipv6 Primary IP will automatically be created."
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)."
+        },
+        {
+          "key": "location",
+          "fieldId": "LOCATION",
+          "type": "text",
+          "label": "location",
+          "description": "Hetzner Cloud Location (name or ID) to create the server in. Required if the server does not exist. Only used during the server creation."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Hetzner Cloud Server to manage. Only required if no server O(id) is given or a server does not exist."
+        },
+        {
+          "key": "placement_group",
+          "fieldId": "PLACEMENT_GROUP",
+          "type": "text",
+          "label": "placement group",
+          "description": "Hetzner Cloud Placement Group (name or ID) to create the server in."
+        },
+        {
+          "key": "private_networks",
+          "fieldId": "PRIVATE_NETWORKS",
+          "type": "text",
+          "label": "private networks",
+          "yamlType": "list",
+          "description": "List of Hetzner Cloud Networks (name or ID) the server should be attached to. If None, private networks are left as they are (e.g. if previously added by hcloud_server_network), if it has any other value (including []), only those networks are attached to the server."
+        },
+        {
+          "key": "rebuild_protection",
+          "fieldId": "REBUILD_PROTECTION",
+          "type": "boolean",
+          "label": "rebuild protection",
+          "description": "Protect the Server for rebuild. Needs to be the same as O(delete_protection)."
+        },
+        {
+          "key": "rescue_mode",
+          "fieldId": "RESCUE_MODE",
+          "type": "text",
+          "label": "rescue mode",
+          "description": "Add the Hetzner rescue system type you want the server to be booted into."
+        },
+        {
+          "key": "server_type",
+          "fieldId": "SERVER_TYPE",
+          "type": "text",
+          "label": "server type",
+          "description": "Hetzner Cloud Server Type (name or ID) of the server. Required if server does not exist."
+        },
+        {
+          "key": "ssh_keys",
+          "fieldId": "SSH_KEYS",
+          "type": "text",
+          "label": "ssh keys",
+          "yamlType": "list",
+          "description": "List of Hetzner Cloud SSH Keys (name or ID) to create the server with. Only used during the server creation."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the server.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "created",
+              "created"
+            ],
+            [
+              "restarted",
+              "restarted"
+            ],
+            [
+              "started",
+              "started"
+            ],
+            [
+              "stopped",
+              "stopped"
+            ],
+            [
+              "rebuild",
+              "rebuild"
+            ]
+          ]
+        },
+        {
+          "key": "upgrade_disk",
+          "fieldId": "UPGRADE_DISK",
+          "type": "boolean",
+          "label": "upgrade disk",
+          "default": false,
+          "description": "Resize the disk size, when resizing a server. If you want to downgrade the server later, this value should be False."
+        },
+        {
+          "key": "user_data",
+          "fieldId": "USER_DATA",
+          "type": "text",
+          "label": "user data",
+          "description": "User Data to be passed to the server on creation. C(cloud-init), C(ignition) or similar provisioning tools may retrieve user configuration from the Server's C(user_data). Used during the server creation or server rebuild."
+        },
+        {
+          "key": "volumes",
+          "fieldId": "VOLUMES",
+          "type": "text",
+          "label": "volumes",
+          "yamlType": "list",
+          "description": "List of Hetzner Cloud Volumes (name or ID) that should be attached to the server. Only used during the server creation."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.server_info",
+      "blockType": "hetzner_hcloud_server_info",
+      "label": "server_info",
+      "tooltip": "Gather infos about your Hetzner Cloud servers.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/server_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the server you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the server you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the server you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.server_network",
+      "blockType": "hetzner_hcloud_server_network",
+      "label": "server_network",
+      "tooltip": "Manage the relationship between Hetzner Cloud Networks and servers",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/server_network_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "alias_ips",
+          "fieldId": "ALIAS_IPS",
+          "type": "text",
+          "label": "alias ips",
+          "yamlType": "list",
+          "description": "Alias IPs the server has."
+        },
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "ip",
+          "fieldId": "IP",
+          "type": "text",
+          "label": "ip",
+          "description": "The IP the server should have."
+        },
+        {
+          "key": "ip_range",
+          "fieldId": "IP_RANGE",
+          "type": "text",
+          "label": "ip range",
+          "description": "IP range in CIDR block notation of the subnet to attach to."
+        },
+        {
+          "key": "network",
+          "fieldId": "NETWORK",
+          "type": "text",
+          "label": "network",
+          "description": "Name or ID of the Hetzner Cloud Networks.",
+          "required": true
+        },
+        {
+          "key": "server",
+          "fieldId": "SERVER",
+          "type": "text",
+          "label": "server",
+          "description": "Name or ID of the Hetzner Cloud server.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the server_network.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.server_type_info",
+      "blockType": "hetzner_hcloud_server_type_info",
+      "label": "server_type_info",
+      "tooltip": "Gather infos about the Hetzner Cloud server types.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/server_type_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the server type you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the server type you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.ssh_key",
+      "blockType": "hetzner_hcloud_ssh_key",
+      "label": "ssh_key",
+      "tooltip": "Create and manage ssh keys on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/ssh_key_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "fingerprint",
+          "fieldId": "FINGERPRINT",
+          "type": "text",
+          "label": "fingerprint",
+          "description": "The Fingerprint of the Hetzner Cloud ssh_key to manage. Only required if no ssh_key I(id) or I(name) is given."
+        },
+        {
+          "key": "force",
+          "fieldId": "FORCE",
+          "type": "boolean",
+          "label": "force",
+          "default": false,
+          "description": "Recreate the SSH Key if the public key does not match the one in the API."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud ssh_key to manage. Only required if no ssh_key I(name) is given"
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined labels (key-value pairs)"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud ssh_key to manage. Only required if no ssh_key I(id) is given or a ssh_key does not exist."
+        },
+        {
+          "key": "public_key",
+          "fieldId": "PUBLIC_KEY",
+          "type": "text",
+          "label": "public key",
+          "description": "The Public Key to add. Required if ssh_key does not exist."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the ssh_key.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.ssh_key_info",
+      "blockType": "hetzner_hcloud_ssh_key_info",
+      "label": "ssh_key_info",
+      "tooltip": "Gather infos about your Hetzner Cloud ssh_keys.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/ssh_key_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "fingerprint",
+          "fieldId": "FINGERPRINT",
+          "type": "text",
+          "label": "fingerprint",
+          "description": "The fingerprint of the ssh key you want to get."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the ssh key you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the ssh key you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the ssh key you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.storage_box_info",
+      "blockType": "hetzner_hcloud_storage_box_info",
+      "label": "storage_box_info",
+      "tooltip": "Gather infos about Hetzner Storage Boxes.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/storage_box_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Storage Box to get. If the ID is invalid, the module will fail."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "Label selector to filter the Storage Boxes to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Storage Box to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.storage_box_snapshot_info",
+      "blockType": "hetzner_hcloud_storage_box_snapshot_info",
+      "label": "storage_box_snapshot_info",
+      "tooltip": "Gather infos about Hetzner Storage Box Snapshots.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/storage_box_snapshot_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Storage Box Snapshot to get. If the ID is invalid, the module will fail."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "Label selector to filter the Storage Box Snapshots to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Storage Box Snapshot to get."
+        },
+        {
+          "key": "storage_box",
+          "fieldId": "STORAGE_BOX",
+          "type": "text",
+          "label": "storage box",
+          "description": "ID or Name of the parent Storage Box. Using the ID is preferred, to reduce the amount of API requests.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.storage_box_subaccount_info",
+      "blockType": "hetzner_hcloud_storage_box_subaccount_info",
+      "label": "storage_box_subaccount_info",
+      "tooltip": "Gather infos about Hetzner Storage Box Subaccounts.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/storage_box_subaccount_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Storage Box Subaccount to get. If the ID is invalid, the module will fail."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "Label selector to filter the Storage Box Subaccounts to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Storage Box Subaccount to get."
+        },
+        {
+          "key": "storage_box",
+          "fieldId": "STORAGE_BOX",
+          "type": "text",
+          "label": "storage box",
+          "description": "ID or Name of the parent Storage Box. Using the ID is preferred, to reduce the amount of API requests.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.storage_box_type_info",
+      "blockType": "hetzner_hcloud_storage_box_type_info",
+      "label": "storage_box_type_info",
+      "tooltip": "Gather infos about Hetzner Storage Box Types.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/storage_box_type_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Storage Box Type to get. If the ID is invalid, the module will fail."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Storage Box Type to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.subnetwork",
+      "blockType": "hetzner_hcloud_subnetwork",
+      "label": "subnetwork",
+      "tooltip": "Manage cloud subnetworks on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/subnetwork_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "ip_range",
+          "fieldId": "IP_RANGE",
+          "type": "text",
+          "label": "ip range",
+          "description": "IP range of the subnetwork.",
+          "required": true
+        },
+        {
+          "key": "network",
+          "fieldId": "NETWORK",
+          "type": "text",
+          "label": "network",
+          "description": "The name or ID of the Hetzner Cloud Networks.",
+          "required": true
+        },
+        {
+          "key": "network_zone",
+          "fieldId": "NETWORK_ZONE",
+          "type": "text",
+          "label": "network zone",
+          "description": "Name of network zone.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the subnetwork.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "dropdown",
+          "label": "type",
+          "description": "Type of subnetwork.",
+          "options": [
+            [
+              "server",
+              "server"
+            ],
+            [
+              "cloud",
+              "cloud"
+            ],
+            [
+              "vswitch",
+              "vswitch"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "vswitch_id",
+          "fieldId": "VSWITCH_ID",
+          "type": "number",
+          "label": "vswitch id",
+          "description": "ID of the vSwitch you want to couple with your Network. Required if type == vswitch"
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.volume",
+      "blockType": "hetzner_hcloud_volume",
+      "label": "volume",
+      "tooltip": "Create and manage block Volume on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/volume_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "automount",
+          "fieldId": "AUTOMOUNT",
+          "type": "boolean",
+          "label": "automount",
+          "default": false,
+          "description": "Automatically mount the Volume."
+        },
+        {
+          "key": "delete_protection",
+          "fieldId": "DELETE_PROTECTION",
+          "type": "boolean",
+          "label": "delete protection",
+          "description": "Protect the Volume for deletion."
+        },
+        {
+          "key": "format",
+          "fieldId": "FORMAT",
+          "type": "dropdown",
+          "label": "format",
+          "description": "Automatically Format the volume on creation Can only be used in case the Volume does not exist.",
+          "options": [
+            [
+              "xfs",
+              "xfs"
+            ],
+            [
+              "ext4",
+              "ext4"
+            ]
+          ]
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Hetzner Cloud Block Volume to manage. Only required if no volume I(name) is given"
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined key-value pairs."
+        },
+        {
+          "key": "location",
+          "fieldId": "LOCATION",
+          "type": "text",
+          "label": "location",
+          "description": "Location of the Hetzner Cloud Volume. Required if no I(server) is given and Volume does not exist."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The Name of the Hetzner Cloud Block Volume to manage. Only required if no volume I(id) is given or a volume does not exist."
+        },
+        {
+          "key": "server",
+          "fieldId": "SERVER",
+          "type": "text",
+          "label": "server",
+          "description": "Server Name the Volume should be assigned to. Required if no I(location) is given and Volume does not exist."
+        },
+        {
+          "key": "size",
+          "fieldId": "SIZE",
+          "type": "number",
+          "label": "size",
+          "description": "The size of the Block Volume in GB. Required if volume does not yet exists."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Volume.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.volume_attachment",
+      "blockType": "hetzner_hcloud_volume_attachment",
+      "label": "volume_attachment",
+      "tooltip": "Manage the attachment of Hetzner Cloud Volumes",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/volume_attachment_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "automount",
+          "fieldId": "AUTOMOUNT",
+          "type": "boolean",
+          "label": "automount",
+          "description": "Automatically mount the Volume in the Server."
+        },
+        {
+          "key": "server",
+          "fieldId": "SERVER",
+          "type": "text",
+          "label": "server",
+          "description": "Name or ID of the Hetzner Cloud Server to attach the Volume to. Required if O(state=present)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Volume.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "volume",
+          "fieldId": "VOLUME",
+          "type": "text",
+          "label": "volume",
+          "description": "Name or ID of the Hetzner Cloud Volume to attach/detach.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.volume_info",
+      "blockType": "hetzner_hcloud_volume_info",
+      "label": "volume_info",
+      "tooltip": "Gather infos about your Hetzner Cloud Volumes.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/volume_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "The ID of the Volume you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "The label selector for the Volume you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The name of the Volume you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.zone",
+      "blockType": "hetzner_hcloud_zone",
+      "label": "zone",
+      "tooltip": "Create and manage DNS Zone on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/zone_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "delete_protection",
+          "fieldId": "DELETE_PROTECTION",
+          "type": "boolean",
+          "label": "delete protection",
+          "description": "Protect the Zone from deletion."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Zone to manage. Only required if no Zone O(name) is given."
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined key-value pairs."
+        },
+        {
+          "key": "mode",
+          "fieldId": "MODE",
+          "type": "dropdown",
+          "label": "mode",
+          "description": "Mode of the Zone. Required if the Zone does not exist.",
+          "options": [
+            [
+              "primary",
+              "primary"
+            ],
+            [
+              "secondary",
+              "secondary"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Zone to manage. Only required if no Zone O(id) is given or the Zone does not exist. All names with well-known public suffixes (e.g. .de, .com, .co.uk) are supported. Subdomains are not supported. The name must be in lower case and must not end with a dot. Internationalized domain names must be transcribed to Punycode representation with ACE prefix, e.g. xn--mnchen-3ya.de (m\u00fcnchen.de)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Zone. C(import) is not idempotent.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ],
+            [
+              "import",
+              "import"
+            ]
+          ]
+        },
+        {
+          "key": "ttl",
+          "fieldId": "TTL",
+          "type": "number",
+          "label": "ttl",
+          "description": "TTL of the Zone."
+        },
+        {
+          "key": "zonefile",
+          "fieldId": "ZONEFILE",
+          "type": "text",
+          "label": "zonefile",
+          "description": "Zone file to import. Optional if O(state=present) and the Zone does not exist, ignored otherwise. Required if O(state=import)."
+        }
+      ],
+      "unmappedParams": [
+        "primary_nameservers (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.zone_info",
+      "blockType": "hetzner_hcloud_zone_info",
+      "label": "zone_info",
+      "tooltip": "Gather infos about your Hetzner Cloud Zones.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/zone_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Zone you want to get. The module will fail if the provided ID is invalid."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "Label selector to filter the Zones you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Zone you want to get."
+        }
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.zone_rrset",
+      "blockType": "hetzner_hcloud_zone_rrset",
+      "label": "zone_rrset",
+      "tooltip": "Create and manage Zone RRSets on the Hetzner Cloud.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/zone_rrset_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "change_protection",
+          "fieldId": "CHANGE_PROTECTION",
+          "type": "boolean",
+          "label": "change protection",
+          "description": "Protect the Zone RRSet from changes (deletion and updates)."
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "number",
+          "label": "id",
+          "description": "ID of the Zone RRSet to manage. Only required if no Zone RRSet O(name) and O(type) are given."
+        },
+        {
+          "key": "labels",
+          "fieldId": "LABELS",
+          "type": "text",
+          "label": "labels",
+          "yamlType": "dict",
+          "description": "User-defined key-value pairs."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Zone RRSet to manage. Only required if no Zone RRSet O(id) is given or the Zone RRSet does not exist."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the Zone RRSet.",
+          "options": [
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "present",
+              "present"
+            ]
+          ]
+        },
+        {
+          "key": "ttl",
+          "fieldId": "TTL",
+          "type": "number",
+          "label": "ttl",
+          "description": "TTL of the Zone RRSet."
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "text",
+          "label": "type",
+          "description": "Type of the Zone RRSet to manage. Only required if no Zone RRSet O(id) is given or the Zone RRSet does not exist."
+        },
+        {
+          "key": "zone",
+          "fieldId": "ZONE",
+          "type": "text",
+          "label": "zone",
+          "description": "Name or ID of the parent Zone.",
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "records (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "hetzner.hcloud.zone_rrset_info",
+      "blockType": "hetzner_hcloud_zone_rrset_info",
+      "label": "zone_rrset_info",
+      "tooltip": "Gather infos about your Hetzner Cloud Zone RRSets.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/hetzner/hcloud/zone_rrset_info_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "api_endpoint",
+          "fieldId": "API_ENDPOINT",
+          "type": "text",
+          "label": "api endpoint",
+          "default": "https://api.hetzner.cloud/v1",
+          "description": "The endpoint for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_ENDPOINT) environment variable.",
+          "aliases": [
+            "endpoint"
+          ]
+        },
+        {
+          "key": "api_endpoint_hetzner",
+          "fieldId": "API_ENDPOINT_HETZNER",
+          "type": "text",
+          "label": "api endpoint hetzner",
+          "default": "https://api.hetzner.com/v1",
+          "description": "The endpoint for the Hetzner API. You can also set this option by using the C(HETZNER_ENDPOINT) environment variable."
+        },
+        {
+          "key": "api_token",
+          "fieldId": "API_TOKEN",
+          "type": "text",
+          "label": "api token",
+          "description": "The token for the Hetzner Cloud API. You can also set this option by using the C(HCLOUD_TOKEN) environment variable.",
+          "required": true
+        },
+        {
+          "key": "id",
+          "fieldId": "ID",
+          "type": "text",
+          "label": "id",
+          "description": "ID of the Zone RRSet you want to get."
+        },
+        {
+          "key": "label_selector",
+          "fieldId": "LABEL_SELECTOR",
+          "type": "text",
+          "label": "label selector",
+          "description": "Label selector to filter the Zone RRSets you want to get."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the Zone RRSets you want to get."
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "text",
+          "label": "type",
+          "description": "Type of the Zone RRSets you want to get."
+        },
+        {
+          "key": "zone",
+          "fieldId": "ZONE",
+          "type": "text",
+          "label": "zone",
+          "description": "Name or ID of the parent Zone.",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

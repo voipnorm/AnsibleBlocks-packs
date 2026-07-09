@@ -1,0 +1,731 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "grafana-grafana",
+  "name": "Grafana Grafana",
+  "collection": "grafana.grafana",
+  "collectionVersion": "6.1.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:28:02Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#F46800",
+  "blockStyleName": "grafana_grafana_blocks",
+  "categoryStyleName": "grafana_grafana_category",
+  "modules": [
+    {
+      "fqcn": "grafana.grafana.alert_contact_point",
+      "blockType": "grafana_grafana_alert_contact_point",
+      "label": "alert_contact_point",
+      "tooltip": "Manage Alerting Contact points in Grafana",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/alert_contact_point_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "disableResolveMessage",
+          "fieldId": "DISABLERESOLVEMESSAGE",
+          "type": "boolean",
+          "label": "disableResolveMessage",
+          "default": false,
+          "description": "When set to C(true), Disables the resolve message [OK] that is sent when alerting state returns to C(false)."
+        },
+        {
+          "key": "grafana_api_key",
+          "fieldId": "GRAFANA_API_KEY",
+          "type": "text",
+          "label": "grafana api key",
+          "description": "Grafana API Key used to authenticate with Grafana.",
+          "required": true
+        },
+        {
+          "key": "grafana_url",
+          "fieldId": "GRAFANA_URL",
+          "type": "text",
+          "label": "grafana url",
+          "description": "URL of the Grafana instance.",
+          "required": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Sets the name of the contact point.",
+          "required": true
+        },
+        {
+          "key": "settings",
+          "fieldId": "SETTINGS",
+          "type": "text",
+          "label": "settings",
+          "yamlType": "dict",
+          "description": "Sets Contact point settings.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Alert Contact Point.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "type",
+          "fieldId": "TYPE",
+          "type": "text",
+          "label": "type",
+          "description": "Sets Contact point type.",
+          "required": true
+        },
+        {
+          "key": "uid",
+          "fieldId": "UID",
+          "type": "text",
+          "label": "uid",
+          "description": "Sets the UID of the Contact point.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.alert_notification_policy",
+      "blockType": "grafana_grafana_alert_notification_policy",
+      "label": "alert_notification_policy",
+      "tooltip": "Manage Alerting Policies points in Grafana",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/alert_notification_policy_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "Continue",
+          "fieldId": "CONTINUE",
+          "type": "boolean",
+          "label": "Continue",
+          "default": false,
+          "description": "Continue matching subsequent sibling nodes if set to C(true)."
+        },
+        {
+          "key": "grafana_api_key",
+          "fieldId": "GRAFANA_API_KEY",
+          "type": "text",
+          "label": "grafana api key",
+          "description": "Grafana API Key used to authenticate with Grafana.",
+          "required": true
+        },
+        {
+          "key": "grafana_url",
+          "fieldId": "GRAFANA_URL",
+          "type": "text",
+          "label": "grafana url",
+          "description": "URL of the Grafana instance.",
+          "required": true
+        },
+        {
+          "key": "groupByStr",
+          "fieldId": "GROUPBYSTR",
+          "type": "text",
+          "label": "groupByStr",
+          "yamlType": "list",
+          "description": "List of string. Group alerts when you receive a notification based on labels. If empty it will be inherited from the parent policy."
+        },
+        {
+          "key": "groupInterval",
+          "fieldId": "GROUPINTERVAL",
+          "type": "text",
+          "label": "groupInterval",
+          "default": "5m",
+          "description": "Sets the wait time to send a batch of new alerts for that group after the first notification was sent. Inherited from the parent policy if empty."
+        },
+        {
+          "key": "groupWait",
+          "fieldId": "GROUPWAIT",
+          "type": "text",
+          "label": "groupWait",
+          "default": "30s",
+          "description": "Sets the wait time until the initial notification is sent for a new group created by an incoming alert. Inherited from the parent policy if empty."
+        },
+        {
+          "key": "muteTimeIntervals",
+          "fieldId": "MUTETIMEINTERVALS",
+          "type": "text",
+          "label": "muteTimeIntervals",
+          "yamlType": "list",
+          "description": "List of string. Sets the mute timing for the notfification policy."
+        },
+        {
+          "key": "objectMatchers",
+          "fieldId": "OBJECTMATCHERS",
+          "type": "text",
+          "label": "objectMatchers",
+          "yamlType": "list",
+          "description": "Matchers is a slice of Matchers that is sortable, implements Stringer, and provides a Matches method to match a LabelSet."
+        },
+        {
+          "key": "repeatInterval",
+          "fieldId": "REPEATINTERVAL",
+          "type": "text",
+          "label": "repeatInterval",
+          "default": "4h",
+          "description": "Sets the waiting time to resend an alert after they have successfully been sent."
+        },
+        {
+          "key": "rootPolicyReceiver",
+          "fieldId": "ROOTPOLICYRECEIVER",
+          "type": "text",
+          "label": "rootPolicyReceiver",
+          "default": "grafana-default-email",
+          "description": "Sets the name of the contact point to be set as the default receiver."
+        },
+        {
+          "key": "routes",
+          "fieldId": "ROUTES",
+          "type": "text",
+          "label": "routes",
+          "yamlType": "list",
+          "description": "List of objects Sets the Route that contains definitions of how to handle alerts.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.cloud_api_key",
+      "blockType": "grafana_grafana_cloud_api_key",
+      "label": "cloud_api_key",
+      "tooltip": "Manage Grafana Cloud API keys",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/cloud_api_key_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "existing_cloud_api_key",
+          "fieldId": "EXISTING_CLOUD_API_KEY",
+          "type": "text",
+          "label": "existing cloud api key",
+          "description": "Cloud API Key to authenticate with Grafana Cloud.",
+          "required": true
+        },
+        {
+          "key": "fail_if_already_created",
+          "fieldId": "FAIL_IF_ALREADY_CREATED",
+          "type": "boolean",
+          "label": "fail if already created",
+          "default": true,
+          "description": "If set to C(true), the task will fail if the API key with same name already exists in the Organization."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Sets the name of the Grafana Cloud API key.",
+          "required": true
+        },
+        {
+          "key": "org_slug",
+          "fieldId": "ORG_SLUG",
+          "type": "text",
+          "label": "org slug",
+          "description": "Name of the Grafana Cloud organization in which Cloud API key will be created.",
+          "required": true
+        },
+        {
+          "key": "role",
+          "fieldId": "ROLE",
+          "type": "dropdown",
+          "label": "role",
+          "description": "Sets the role to be associated with the Cloud API key.",
+          "options": [
+            [
+              "Admin",
+              "Admin"
+            ],
+            [
+              "Viewer",
+              "Viewer"
+            ],
+            [
+              "Editor",
+              "Editor"
+            ],
+            [
+              "MetricsPublisher",
+              "MetricsPublisher"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Cloud API Key.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.cloud_plugin",
+      "blockType": "grafana_grafana_cloud_plugin",
+      "label": "cloud_plugin",
+      "tooltip": "Manage Grafana Cloud Plugins",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/cloud_plugin_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "cloud_api_key",
+          "fieldId": "CLOUD_API_KEY",
+          "type": "text",
+          "label": "cloud api key",
+          "description": "Cloud API Key to authenticate with Grafana Cloud.",
+          "required": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the plugin, e.g. grafana-github-datasource.",
+          "required": true
+        },
+        {
+          "key": "stack_slug",
+          "fieldId": "STACK_SLUG",
+          "type": "text",
+          "label": "stack slug",
+          "description": "Name of the Grafana Cloud stack to which the plugin will be added.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Cloud Plugin.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "version",
+          "fieldId": "VERSION",
+          "type": "text",
+          "label": "version",
+          "default": "latest",
+          "description": "Version of the plugin to install."
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.cloud_stack",
+      "blockType": "grafana_grafana_cloud_stack",
+      "label": "cloud_stack",
+      "tooltip": "Manage Grafana Cloud stack",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/cloud_stack_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "cloud_api_key",
+          "fieldId": "CLOUD_API_KEY",
+          "type": "text",
+          "label": "cloud api key",
+          "description": "Cloud API Key to authenticate with Grafana Cloud.",
+          "required": true
+        },
+        {
+          "key": "delete_protection",
+          "fieldId": "DELETE_PROTECTION",
+          "type": "boolean",
+          "label": "delete protection",
+          "default": true,
+          "description": "Enables or disables deletion protection for the Cloud stack. When set to true, the stack cannot be deleted unless this flag is explicitly disabled."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Sets the name of stack. Conventionally matches the URL of the instance. For example, C(stackslug.grafana.net).",
+          "required": true
+        },
+        {
+          "key": "org_slug",
+          "fieldId": "ORG_SLUG",
+          "type": "text",
+          "label": "org slug",
+          "description": "Name of the organization under which Cloud stack is created.",
+          "required": true
+        },
+        {
+          "key": "region",
+          "fieldId": "REGION",
+          "type": "dropdown",
+          "label": "region",
+          "default": "us",
+          "description": "Sets the region for the Grafana Cloud stack.",
+          "options": [
+            [
+              "us",
+              "us"
+            ],
+            [
+              "us-azure",
+              "us-azure"
+            ],
+            [
+              "eu",
+              "eu"
+            ],
+            [
+              "au",
+              "au"
+            ],
+            [
+              "eu-azure",
+              "eu-azure"
+            ],
+            [
+              "prod-ap-southeast-0",
+              "prod-ap-southeast-0"
+            ],
+            [
+              "prod-gb-south-0",
+              "prod-gb-south-0"
+            ],
+            [
+              "prod-eu-west-3",
+              "prod-eu-west-3"
+            ]
+          ]
+        },
+        {
+          "key": "stack_slug",
+          "fieldId": "STACK_SLUG",
+          "type": "text",
+          "label": "stack slug",
+          "description": "Sets the subdomain of the Grafana instance. For example, if slug is B(stackslug), the instance URL will be C(https://stackslug.grafana.net).",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Cloud stack.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "url",
+          "fieldId": "URL",
+          "type": "text",
+          "label": "url",
+          "description": "If you use a custom domain for the instance, you can provide it here. If not provided, Will be set to C(https://stackslug.grafana.net)."
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.dashboard",
+      "blockType": "grafana_grafana_dashboard",
+      "label": "dashboard",
+      "tooltip": "Manage Dashboards in Grafana",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/dashboard_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "dashboard",
+          "fieldId": "DASHBOARD",
+          "type": "text",
+          "label": "dashboard",
+          "yamlType": "dict",
+          "description": "JSON source code for dashboard.",
+          "required": true
+        },
+        {
+          "key": "grafana_api_key",
+          "fieldId": "GRAFANA_API_KEY",
+          "type": "text",
+          "label": "grafana api key",
+          "description": "Grafana API Key to authenticate with Grafana Cloud.",
+          "required": true
+        },
+        {
+          "key": "grafana_url",
+          "fieldId": "GRAFANA_URL",
+          "type": "text",
+          "label": "grafana url",
+          "description": "URL of the Grafana instance.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Dashboard.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.datasource",
+      "blockType": "grafana_grafana_datasource",
+      "label": "datasource",
+      "tooltip": "Manage Data sources in Grafana",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/datasource_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "dataSource",
+          "fieldId": "DATASOURCE",
+          "type": "text",
+          "label": "dataSource",
+          "yamlType": "dict",
+          "description": "JSON source code for the Data source.",
+          "required": true
+        },
+        {
+          "key": "grafana_api_key",
+          "fieldId": "GRAFANA_API_KEY",
+          "type": "text",
+          "label": "grafana api key",
+          "description": "Grafana API Key to authenticate with Grafana Cloud.",
+          "required": true
+        },
+        {
+          "key": "grafana_url",
+          "fieldId": "GRAFANA_URL",
+          "type": "text",
+          "label": "grafana url",
+          "description": "URL of the Grafana instance.",
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Datasource.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.folder",
+      "blockType": "grafana_grafana_folder",
+      "label": "folder",
+      "tooltip": "Manage Folders in Grafana",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/folder_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "grafana_api_key",
+          "fieldId": "GRAFANA_API_KEY",
+          "type": "text",
+          "label": "grafana api key",
+          "description": "Grafana API Key to authenticate with Grafana.",
+          "required": true
+        },
+        {
+          "key": "grafana_url",
+          "fieldId": "GRAFANA_URL",
+          "type": "text",
+          "label": "grafana url",
+          "description": "URL of the Grafana instance.",
+          "required": true
+        },
+        {
+          "key": "overwrite",
+          "fieldId": "OVERWRITE",
+          "type": "boolean",
+          "label": "overwrite",
+          "default": true,
+          "description": "Set to C(false) if you dont want to overwrite existing folder with newer version."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana Folder.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "title",
+          "fieldId": "TITLE",
+          "type": "text",
+          "label": "title",
+          "description": "Sets the title of the folder.",
+          "required": true
+        },
+        {
+          "key": "uid",
+          "fieldId": "UID",
+          "type": "text",
+          "label": "uid",
+          "description": "Sets the UID for your folder.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "grafana.grafana.user",
+      "blockType": "grafana_grafana_user",
+      "label": "user",
+      "tooltip": "Manage Users in Grafana",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/grafana/grafana/user_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "admin_name",
+          "fieldId": "ADMIN_NAME",
+          "type": "text",
+          "label": "admin name",
+          "description": "Grafana admin username",
+          "required": true
+        },
+        {
+          "key": "admin_password",
+          "fieldId": "ADMIN_PASSWORD",
+          "type": "text",
+          "label": "admin password",
+          "description": "Grafana admin password",
+          "required": true
+        },
+        {
+          "key": "email",
+          "fieldId": "EMAIL",
+          "type": "text",
+          "label": "email",
+          "description": "Email address of the user."
+        },
+        {
+          "key": "grafana_url",
+          "fieldId": "GRAFANA_URL",
+          "type": "text",
+          "label": "grafana url",
+          "description": "URL of the Grafana instance.",
+          "required": true
+        },
+        {
+          "key": "login",
+          "fieldId": "LOGIN",
+          "type": "text",
+          "label": "login",
+          "description": "Login of the user",
+          "required": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the user."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State for the Grafana User.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

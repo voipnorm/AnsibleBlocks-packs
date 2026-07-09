@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "cloud-terraform",
+  "name": "Cloud Terraform",
+  "collection": "cloud.terraform",
+  "collectionVersion": "4.0.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:26:00Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#7B42BC",
+  "blockStyleName": "cloud_terraform_blocks",
+  "categoryStyleName": "cloud_terraform_category",
+  "modules": [
+    {
+      "fqcn": "cloud.terraform.plan_stash",
+      "blockType": "cloud_terraform_plan_stash",
+      "label": "plan_stash",
+      "tooltip": "Handle the base64 encoding or decoding of a terraform plan file",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cloud/terraform/plan_stash_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "binary_data",
+          "fieldId": "BINARY_DATA",
+          "type": "text",
+          "label": "binary data",
+          "multiline": true,
+          "description": "When O(state=load), this parameter defines the base64-encoded data of the terraform plan file. Mutually exclusive with V(var_name). Ignored when O(state=stash)."
+        },
+        {
+          "key": "path",
+          "fieldId": "PATH",
+          "type": "text",
+          "label": "path",
+          "description": "The path to the terraform plan file.",
+          "required": true
+        },
+        {
+          "key": "per_host",
+          "fieldId": "PER_HOST",
+          "type": "boolean",
+          "label": "per host",
+          "default": false,
+          "description": "Whether the stats are per host or for all hosts in the run. Ignored when O(state=load)."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "stash",
+          "description": "O(state=stash): base64-encodes the terraform plan file and saves it into ansible stats like using the M(ansible.builtin.set_stats) module. O(state=load): base64-decodes data from variable specified in O(var_name) and writes them into terraform plan file.",
+          "options": [
+            [
+              "stash",
+              "stash"
+            ],
+            [
+              "load",
+              "load"
+            ]
+          ]
+        },
+        {
+          "key": "var_name",
+          "fieldId": "VAR_NAME",
+          "type": "text",
+          "label": "var name",
+          "description": "When O(state=stash), this parameter defines the variable name to be set into stats. When O(state=load), this parameter defines the variable from ansible facts containing the base64-encoded data of the terraform plan file. Variables must start with a letter or underscore character, and contain only letters, numbers and underscores. The module will use V(terraform_plan) as default variable name if not specified."
+        }
+      ]
+    },
+    {
+      "fqcn": "cloud.terraform.terraform",
+      "blockType": "cloud_terraform_terraform",
+      "label": "terraform",
+      "tooltip": "Manages a Terraform deployment (and plans)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cloud/terraform/terraform_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "backend_config",
+          "fieldId": "BACKEND_CONFIG",
+          "type": "text",
+          "label": "backend config",
+          "yamlType": "dict",
+          "description": "A group of key-values to provide at init stage to the -backend-config parameter."
+        },
+        {
+          "key": "backend_config_files",
+          "fieldId": "BACKEND_CONFIG_FILES",
+          "type": "text",
+          "label": "backend config files",
+          "yamlType": "list",
+          "description": "The path to a configuration file to provide at init state to the -backend-config parameter. This can accept a list of paths to multiple configuration files."
+        },
+        {
+          "key": "binary_path",
+          "fieldId": "BINARY_PATH",
+          "type": "text",
+          "label": "binary path",
+          "description": "The path of a terraform binary to use."
+        },
+        {
+          "key": "check_destroy",
+          "fieldId": "CHECK_DESTROY",
+          "type": "boolean",
+          "label": "check destroy",
+          "default": false,
+          "description": "Apply only when no resources are destroyed. Note that this only prevents \"destroy\" actions, but not \"destroy and re-create\" actions. This option is ignored when I(state=absent)."
+        },
+        {
+          "key": "complex_vars",
+          "fieldId": "COMPLEX_VARS",
+          "type": "boolean",
+          "label": "complex vars",
+          "default": false,
+          "description": "Enable/disable capability to handle complex variable structures for C(terraform). If C(true) the I(variables) also accepts dictionaries, lists, and booleans to be passed to C(terraform). Strings that are passed are correctly quoted. When disabled, supports only simple variables (strings, integers, and floats), and passes them on unquoted."
+        },
+        {
+          "key": "force_init",
+          "fieldId": "FORCE_INIT",
+          "type": "boolean",
+          "label": "force init",
+          "default": false,
+          "description": "To avoid duplicating infra, if a state file can't be found this will force a C(terraform init). Generally, this should be turned off unless you intend to provision an entirely new Terraform deployment."
+        },
+        {
+          "key": "init_reconfigure",
+          "fieldId": "INIT_RECONFIGURE",
+          "type": "boolean",
+          "label": "init reconfigure",
+          "default": false,
+          "description": "Forces backend reconfiguration during init."
+        },
+        {
+          "key": "lock",
+          "fieldId": "LOCK",
+          "type": "boolean",
+          "label": "lock",
+          "default": true,
+          "description": "Enable statefile locking, if you use a service that accepts locks (such as S3+DynamoDB) to store your statefile."
+        },
+        {
+          "key": "lock_timeout",
+          "fieldId": "LOCK_TIMEOUT",
+          "type": "number",
+          "label": "lock timeout",
+          "description": "How long to maintain the lock on the statefile, if you use a service that accepts locks (such as S3+DynamoDB)."
+        },
+        {
+          "key": "overwrite_init",
+          "fieldId": "OVERWRITE_INIT",
+          "type": "boolean",
+          "label": "overwrite init",
+          "default": true,
+          "description": "Run init even if C(.terraform/terraform.tfstate) already exists in I(project_path)."
+        },
+        {
+          "key": "parallelism",
+          "fieldId": "PARALLELISM",
+          "type": "number",
+          "label": "parallelism",
+          "description": "Restrict concurrent operations when Terraform applies the plan."
+        },
+        {
+          "key": "plan_file",
+          "fieldId": "PLAN_FILE",
+          "type": "text",
+          "label": "plan file",
+          "description": "The path to a Terraform plan file to apply or generate. When 'check_mode' is set to C(True) or I(state=planned), a Terraform plan file will be generated and saved into the specified location. When 'check_mode' is set to I(False) and I(state) is set to either C(present) or C(absent), The existing Terraform plan file will be applied."
+        },
+        {
+          "key": "plugin_paths",
+          "fieldId": "PLUGIN_PATHS",
+          "type": "text",
+          "label": "plugin paths",
+          "yamlType": "list",
+          "description": "List of paths containing Terraform plugin executable files. Plugin executables can be downloaded from U(https://releases.hashicorp.com/). When set, the plugin discovery and auto-download behavior of Terraform is disabled. The directory structure in the plugin path can be tricky. The Terraform docs U(https://learn.hashicorp.com/tutorials/terraform/automate-terraform#pre-installed-plugins) show a simple directory of files, but actually, the directory structure has to follow the same structure you would see if Terraform auto-downloaded the plugins. See the examples below for a tree output of an example plugin directory."
+        },
+        {
+          "key": "project_path",
+          "fieldId": "PROJECT_PATH",
+          "type": "text",
+          "label": "project path",
+          "description": "The path to the root of the Terraform directory with the vars.tf/main.tf/etc to use.",
+          "required": true
+        },
+        {
+          "key": "provider_upgrade",
+          "fieldId": "PROVIDER_UPGRADE",
+          "type": "boolean",
+          "label": "provider upgrade",
+          "default": false,
+          "description": "Allows Terraform init to upgrade providers to versions specified in the project's version constraints."
+        },
+        {
+          "key": "purge_workspace",
+          "fieldId": "PURGE_WORKSPACE",
+          "type": "boolean",
+          "label": "purge workspace",
+          "default": false,
+          "description": "Only works with state = absent If true, the workspace will be deleted after the \"terraform destroy\" action. The 'default' workspace will not be deleted."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Goal state of given stage/project. Option `planned` is deprecated. Its function is equivalent to running the module in check mode.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "planned",
+              "planned"
+            ]
+          ]
+        },
+        {
+          "key": "state_file",
+          "fieldId": "STATE_FILE",
+          "type": "text",
+          "label": "state file",
+          "description": "The path to an existing Terraform state file to use when building plan. If this is not specified, the default C(terraform.tfstate) will be used. This option is ignored when plan is specified."
+        },
+        {
+          "key": "targets",
+          "fieldId": "TARGETS",
+          "type": "text",
+          "label": "targets",
+          "yamlType": "list",
+          "description": "A list of specific resources to target in this plan/application. The resources selected here will also auto-include any dependencies."
+        },
+        {
+          "key": "variables",
+          "fieldId": "VARIABLES",
+          "type": "text",
+          "label": "variables",
+          "yamlType": "dict",
+          "description": "A group of key-values pairs to override template variables or those in variables files. By default, only string and number values are allowed, which are passed on unquoted. Support complex variable structures (lists, dictionaries, numbers, and booleans) to reflect terraform variable syntax when I(complex_vars=true). Ansible integers or floats are mapped to terraform numbers. Ansible strings are mapped to terraform strings. Ansible dictionaries are mapped to terraform objects. Ansible lists are mapped to terraform lists. Ansible booleans are mapped to terraform booleans. B(Note) passwords passed as variables will be visible in the log output. Make sure to use I(no_log=true) in production!"
+        },
+        {
+          "key": "variables_files",
+          "fieldId": "VARIABLES_FILES",
+          "type": "text",
+          "label": "variables files",
+          "yamlType": "list",
+          "description": "The path to a variables file for Terraform to fill into the TF configurations. This can accept a list of paths to multiple variables files. Up until Ansible 2.9, this option was usable as I(variables_file).",
+          "aliases": [
+            "variables_file"
+          ]
+        },
+        {
+          "key": "workspace",
+          "fieldId": "WORKSPACE",
+          "type": "text",
+          "label": "workspace",
+          "description": "The terraform workspace to work with. A new logic to identify the workspace has been developed, added in version 4.0.0. When O(workspace) is provided, then this is the value that will be used. The module will raise an error if this value differs from the value set into the cloud block from the terraform config. When O(workspace) is not provided, then the module will use workspace from the cloud block in the terraform config if defined, or the default workspace behavior of the CLI will be applied. The default value of the workspace will be the current workspace. added in version 4.0.0."
+        }
+      ]
+    },
+    {
+      "fqcn": "cloud.terraform.terraform_output",
+      "blockType": "cloud_terraform_output",
+      "label": "terraform_output",
+      "tooltip": "Returns Terraform module outputs.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cloud/terraform/terraform_output_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "binary_path",
+          "fieldId": "BINARY_PATH",
+          "type": "text",
+          "label": "binary path",
+          "description": "The path of a terraform binary to use."
+        },
+        {
+          "key": "format",
+          "fieldId": "FORMAT",
+          "type": "dropdown",
+          "label": "format",
+          "default": "json",
+          "description": "A flag to specify the output format. Defaults to C(json). I(name) must be provided when using C(raw) option.",
+          "options": [
+            [
+              "json",
+              "json"
+            ],
+            [
+              "raw",
+              "raw"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of an individual output in the state file to list."
+        },
+        {
+          "key": "project_path",
+          "fieldId": "PROJECT_PATH",
+          "type": "text",
+          "label": "project path",
+          "description": "The path to the root of the Terraform directory with the terraform.tfstate file. If I(state_file) and I(project_path) are not specified, the C(terraform.tfstate) file in the current working directory will be used. The C(TF_DATA_DIR) environment variable is respected."
+        },
+        {
+          "key": "state_file",
+          "fieldId": "STATE_FILE",
+          "type": "text",
+          "label": "state file",
+          "description": "The path to an existing Terraform state file whose outputs will be listed. If I(state_file) and I(project_path) are not specified, the C(terraform.tfstate) file in the current working directory will be used. The C(TF_DATA_DIR) environment variable is respected. This option is not compatible for remote states."
+        },
+        {
+          "key": "workspace",
+          "fieldId": "WORKSPACE",
+          "type": "text",
+          "label": "workspace",
+          "description": "The terraform workspace to work with."
+        }
+      ]
+    }
+  ]
+}

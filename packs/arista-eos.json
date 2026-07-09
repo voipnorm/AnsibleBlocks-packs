@@ -1,0 +1,2836 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "arista-eos",
+  "name": "Arista EOS",
+  "collection": "arista.eos",
+  "collectionVersion": "12.1.2",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-09T05:21:08Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#4E8CC2",
+  "blockStyleName": "arista_eos_blocks",
+  "categoryStyleName": "arista_eos_category",
+  "modules": [
+    {
+      "fqcn": "arista.eos.eos_acl_interfaces",
+      "blockType": "arista_eos_acl_interfaces",
+      "label": "eos_acl_interfaces",
+      "tooltip": "ACL interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_acl_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source. There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(running_config) argument allows the implementer to pass in the configuration to use as the base config for comparison. This value of this option should be the output received from device by executing command",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name/Identifier for the interface.",
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "config.access_groups (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_acls",
+      "blockType": "arista_eos_acls",
+      "label": "eos_acls",
+      "tooltip": "ACLs resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_acls_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section access-list). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "afi",
+          "fieldId": "AFI",
+          "type": "dropdown",
+          "label": "afi",
+          "description": "The Address Family Indicator (AFI) for the Access Control Lists (ACL).",
+          "options": [
+            [
+              "ipv4",
+              "ipv4"
+            ],
+            [
+              "ipv6",
+              "ipv6"
+            ]
+          ],
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "config.acls (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_banner",
+      "blockType": "arista_eos_banner",
+      "label": "eos_banner",
+      "tooltip": "Manage multiline banners on Arista EOS devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_banner_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "banner",
+          "fieldId": "BANNER",
+          "type": "dropdown",
+          "label": "banner",
+          "description": "Specifies which banner that should be configured on the remote device.",
+          "options": [
+            [
+              "login",
+              "login"
+            ],
+            [
+              "motd",
+              "motd"
+            ]
+          ],
+          "required": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Specifies whether or not the configuration is present in the current devices active running configuration.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "text",
+          "fieldId": "TEXT",
+          "type": "text",
+          "label": "text",
+          "description": "The banner text that should be present in the remote device running configuration.  This argument accepts a multiline string. Requires I(state=present)."
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_bgp_address_family",
+      "blockType": "arista_eos_bgp_address_family",
+      "label": "eos_bgp_address_family",
+      "tooltip": "Manages BGP address family resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_bgp_address_family_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section bgp). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "as_number",
+          "fieldId": "AS_NUMBER",
+          "type": "text",
+          "label": "as number",
+          "description": "Autonomous system number."
+        }
+      ],
+      "unmappedParams": [
+        "config.address_family (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_bgp_global",
+      "blockType": "arista_eos_bgp_global",
+      "label": "eos_bgp_global",
+      "tooltip": "Manages BGP global resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_bgp_global_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section bgp). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in. State I(purged) removes all the BGP configurations from the target device. Use caution with this state.('no router bgp <x>') State I(deleted) only removes BGP attributes that this modules manages and does not negate the BGP process completely. Thereby, preserving address-family related configurations under BGP context. Running states I(deleted) and I(replaced) will result in an error if there are address-family configuration lines present under vrf context that is is to be removed. Please use the  M(arista.eos.eos_bgp_address_family) module for prior cleanup. Refer to examples for more details.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "purged",
+              "purged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "as_number",
+          "fieldId": "AS_NUMBER",
+          "type": "text",
+          "label": "as number",
+          "description": "Autonomous system number."
+        },
+        {
+          "key": "default_metric",
+          "fieldId": "DEFAULT_METRIC",
+          "type": "number",
+          "label": "default metric",
+          "description": "Default metric."
+        },
+        {
+          "key": "graceful_restart_helper",
+          "fieldId": "GRACEFUL_RESTART_HELPER",
+          "type": "boolean",
+          "label": "graceful restart helper",
+          "description": "Enable graceful restart helper mode."
+        },
+        {
+          "key": "router_id",
+          "fieldId": "ROUTER_ID",
+          "type": "text",
+          "label": "router id",
+          "description": "Router id."
+        },
+        {
+          "key": "shutdown",
+          "fieldId": "SHUTDOWN",
+          "type": "boolean",
+          "label": "shutdown",
+          "description": "When true, shut down BGP."
+        },
+        {
+          "key": "vlan",
+          "fieldId": "VLAN",
+          "type": "number",
+          "label": "vlan",
+          "description": "Configure MAC VRF BGP for single VLAN support."
+        },
+        {
+          "key": "vlan_aware_bundle",
+          "fieldId": "VLAN_AWARE_BUNDLE",
+          "type": "text",
+          "label": "vlan aware bundle",
+          "description": "Configure MAC VRF BGP for multiple VLAN support."
+        }
+      ],
+      "unmappedParams": [
+        "config.access_group (has suboptions)",
+        "config.aggregate_address (has suboptions)",
+        "config.bgp_params (has suboptions)",
+        "config.distance (has suboptions)",
+        "config.graceful_restart (has suboptions)",
+        "config.maximum_paths (has suboptions)",
+        "config.monitoring (has suboptions)",
+        "config.neighbor (has suboptions)",
+        "config.network (has suboptions)",
+        "config.redistribute (has suboptions)",
+        "config.route_target (has suboptions)",
+        "config.timers (has suboptions)",
+        "config.ucmp (has suboptions)",
+        "config.update (has suboptions)",
+        "config.vrfs (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_command",
+      "blockType": "arista_eos_command",
+      "label": "eos_command",
+      "tooltip": "Run arbitrary commands on an Arista EOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_command_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "interval",
+          "fieldId": "INTERVAL",
+          "type": "number",
+          "label": "interval",
+          "default": 1,
+          "description": "Configures the interval in seconds to wait between retries of the command.  If the command does not pass the specified conditional, the interval indicates how to long to wait before trying the command again."
+        },
+        {
+          "key": "match",
+          "fieldId": "MATCH",
+          "type": "dropdown",
+          "label": "match",
+          "default": "all",
+          "description": "The I(match) argument is used in conjunction with the I(wait_for) argument to specify the match policy.  Valid values are C(all) or C(any).  If the value is set to C(all) then all conditionals in the I(wait_for) must be satisfied.  If the value is set to C(any) then only one of the values must be satisfied.",
+          "options": [
+            [
+              "any",
+              "any"
+            ],
+            [
+              "all",
+              "all"
+            ]
+          ]
+        },
+        {
+          "key": "retries",
+          "fieldId": "RETRIES",
+          "type": "number",
+          "label": "retries",
+          "default": 10,
+          "description": "Specifies the number of retries a command should be tried before it is considered failed.  The command is run on the target device every retry and evaluated against the I(wait_for) conditionals."
+        },
+        {
+          "key": "wait_for",
+          "fieldId": "WAIT_FOR",
+          "type": "text",
+          "label": "wait for",
+          "yamlType": "list",
+          "description": "Specifies what to evaluate from the output of the command and what conditionals to apply.  This argument will cause the task to wait for a particular conditional to be true before moving forward.   If the conditional is not true by the configured retries, the task fails. Note - With I(wait_for) the value in C(result['stdout']) can be accessed using C(result), that is to access C(result['stdout'][0]) use C(result[0]) See examples.",
+          "aliases": [
+            "waitfor"
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "commands (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_config",
+      "blockType": "arista_eos_config",
+      "label": "eos_config",
+      "tooltip": "Manage Arista EOS configuration sections",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_config_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "after",
+          "fieldId": "AFTER",
+          "type": "text",
+          "label": "after",
+          "yamlType": "list",
+          "description": "The ordered set of commands to append to the end of the command stack if a change needs to be made.  Just like with I(before) this allows the playbook designer to append a set of commands to be executed after the command set."
+        },
+        {
+          "key": "backup",
+          "fieldId": "BACKUP",
+          "type": "boolean",
+          "label": "backup",
+          "default": false,
+          "description": "This argument will cause the module to create a full backup of the current C(running-config) from the remote device before any changes are made. If the C(backup_options) value is not given, the backup file is written to the C(backup) folder in the playbook root directory or role root directory, if playbook is part of an ansible role. If the directory does not exist, it is created."
+        },
+        {
+          "key": "before",
+          "fieldId": "BEFORE",
+          "type": "text",
+          "label": "before",
+          "yamlType": "list",
+          "description": "The ordered set of commands to push on to the command stack if a change needs to be made.  This allows the playbook designer the opportunity to perform configuration commands prior to pushing any changes without affecting how the set of commands are matched against the system."
+        },
+        {
+          "key": "content",
+          "fieldId": "CONTENT",
+          "type": "text",
+          "label": "content",
+          "description": "Configuration content to apply to the device. This should be the rendered configuration text, not a file path. This is the recommended way to provide templated configurations. Use C(ansible.builtin.template) lookup to render your Jinja2 template and pass the output to this parameter. This argument is mutually exclusive with I(src), I(lines), and I(parents). Example: C(content: \"{{ lookup('ansible.builtin.template', 'config.j2') }}\")"
+        },
+        {
+          "key": "defaults",
+          "fieldId": "DEFAULTS",
+          "type": "boolean",
+          "label": "defaults",
+          "default": false,
+          "description": "The I(defaults) argument will influence how the running-config is collected from the device.  When the value is set to true, the command used to collect the running-config is append with the all keyword.  When the value is set to false, the command is issued without the all keyword"
+        },
+        {
+          "key": "diff_against",
+          "fieldId": "DIFF_AGAINST",
+          "type": "dropdown",
+          "label": "diff against",
+          "default": "session",
+          "description": "When using the C(ansible-playbook --diff) command line argument the module can generate diffs against different sources. When this option is configure as I(startup), the module will return the diff of the running-config against the startup-config. When this option is configured as I(intended), the module will return the diff of the running-config against the configuration provided in the C(intended_config) argument. When this option is configured as I(running), the module will return the before and after diff of the running-config with respect to any changes made to the device configuration. When this option is configured as C(session), the diff returned will be based on the configuration session. When this option is configured as C(validate_config), the module will return before with the running-config before applying the intended config and after with the session config after applying the intended config to the session.",
+          "options": [
+            [
+              "startup",
+              "startup"
+            ],
+            [
+              "running",
+              "running"
+            ],
+            [
+              "intended",
+              "intended"
+            ],
+            [
+              "session",
+              "session"
+            ],
+            [
+              "validate_config",
+              "validate_config"
+            ]
+          ]
+        },
+        {
+          "key": "diff_ignore_lines",
+          "fieldId": "DIFF_IGNORE_LINES",
+          "type": "text",
+          "label": "diff ignore lines",
+          "yamlType": "list",
+          "description": "Use this argument to specify one or more lines that should be ignored during the diff.  This is used for lines in the configuration that are automatically updated by the system.  This argument takes a list of regular expressions or exact line matches."
+        },
+        {
+          "key": "intended_config",
+          "fieldId": "INTENDED_CONFIG",
+          "type": "text",
+          "label": "intended config",
+          "description": "The C(intended_config) provides the master configuration that the node should conform to and is used to check the final running-config against.   This argument will not modify any settings on the remote device and is strictly used to check the compliance of the current device's configuration against.  When specifying this argument, the task should also modify the C(diff_against) value and set it to I(intended). The configuration lines for this value should be similar to how it will appear if present in the running-configuration of the device including the indentation to ensure correct diff."
+        },
+        {
+          "key": "lines",
+          "fieldId": "LINES",
+          "type": "text",
+          "label": "lines",
+          "yamlType": "list",
+          "description": "The ordered set of commands that should be configured in the section. The commands must be the exact same commands as found in the device running-config as found in the device running-config to ensure idempotency and correct diff. Be sure to note the configuration command syntax as some commands are automatically modified by the device config parser.",
+          "aliases": [
+            "commands"
+          ]
+        },
+        {
+          "key": "match",
+          "fieldId": "MATCH",
+          "type": "dropdown",
+          "label": "match",
+          "default": "line",
+          "description": "Instructs the module on the way to perform the matching of the set of commands against the current device config.  If match is set to I(line), commands are matched line by line.  If match is set to I(strict), command lines are matched with respect to position.  If match is set to I(exact), command lines must be an equal match.  Finally, if match is set to I(none), the module will not attempt to compare the source configuration with the running configuration on the remote device.",
+          "options": [
+            [
+              "line",
+              "line"
+            ],
+            [
+              "strict",
+              "strict"
+            ],
+            [
+              "exact",
+              "exact"
+            ],
+            [
+              "none",
+              "none"
+            ]
+          ]
+        },
+        {
+          "key": "parents",
+          "fieldId": "PARENTS",
+          "type": "text",
+          "label": "parents",
+          "yamlType": "list",
+          "description": "The ordered set of parents that uniquely identify the section or hierarchy the commands should be checked against.  If the parents argument is omitted, the commands are checked against the set of top level or global commands."
+        },
+        {
+          "key": "replace",
+          "fieldId": "REPLACE",
+          "type": "dropdown",
+          "label": "replace",
+          "default": "line",
+          "description": "Instructs the module on the way to perform the configuration on the device.  If the replace argument is set to I(line) then the modified lines are pushed to the device in configuration mode.  If the replace argument is set to I(block) then the entire command block is pushed to the device in configuration mode if any line is not correct.",
+          "options": [
+            [
+              "line",
+              "line"
+            ],
+            [
+              "block",
+              "block"
+            ],
+            [
+              "config",
+              "config"
+            ]
+          ]
+        },
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source.  There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(running_config) argument allows the implementer to pass in the configuration to use as the base config for this module. The configuration lines for this option should be similar to how it will appear if present in the running-configuration of the device including the indentation to ensure idempotency and correct diff.",
+          "aliases": [
+            "config"
+          ]
+        },
+        {
+          "key": "save_when",
+          "fieldId": "SAVE_WHEN",
+          "type": "dropdown",
+          "label": "save when",
+          "default": "never",
+          "description": "When changes are made to the device running-configuration, the changes are not copied to non-volatile storage by default.  Using this argument will change that before.  If the argument is set to I(always), then the running-config will always be copied to the startup-config and the I(modified) flag will always be set to True.  If the argument is set to I(modified), then the running-config will only be copied to the startup-config if it has changed since the last save to startup-config.  If the argument is set to I(never), the running-config will never be copied to the startup-config. If the argument is set to I(changed), then the running-config will only be copied to the startup-config if the task has made a change. I(changed) was added in Ansible 2.5.",
+          "options": [
+            [
+              "always",
+              "always"
+            ],
+            [
+              "never",
+              "never"
+            ],
+            [
+              "modified",
+              "modified"
+            ],
+            [
+              "changed",
+              "changed"
+            ]
+          ]
+        },
+        {
+          "key": "src",
+          "fieldId": "SRC",
+          "type": "text",
+          "label": "src",
+          "description": "Specifies the source path to the file that contains the configuration or configuration template to load.  The path to the source file can either be the full path on the Ansible control host or a relative path from the playbook or role root directory. This argument is mutually exclusive with I(lines), I(parents), and I(content). The configuration lines in the source file should be similar to how it will appear if present in the running-configuration (live switch config) of the device including the indentation to ensure idempotency and correct diff. Arista EOS device config has 3 spaces indentation. NOTE: The I(src) parameter will no longer process Jinja2 templates starting in January 2028. To use templated configurations, render the template using C(ansible.builtin.template) lookup and pass the result to the I(content) parameter instead."
+        }
+      ],
+      "unmappedParams": [
+        "backup_options (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_eapi",
+      "blockType": "arista_eos_eapi",
+      "label": "eos_eapi",
+      "tooltip": "Manage and configure Arista EOS eAPI.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_eapi_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "config",
+          "fieldId": "CONFIG",
+          "type": "text",
+          "label": "config",
+          "description": "The module, by default, will connect to the remote device and retrieve the current running-config to use as a base for comparing against the contents of source.  There are times when it is not desirable to have the task get the current running-config for every task in a playbook.  The I(config) argument allows the implementer to pass in the configuration to use as the base config for comparison."
+        },
+        {
+          "key": "http",
+          "fieldId": "HTTP",
+          "type": "boolean",
+          "label": "http",
+          "description": "The C(http) argument controls the operating state of the HTTP transport protocol when eAPI is present in the running-config. When the value is set to True, the HTTP protocol is enabled and when the value is set to False, the HTTP protocol is disabled. By default, when eAPI is first configured, the HTTP protocol is disabled.",
+          "aliases": [
+            "enable_http"
+          ]
+        },
+        {
+          "key": "http_port",
+          "fieldId": "HTTP_PORT",
+          "type": "number",
+          "label": "http port",
+          "description": "Configures the HTTP port that will listen for connections when the HTTP transport protocol is enabled.  This argument accepts integer values in the valid range of 1 to 65535."
+        },
+        {
+          "key": "https",
+          "fieldId": "HTTPS",
+          "type": "boolean",
+          "label": "https",
+          "description": "The C(https) argument controls the operating state of the HTTPS transport protocol when eAPI is present in the running-config. When the value is set to True, the HTTPS protocol is enabled and when the value is set to False, the HTTPS protocol is disabled. By default, when eAPI is first configured, the HTTPS protocol is enabled.",
+          "aliases": [
+            "enable_https"
+          ]
+        },
+        {
+          "key": "https_port",
+          "fieldId": "HTTPS_PORT",
+          "type": "number",
+          "label": "https port",
+          "description": "Configures the HTTP port that will listen for connections when the HTTP transport protocol is enabled.  This argument accepts integer values in the valid range of 1 to 65535."
+        },
+        {
+          "key": "local_http",
+          "fieldId": "LOCAL_HTTP",
+          "type": "boolean",
+          "label": "local http",
+          "description": "The C(local_http) argument controls the operating state of the local HTTP transport protocol when eAPI is present in the running-config.  When the value is set to True, the HTTP protocol is enabled and restricted to connections from localhost only.  When the value is set to False, the HTTP local protocol is disabled. Note is value is independent of the C(http) argument",
+          "aliases": [
+            "enable_local_http"
+          ]
+        },
+        {
+          "key": "local_http_port",
+          "fieldId": "LOCAL_HTTP_PORT",
+          "type": "number",
+          "label": "local http port",
+          "description": "Configures the HTTP port that will listen for connections when the HTTP transport protocol is enabled.  This argument accepts integer values in the valid range of 1 to 65535."
+        },
+        {
+          "key": "socket",
+          "fieldId": "SOCKET",
+          "type": "boolean",
+          "label": "socket",
+          "description": "The C(socket) argument controls the operating state of the UNIX Domain Socket used to receive eAPI requests.  When the value of this argument is set to True, the UDS will listen for eAPI requests.  When the value is set to False, the UDS will not be available to handle requests.  By default when eAPI is first configured, the UDS is disabled.",
+          "aliases": [
+            "enable_socket"
+          ]
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "started",
+          "description": "The C(state) argument controls the operational state of eAPI on the remote device.  When this argument is set to C(started), eAPI is enabled to receive requests and when this argument is C(stopped), eAPI is disabled and will not receive requests.",
+          "options": [
+            [
+              "started",
+              "started"
+            ],
+            [
+              "stopped",
+              "stopped"
+            ]
+          ]
+        },
+        {
+          "key": "vrf",
+          "fieldId": "VRF",
+          "type": "text",
+          "label": "vrf",
+          "default": "default",
+          "description": "The C(vrf) argument will configure eAPI to listen for connections in the specified VRF.  By default, eAPI transports will listen for connections in the global table.  This value requires the VRF to already be created otherwise the task will fail."
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_facts",
+      "blockType": "arista_eos_facts",
+      "label": "eos_facts",
+      "tooltip": "Collect facts from remote devices running Arista EOS",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_facts_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "available_network_resources",
+          "fieldId": "AVAILABLE_NETWORK_RESOURCES",
+          "type": "boolean",
+          "label": "available network resources",
+          "default": false,
+          "description": "When 'True' a list of network resources for which resource modules are available will be provided."
+        },
+        {
+          "key": "gather_network_resources",
+          "fieldId": "GATHER_NETWORK_RESOURCES",
+          "type": "text",
+          "label": "gather network resources",
+          "yamlType": "list",
+          "description": "When supplied, this argument will restrict the facts collected to a given subset. Possible values for this argument include all and the resources like interfaces, vlans etc. Can specify a list of values to include a larger subset. Values can also be used with an initial C(!) to specify that a specific subset should not be collected. Values can also be used with an initial C(!) to specify that a specific subset should not be collected. Valid subsets are 'all', 'interfaces', 'l2_interfaces', 'l3_interfaces', 'lacp', 'lacp_interfaces', 'lag_interfaces', 'lldp_global', 'lldp_interfaces', 'vlans', 'acls'."
+        },
+        {
+          "key": "gather_subset",
+          "fieldId": "GATHER_SUBSET",
+          "type": "text",
+          "label": "gather subset",
+          "yamlType": "list",
+          "default": "min",
+          "description": "When supplied, this argument will restrict the facts collected to a given subset.  Possible values for this argument include C(all), C(hardware), C(config), C(legacy), C(interfaces), and C(min). Can specify a list of values to include a larger subset.  Values can also be used with an initial C(!) to specify that a specific subset should not be collected."
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_hostname",
+      "blockType": "arista_eos_hostname",
+      "label": "eos_hostname",
+      "tooltip": "Manages hostname resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_hostname_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section hostname). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in. The states I(rendered), I(gathered) and I(parsed) does not perform any change on the device. The state I(rendered) will transform the configuration in C(config) option to platform specific CLI commands which will be returned in the I(rendered) key within the result. For state I(rendered) active connection to remote host is not required. The states I(merged), I(replaced) and I(overridden) have identical behaviour for this module. The state I(gathered) will fetch the running configuration from device and transform it into structured data in the format as per the resource module argspec and the value is returned in the I(gathered) key within the result. The state I(parsed) reads the configuration from C(running_config) option and transforms it into JSON format as per the resource module parameters and the value is returned in the I(parsed) key within the result. The value of C(running_config) option should be the same format as the output of command I(show running-config | section ^hostname) executed on device. For state I(parsed) active connection to remote host is not required.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "hostname",
+          "fieldId": "HOSTNAME",
+          "type": "text",
+          "label": "hostname",
+          "description": "The system's hostname"
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_interfaces",
+      "blockType": "arista_eos_interfaces",
+      "label": "eos_interfaces",
+      "tooltip": "Interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ^interface). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "Interface description"
+        },
+        {
+          "key": "duplex",
+          "fieldId": "DUPLEX",
+          "type": "text",
+          "label": "duplex",
+          "description": "Interface link status. Applicable for Ethernet interfaces only. Values other than C(auto) must also set I(speed). Ignored when I(speed) is set above C(1000)."
+        },
+        {
+          "key": "enabled",
+          "fieldId": "ENABLED",
+          "type": "boolean",
+          "label": "enabled",
+          "description": "Administrative state of the interface. Set the value to C(true) to administratively enable the interface or C(false) to disable it."
+        },
+        {
+          "key": "mode",
+          "fieldId": "MODE",
+          "type": "dropdown",
+          "label": "mode",
+          "description": "Manage Layer2 or Layer3 state of the interface. Applicable for Ethernet and port channel interfaces only.",
+          "options": [
+            [
+              "layer2",
+              "layer2"
+            ],
+            [
+              "layer3",
+              "layer3"
+            ]
+          ]
+        },
+        {
+          "key": "mtu",
+          "fieldId": "MTU",
+          "type": "number",
+          "label": "mtu",
+          "description": "MTU for a specific interface. Must be an even number between 576 and 9216. Applicable for Ethernet interfaces only."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Full name of the interface, e.g. GigabitEthernet1.",
+          "required": true
+        },
+        {
+          "key": "speed",
+          "fieldId": "SPEED",
+          "type": "text",
+          "label": "speed",
+          "description": "Interface link speed. Applicable for Ethernet interfaces only."
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_l2_interfaces",
+      "blockType": "arista_eos_l2_interfaces",
+      "label": "eos_l2_interfaces",
+      "tooltip": "L2 interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_l2_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ^interface). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "mode",
+          "fieldId": "MODE",
+          "type": "dropdown",
+          "label": "mode",
+          "description": "Mode in which interface needs to be configured. Access mode is not shown in interface facts, so idempotency will not be maintained for switchport mode access and every time the output will come as changed=True.",
+          "options": [
+            [
+              "access",
+              "access"
+            ],
+            [
+              "trunk",
+              "trunk"
+            ]
+          ]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Full name of interface, e.g. Ethernet1.",
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "config.access (has suboptions)",
+        "config.trunk (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_l3_interfaces",
+      "blockType": "arista_eos_l3_interfaces",
+      "label": "eos_l3_interfaces",
+      "tooltip": "L3 interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_l3_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ^interface). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Full name of the interface, i.e. Ethernet1.",
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "config.ipv4 (has suboptions)",
+        "config.ipv6 (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_lacp",
+      "blockType": "arista_eos_lacp",
+      "label": "eos_lacp",
+      "tooltip": "LACP resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_lacp_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ^lacp). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        }
+      ],
+      "unmappedParams": [
+        "config.system (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_lacp_interfaces",
+      "blockType": "arista_eos_lacp_interfaces",
+      "label": "eos_lacp_interfaces",
+      "tooltip": "LACP interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_lacp_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ^interfaces). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Full name of the interface (i.e. Ethernet1)."
+        },
+        {
+          "key": "port_priority",
+          "fieldId": "PORT_PRIORITY",
+          "type": "number",
+          "label": "port priority",
+          "description": "LACP port priority for the interface. Range 1-65535."
+        },
+        {
+          "key": "timer",
+          "fieldId": "TIMER",
+          "type": "dropdown",
+          "label": "timer",
+          "description": "Rate at which PDUs are sent by LACP. At fast rate LACP is transmitted once every 1 second. At normal rate LACP is transmitted every 30 seconds after the link is bundled.",
+          "options": [
+            [
+              "fast",
+              "fast"
+            ],
+            [
+              "normal",
+              "normal"
+            ]
+          ],
+          "aliases": [
+            "rate"
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_lag_interfaces",
+      "blockType": "arista_eos_lag_interfaces",
+      "label": "eos_lag_interfaces",
+      "tooltip": "LAG interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_lag_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section interfaces). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the port-channel interface of the link aggregation group (LAG) e.g., Port-Channel5.",
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "config.members (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_lldp",
+      "blockType": "arista_eos_lldp",
+      "label": "eos_lldp",
+      "tooltip": "Manage LLDP configuration on Arista EOS network devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_lldp_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the LLDP configuration. If value is I(present) lldp will be enabled else if it is I(absent) it will be disabled.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ],
+            [
+              "enabled",
+              "enabled"
+            ],
+            [
+              "disabled",
+              "disabled"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_lldp_global",
+      "blockType": "arista_eos_lldp_global",
+      "label": "eos_lldp_global",
+      "tooltip": "LLDP resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_lldp_global_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section lldp). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "holdtime",
+          "fieldId": "HOLDTIME",
+          "type": "number",
+          "label": "holdtime",
+          "description": "Specifies the holdtime (in sec) to be sent in packets."
+        },
+        {
+          "key": "reinit",
+          "fieldId": "REINIT",
+          "type": "number",
+          "label": "reinit",
+          "description": "Specifies the delay (in sec) for LLDP initialization on any interface."
+        },
+        {
+          "key": "timer",
+          "fieldId": "TIMER",
+          "type": "number",
+          "label": "timer",
+          "description": "Specifies the rate at which LLDP packets are sent (in sec)."
+        }
+      ],
+      "unmappedParams": [
+        "config.tlv_select (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_lldp_interfaces",
+      "blockType": "arista_eos_lldp_interfaces",
+      "label": "eos_lldp_interfaces",
+      "tooltip": "LLDP interfaces resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_lldp_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ^interface). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Full name of the interface (i.e. Ethernet1)."
+        },
+        {
+          "key": "receive",
+          "fieldId": "RECEIVE",
+          "type": "boolean",
+          "label": "receive",
+          "description": "Enable/disable LLDP RX on an interface."
+        },
+        {
+          "key": "transmit",
+          "fieldId": "TRANSMIT",
+          "type": "boolean",
+          "label": "transmit",
+          "description": "Enable/disable LLDP TX on an interface."
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_logging_global",
+      "blockType": "arista_eos_logging_global",
+      "label": "eos_logging_global",
+      "tooltip": "Manages logging resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_logging_global_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section access-list). The states I(replaced) and I(overridden) have identical behaviour for this module. The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "event",
+          "fieldId": "EVENT",
+          "type": "dropdown",
+          "label": "event",
+          "description": "Global events",
+          "options": [
+            [
+              "link-status",
+              "link-status"
+            ],
+            [
+              "port-channel",
+              "port-channel"
+            ],
+            [
+              "spanning-tree",
+              "spanning-tree"
+            ]
+          ]
+        },
+        {
+          "key": "facility",
+          "fieldId": "FACILITY",
+          "type": "text",
+          "label": "facility",
+          "description": "Set logging facility."
+        },
+        {
+          "key": "monitor",
+          "fieldId": "MONITOR",
+          "type": "text",
+          "label": "monitor",
+          "description": "Set terminal monitor severity"
+        },
+        {
+          "key": "qos",
+          "fieldId": "QOS",
+          "type": "number",
+          "label": "qos",
+          "description": "Set DSCP value in IP header."
+        },
+        {
+          "key": "relogging_interval",
+          "fieldId": "RELOGGING_INTERVAL",
+          "type": "number",
+          "label": "relogging interval",
+          "description": "Configure relogging-interval for critical log messages"
+        },
+        {
+          "key": "repeat_messages",
+          "fieldId": "REPEAT_MESSAGES",
+          "type": "boolean",
+          "label": "repeat messages",
+          "description": "Repeat messages instead of summarizing number of repeats"
+        },
+        {
+          "key": "source_interface",
+          "fieldId": "SOURCE_INTERFACE",
+          "type": "text",
+          "label": "source interface",
+          "description": "Use IP Address of interface as source IP of log messages."
+        },
+        {
+          "key": "turn_on",
+          "fieldId": "TURN_ON",
+          "type": "boolean",
+          "label": "turn on",
+          "description": "Turn on logging."
+        }
+      ],
+      "unmappedParams": [
+        "config.buffered (has suboptions)",
+        "config.console (has suboptions)",
+        "config.format (has suboptions)",
+        "config.hosts (has suboptions)",
+        "config.level (has suboptions)",
+        "config.persistent (has suboptions)",
+        "config.policy (has suboptions)",
+        "config.synchronous (has suboptions)",
+        "config.trap (has suboptions)",
+        "config.vrfs (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_ntp_global",
+      "blockType": "arista_eos_ntp_global",
+      "label": "eos_ntp_global",
+      "tooltip": "Manages ntp resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_ntp_global_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ntp). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in. The states I(replaced) and I(overridden) have identical behaviour for this module. Please refer to examples for more details.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "local_interface",
+          "fieldId": "LOCAL_INTERFACE",
+          "type": "text",
+          "label": "local interface",
+          "description": "Configure the interface from which the IP source address is taken."
+        },
+        {
+          "key": "qos_dscp",
+          "fieldId": "QOS_DSCP",
+          "type": "number",
+          "label": "qos dscp",
+          "description": "Set DSCP value in IP header"
+        },
+        {
+          "key": "trusted_key",
+          "fieldId": "TRUSTED_KEY",
+          "type": "text",
+          "label": "trusted key",
+          "description": "Configure the set of keys that are accepted for incoming messages"
+        }
+      ],
+      "unmappedParams": [
+        "config.authenticate (has suboptions)",
+        "config.authentication_keys (has suboptions)",
+        "config.serve (has suboptions)",
+        "config.servers (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_ospf_interfaces",
+      "blockType": "arista_eos_ospf_interfaces",
+      "label": "eos_ospf_interfaces",
+      "tooltip": "OSPF Interfaces Resource Module.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_ospf_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section interface). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name/Identifier of the interface."
+        }
+      ],
+      "unmappedParams": [
+        "config.address_family (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_ospfv2",
+      "blockType": "arista_eos_ospfv2",
+      "label": "eos_ospfv2",
+      "tooltip": "OSPFv2 resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_ospfv2_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ospf). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        }
+      ],
+      "unmappedParams": [
+        "config.processes (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_ospfv3",
+      "blockType": "arista_eos_ospfv3",
+      "label": "eos_ospfv3",
+      "tooltip": "OSPFv3 resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_ospfv3_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section ospfv3). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        }
+      ],
+      "unmappedParams": [
+        "config.processes (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_prefix_lists",
+      "blockType": "arista_eos_prefix_lists",
+      "label": "eos_prefix_lists",
+      "tooltip": "Manages Prefix lists resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_prefix_lists_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section access-list). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "afi",
+          "fieldId": "AFI",
+          "type": "dropdown",
+          "label": "afi",
+          "description": "The Address Family Indicator (AFI) for the  prefix list.",
+          "options": [
+            [
+              "ipv4",
+              "ipv4"
+            ],
+            [
+              "ipv6",
+              "ipv6"
+            ]
+          ],
+          "required": true
+        }
+      ],
+      "unmappedParams": [
+        "config.prefix_lists (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_route_maps",
+      "blockType": "arista_eos_route_maps",
+      "label": "eos_route_maps",
+      "tooltip": "Manages Route Maps resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_route_maps_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section route-map). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "route_map",
+          "fieldId": "ROUTE_MAP",
+          "type": "text",
+          "label": "route map",
+          "description": "Route map name."
+        }
+      ],
+      "unmappedParams": [
+        "config.entries (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_snmp_server",
+      "blockType": "arista_eos_snmp_server",
+      "label": "eos_snmp_server",
+      "tooltip": "Manages snmp_server resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_snmp_server_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running_config | section snmp_server). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in. The states I(replaced) and I(overridden) have identical behaviour for this module. Please refer to examples for more details.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "chassis_id",
+          "fieldId": "CHASSIS_ID",
+          "type": "text",
+          "label": "chassis id",
+          "description": "SNMP chassis identifier."
+        },
+        {
+          "key": "contact",
+          "fieldId": "CONTACT",
+          "type": "text",
+          "label": "contact",
+          "description": "Person to contact about the syste,."
+        },
+        {
+          "key": "local_interface",
+          "fieldId": "LOCAL_INTERFACE",
+          "type": "text",
+          "label": "local interface",
+          "description": "Configure the source interface for SNMP notifications."
+        },
+        {
+          "key": "location",
+          "fieldId": "LOCATION",
+          "type": "text",
+          "label": "location",
+          "description": "The sysLocation string."
+        },
+        {
+          "key": "notification",
+          "fieldId": "NOTIFICATION",
+          "type": "number",
+          "label": "notification",
+          "description": "Maximum number of notifications in the log"
+        },
+        {
+          "key": "qos",
+          "fieldId": "QOS",
+          "type": "number",
+          "label": "qos",
+          "description": "Configure QoS parameters."
+        },
+        {
+          "key": "qosmib",
+          "fieldId": "QOSMIB",
+          "type": "number",
+          "label": "qosmib",
+          "description": "Set QOS_MIB counter update interval"
+        },
+        {
+          "key": "transmit",
+          "fieldId": "TRANSMIT",
+          "type": "number",
+          "label": "transmit",
+          "description": "Maximum number of bytes in SNMP message (UDP/TCP payload)"
+        }
+      ],
+      "unmappedParams": [
+        "config.acls (has suboptions)",
+        "config.communities (has suboptions)",
+        "config.engineid (has suboptions)",
+        "config.extension (has suboptions)",
+        "config.groups (has suboptions)",
+        "config.hosts (has suboptions)",
+        "config.objects (has suboptions)",
+        "config.traps (has suboptions)",
+        "config.users (has suboptions)",
+        "config.views (has suboptions)",
+        "config.vrfs (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_static_routes",
+      "blockType": "arista_eos_static_routes",
+      "label": "eos_static_routes",
+      "tooltip": "Static routes resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_static_routes_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | grep routes). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in.",
+          "options": [
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "vrf",
+          "fieldId": "VRF",
+          "type": "text",
+          "label": "vrf",
+          "description": "The VRF to which the static route(s) belong."
+        }
+      ],
+      "unmappedParams": [
+        "config.address_families (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_system",
+      "blockType": "arista_eos_system",
+      "label": "eos_system",
+      "tooltip": "Manage the system attributes on Arista EOS devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_system_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "domain_list",
+          "fieldId": "DOMAIN_LIST",
+          "type": "text",
+          "label": "domain list",
+          "yamlType": "list",
+          "description": "Provides the list of domain suffixes to append to the hostname for the purpose of doing name resolution. This argument accepts a list of names and will be reconciled with the current active configuration on the running node.",
+          "aliases": [
+            "domain_search"
+          ]
+        },
+        {
+          "key": "domain_name",
+          "fieldId": "DOMAIN_NAME",
+          "type": "text",
+          "label": "domain name",
+          "description": "Configure the IP domain name on the remote device to the provided value. Value should be in the dotted name form and will be appended to the C(hostname) to create a fully-qualified domain name."
+        },
+        {
+          "key": "hostname",
+          "fieldId": "HOSTNAME",
+          "type": "text",
+          "label": "hostname",
+          "description": "Configure the device hostname parameter. This option takes an ASCII string value."
+        },
+        {
+          "key": "lookup_source",
+          "fieldId": "LOOKUP_SOURCE",
+          "type": "text",
+          "label": "lookup source",
+          "yamlType": "list",
+          "description": "Provides one or more source interfaces to use for performing DNS lookups.  The interface provided in C(lookup_source) can only exist in a single VRF.  This argument accepts either a list of interface names or a list of hashes that configure the interface name and VRF name.  See examples."
+        },
+        {
+          "key": "name_servers",
+          "fieldId": "NAME_SERVERS",
+          "type": "text",
+          "label": "name servers",
+          "yamlType": "list",
+          "description": "List of DNS name servers by IP address to use to perform name resolution lookups.  This argument accepts either a list of DNS servers or a list of hashes that configure the name server and VRF name.  See examples."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the configuration values in the device's current active configuration.  When set to I(present), the values should be configured in the device active configuration and when set to I(absent) the values should not be in the device active configuration",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_user",
+      "blockType": "arista_eos_user",
+      "label": "eos_user",
+      "tooltip": "Manage the collection of local users on EOS devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_user_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "configured_password",
+          "fieldId": "CONFIGURED_PASSWORD",
+          "type": "text",
+          "label": "configured password",
+          "description": "The password to be configured on the remote Arista EOS device. The password needs to be provided in clear and it will be encrypted on the device."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "The username to be configured on the remote Arista EOS device.  This argument accepts a stringv value and is mutually exclusive with the C(aggregate) argument."
+        },
+        {
+          "key": "nopassword",
+          "fieldId": "NOPASSWORD",
+          "type": "boolean",
+          "label": "nopassword",
+          "description": "Defines the username without assigning a password.  This will allow the user to login to the system without being authenticated by a password."
+        },
+        {
+          "key": "privilege",
+          "fieldId": "PRIVILEGE",
+          "type": "number",
+          "label": "privilege",
+          "description": "The C(privilege) argument configures the privilege level of the user when logged into the system.  This argument accepts integer values in the range of 1 to 15."
+        },
+        {
+          "key": "purge",
+          "fieldId": "PURGE",
+          "type": "boolean",
+          "label": "purge",
+          "default": false,
+          "description": "Instructs the module to consider the resource definition absolute.  It will remove any previously configured usernames on the device with the exception of the `admin` user which cannot be deleted per EOS constraints."
+        },
+        {
+          "key": "role",
+          "fieldId": "ROLE",
+          "type": "text",
+          "label": "role",
+          "description": "Configures the role for the username in the device running configuration.  The argument accepts a string value defining the role name.  This argument does not check if the role has been configured on the device."
+        },
+        {
+          "key": "sshkey",
+          "fieldId": "SSHKEY",
+          "type": "text",
+          "label": "sshkey",
+          "description": "Specifies the SSH public key to configure for the given username.  This argument accepts a valid SSH key value."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "Configures the state of the username definition as it relates to the device operational configuration.  When set to I(present), the username(s) should be configured in the device active configuration and when set to I(absent) the username(s) should not be in the device active configuration",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        },
+        {
+          "key": "update_password",
+          "fieldId": "UPDATE_PASSWORD",
+          "type": "dropdown",
+          "label": "update password",
+          "default": "always",
+          "description": "Since passwords are encrypted in the device running config, this argument will instruct the module when to change the password.  When set to C(always), the password will always be updated in the device and when set to C(on_create) the password will be updated only if the username is created.",
+          "options": [
+            [
+              "on_create",
+              "on_create"
+            ],
+            [
+              "always",
+              "always"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "aggregate (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_vlans",
+      "blockType": "arista_eos_vlans",
+      "label": "eos_vlans",
+      "tooltip": "VLANs resource module",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_vlans_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config | section vlan). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state of the configuration after module completion",
+          "options": [
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "parsed",
+              "parsed"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the VLAN."
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "description": "Operational state of the VLAN",
+          "options": [
+            [
+              "active",
+              "active"
+            ],
+            [
+              "suspend",
+              "suspend"
+            ]
+          ]
+        },
+        {
+          "key": "vlan_id",
+          "fieldId": "VLAN_ID",
+          "type": "number",
+          "label": "vlan id",
+          "description": "ID of the VLAN. Range 1-4094",
+          "required": true
+        }
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_vrf",
+      "blockType": "arista_eos_vrf",
+      "label": "eos_vrf",
+      "tooltip": "Manage VRFs on Arista EOS network devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_vrf_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "associated_interfaces",
+          "fieldId": "ASSOCIATED_INTERFACES",
+          "type": "text",
+          "label": "associated interfaces",
+          "yamlType": "list",
+          "description": "This is a intent option and checks the operational state of the for given vrf C(name) for associated interfaces. If the value in the C(associated_interfaces) does not match with the operational state of vrf interfaces on device it will result in failure."
+        },
+        {
+          "key": "delay",
+          "fieldId": "DELAY",
+          "type": "number",
+          "label": "delay",
+          "default": 10,
+          "description": "Time in seconds to wait before checking for the operational state on remote device. This wait is applicable for operational state arguments."
+        },
+        {
+          "key": "interfaces",
+          "fieldId": "INTERFACES",
+          "type": "text",
+          "label": "interfaces",
+          "yamlType": "list",
+          "description": "Identifies the set of interfaces that should be configured in the VRF. Interfaces must be routed interfaces in order to be placed into a VRF. The name of interface should be in expanded format and not abbreviated."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the VRF."
+        },
+        {
+          "key": "purge",
+          "fieldId": "PURGE",
+          "type": "boolean",
+          "label": "purge",
+          "default": false,
+          "description": "Purge VRFs not defined in the I(aggregate) parameter."
+        },
+        {
+          "key": "rd",
+          "fieldId": "RD",
+          "type": "text",
+          "label": "rd",
+          "description": "Route distinguisher of the VRF"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "present",
+          "description": "State of the VRF configuration.",
+          "options": [
+            [
+              "present",
+              "present"
+            ],
+            [
+              "absent",
+              "absent"
+            ]
+          ]
+        }
+      ],
+      "unmappedParams": [
+        "aggregate (has suboptions)"
+      ]
+    },
+    {
+      "fqcn": "arista.eos.eos_vrf_global",
+      "blockType": "arista_eos_vrf_global",
+      "label": "eos_vrf_global",
+      "tooltip": "Resource module to configure VRF definitions.",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/arista/eos/eos_vrf_global_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "running_config",
+          "fieldId": "RUNNING_CONFIG",
+          "type": "text",
+          "label": "running config",
+          "description": "This option is used only with state I(parsed). The value of this option should be the output received from the EOS device by executing the command B(show running-config vrf). The state I(parsed) reads the configuration from C(running_config) option and transforms it into Ansible structured data as per the resource module's argspec and the value is then returned in the I(parsed) key within the result.",
+          "topLevel": true
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "description": "The state the configuration should be left in The states I(rendered), I(gathered) and I(parsed) does not perform any change on the device. The state I(rendered) will transform the configuration in C(config) option to platform specific CLI commands which will be returned in the I(rendered) key within the result. For state I(rendered) active connection to remote host is not required. The state I(gathered) will fetch the running configuration from device and transform it into structured data in the format as per the resource module argspec and the value is returned in the I(gathered) key within the result. The state I(parsed) reads the configuration from C(running_config) option and transforms it into JSON format as per the resource module parameters and the value is returned in the I(parsed) key within the result. The value of C(running_config) option should be the same format as the output of command I(show running-config vrf). connection to remote host is not required.",
+          "options": [
+            [
+              "parsed",
+              "parsed"
+            ],
+            [
+              "gathered",
+              "gathered"
+            ],
+            [
+              "deleted",
+              "deleted"
+            ],
+            [
+              "merged",
+              "merged"
+            ],
+            [
+              "replaced",
+              "replaced"
+            ],
+            [
+              "rendered",
+              "rendered"
+            ],
+            [
+              "overridden",
+              "overridden"
+            ],
+            [
+              "purged",
+              "purged"
+            ]
+          ],
+          "topLevel": true
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "description": "A description for the VRF."
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "description": "Name of the VRF Instance.",
+          "required": true
+        },
+        {
+          "key": "rd",
+          "fieldId": "RD",
+          "type": "text",
+          "label": "rd",
+          "description": "BGP Route Distinguisher (RD)."
+        }
+      ]
+    }
+  ]
+}
