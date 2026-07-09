@@ -1,0 +1,75 @@
+name: Release Packs
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Extract tag
+        id: tag
+        run: echo "TAG=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate registry.json
+        run: |
+          python3 tools/generate_registry.py \
+            --repo "${{ github.repository }}" \
+            --tag "${{ steps.tag.outputs.TAG }}" \
+            --out registry.json
+
+      - name: Validate checksums
+        run: |
+          python3 -c "
+          import json, hashlib, sys
+          registry = json.load(open('registry.json'))
+          for pack in registry['packs']:
+              path = f\"packs/{pack['id']}.json\"
+              with open(path, 'rb') as f:
+                  actual = hashlib.sha256(f.read()).hexdigest()
+              if actual != pack['sha256']:
+                  print(f\"FAIL: {pack['id']}\", file=sys.stderr)
+                  sys.exit(1)
+              print(f\"  {pack['id']}: OK\")
+          print('All checksums verified.')
+          "
+
+      - name: Commit updated registry.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add registry.json
+          if git diff --cached --quiet; then
+            echo "No registry changes to commit"
+          else
+            git commit -m "chore: update registry.json for ${{ steps.tag.outputs.TAG }}"
+            git push origin HEAD:main
+          fi
+
+      - name: Create GitHub Release with pack assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Collect all pack files
+          ASSETS=""
+          for f in packs/*.json; do
+            ASSETS="$ASSETS $f"
+          done
+
+          # Create release with all pack files attached
+          gh release create "${{ steps.tag.outputs.TAG }}" \
+            --title "Pack Release ${{ steps.tag.outputs.TAG }}" \
+            --notes "Automated pack release with $(ls packs/*.json | wc -l | tr -d ' ') packs." \
+            --latest \
+            $ASSETS
