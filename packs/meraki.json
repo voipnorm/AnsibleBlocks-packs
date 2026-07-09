@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "meraki",
+  "name": "Meraki",
+  "collection": "cisco.meraki",
+  "collectionVersion": "2.18.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#67B346",
+  "blockStyleName": "meraki_blocks",
+  "categoryStyleName": "meraki_category",
+  "modules": [
+    {
+      "fqcn": "cisco.meraki.meraki_organization",
+      "blockType": "meraki_organization",
+      "label": "meraki_organization",
+      "tooltip": "Manage Meraki organizations",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_organization_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "org_id", "fieldId": "ORG_ID", "type": "text", "label": "org_id", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_network",
+      "blockType": "meraki_network",
+      "label": "meraki_network",
+      "tooltip": "Manage Meraki networks",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_network_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "net_name", "fieldId": "NET_NAME", "type": "text", "label": "net_name", "default": "" },
+        { "key": "net_id", "fieldId": "NET_ID", "type": "text", "label": "net_id", "default": "" },
+        { "key": "type", "fieldId": "TYPE", "type": "dropdown", "label": "type", "default": "combined", "options": [["combined", "combined"], ["appliance", "appliance"], ["switch", "switch"], ["wireless", "wireless"], ["camera", "camera"], ["sensor", "sensor"]] },
+        { "key": "timezone", "fieldId": "TIMEZONE", "type": "text", "label": "timezone", "default": "America/Los_Angeles" },
+        { "key": "tags", "fieldId": "TAGS", "type": "text", "label": "tags", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_device",
+      "blockType": "meraki_device",
+      "label": "meraki_device",
+      "tooltip": "Manage devices in a Meraki network",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_device_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "net_name", "fieldId": "NET_NAME", "type": "text", "label": "net_name", "default": "" },
+        { "key": "serial", "fieldId": "SERIAL", "type": "text", "label": "serial", "default": "" },
+        { "key": "hostname", "fieldId": "HOSTNAME", "type": "text", "label": "hostname", "default": "" },
+        { "key": "address", "fieldId": "ADDRESS", "type": "text", "label": "address", "default": "" },
+        { "key": "tags", "fieldId": "TAGS", "type": "text", "label": "tags", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_switchport",
+      "blockType": "meraki_switchport",
+      "label": "meraki_switchport",
+      "tooltip": "Manage switchports on Meraki switches",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_switchport_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "serial", "fieldId": "SERIAL", "type": "text", "label": "serial", "default": "" },
+        { "key": "number", "fieldId": "NUMBER", "type": "text", "label": "number", "default": "" },
+        { "key": "name", "fieldId": "PORT_NAME", "type": "text", "label": "name", "default": "" },
+        { "key": "type", "fieldId": "PORT_TYPE", "type": "dropdown", "label": "type", "default": "access", "options": [["access", "access"], ["trunk", "trunk"]] },
+        { "key": "vlan", "fieldId": "VLAN", "type": "number", "label": "vlan", "default": 1, "min": 1, "max": 4094 },
+        { "key": "allowed_vlans", "fieldId": "ALLOWED_VLANS", "type": "text", "label": "allowed_vlans", "default": "all" },
+        { "key": "enabled", "fieldId": "ENABLED", "type": "dropdown", "label": "enabled", "default": "true", "options": [["true", "true"], ["false", "false"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_mx_vlan",
+      "blockType": "meraki_vlan",
+      "label": "meraki_vlan",
+      "tooltip": "Manage VLANs on Meraki MX appliances",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_mx_vlan_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "net_name", "fieldId": "NET_NAME", "type": "text", "label": "net_name", "default": "" },
+        { "key": "vlan_id", "fieldId": "VLAN_ID", "type": "number", "label": "vlan_id", "default": 1, "min": 1, "max": 4094 },
+        { "key": "name", "fieldId": "VLAN_NAME", "type": "text", "label": "name", "default": "" },
+        { "key": "subnet", "fieldId": "SUBNET", "type": "text", "label": "subnet", "default": "" },
+        { "key": "appliance_ip", "fieldId": "APPLIANCE_IP", "type": "text", "label": "appliance_ip", "default": "" },
+        { "key": "dns_nameservers", "fieldId": "DNS", "type": "text", "label": "dns_nameservers", "default": "upstream_dns" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_mr_ssid",
+      "blockType": "meraki_ssid",
+      "label": "meraki_ssid",
+      "tooltip": "Manage wireless SSIDs in a Meraki network",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_mr_ssid_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "net_name", "fieldId": "NET_NAME", "type": "text", "label": "net_name", "default": "" },
+        { "key": "number", "fieldId": "NUMBER", "type": "number", "label": "number", "default": 0, "min": 0, "max": 14 },
+        { "key": "name", "fieldId": "SSID_NAME", "type": "text", "label": "name", "default": "" },
+        { "key": "enabled", "fieldId": "ENABLED", "type": "dropdown", "label": "enabled", "default": "true", "options": [["true", "true"], ["false", "false"]] },
+        { "key": "auth_mode", "fieldId": "AUTH_MODE", "type": "dropdown", "label": "auth_mode", "default": "open", "options": [["open", "open"], ["psk", "psk"], ["8021x-radius", "8021x-radius"], ["8021x-meraki", "8021x-meraki"]] },
+        { "key": "psk", "fieldId": "PSK", "type": "text", "label": "psk", "default": "" },
+        { "key": "encryption_mode", "fieldId": "ENCRYPTION", "type": "dropdown", "label": "encryption_mode", "default": "wpa", "options": [["wpa", "wpa"], ["wep", "wep"], ["none", "none"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_mx_l3_firewall",
+      "blockType": "meraki_firewall",
+      "label": "meraki_mx_l3_firewall",
+      "tooltip": "Manage MX L3 firewall rules in a Meraki network",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_mx_l3_firewall_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "net_name", "fieldId": "NET_NAME", "type": "text", "label": "net_name", "default": "" },
+        { "key": "policy", "fieldId": "POLICY", "type": "dropdown", "label": "policy", "default": "allow", "options": [["allow", "allow"], ["deny", "deny"]] },
+        { "key": "protocol", "fieldId": "PROTOCOL", "type": "dropdown", "label": "protocol", "default": "any", "options": [["any", "any"], ["tcp", "tcp"], ["udp", "udp"], ["icmp", "icmp"]] },
+        { "key": "src_cidr", "fieldId": "SRC_CIDR", "type": "text", "label": "src_cidr", "default": "any" },
+        { "key": "src_port", "fieldId": "SRC_PORT", "type": "text", "label": "src_port", "default": "any" },
+        { "key": "dest_cidr", "fieldId": "DEST_CIDR", "type": "text", "label": "dest_cidr", "default": "any" },
+        { "key": "dest_port", "fieldId": "DEST_PORT", "type": "text", "label": "dest_port", "default": "any" },
+        { "key": "comment", "fieldId": "COMMENT", "type": "text", "label": "comment", "default": "" },
+        { "key": "syslog_enabled", "fieldId": "SYSLOG", "type": "dropdown", "label": "syslog_enabled", "default": "false", "options": [["false", "false"], ["true", "true"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.meraki.meraki_admin",
+      "blockType": "meraki_admin",
+      "label": "meraki_admin",
+      "tooltip": "Manage administrators in a Meraki organization",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/meraki/meraki_admin_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "org_name", "fieldId": "ORG_NAME", "type": "text", "label": "org_name", "default": "" },
+        { "key": "name", "fieldId": "ADMIN_NAME", "type": "text", "label": "name", "default": "" },
+        { "key": "email", "fieldId": "EMAIL", "type": "text", "label": "email", "default": "" },
+        { "key": "org_access", "fieldId": "ORG_ACCESS", "type": "dropdown", "label": "org_access", "default": "full", "options": [["full", "full"], ["read-only", "read-only"], ["none", "none"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    }
+  ]
+}

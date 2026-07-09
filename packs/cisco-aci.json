@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "cisco-aci",
+  "name": "Cisco ACI",
+  "collection": "cisco.aci",
+  "collectionVersion": "2.10.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#00838F",
+  "blockStyleName": "cisco_aci_blocks",
+  "categoryStyleName": "cisco_aci_category",
+  "modules": [
+    {
+      "fqcn": "cisco.aci.aci_tenant",
+      "blockType": "cisco_aci_tenant",
+      "label": "aci_tenant",
+      "tooltip": "Manage ACI tenants (cisco.aci.aci_tenant)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_tenant_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_vrf",
+      "blockType": "cisco_aci_vrf",
+      "label": "aci_vrf",
+      "tooltip": "Manage VRFs in ACI (cisco.aci.aci_vrf)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_vrf_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "vrf", "fieldId": "VRF", "type": "text", "label": "vrf", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "policy_control_preference", "fieldId": "POLICY_CONTROL_PREFERENCE", "type": "dropdown", "label": "policy_control_preference", "default": "enforced", "options": [["enforced", "enforced"], ["unenforced", "unenforced"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_bd",
+      "blockType": "cisco_aci_bd",
+      "label": "aci_bd",
+      "tooltip": "Manage bridge domains in ACI (cisco.aci.aci_bd)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_bd_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "bd", "fieldId": "BD", "type": "text", "label": "bd", "default": "" },
+        { "key": "vrf", "fieldId": "VRF", "type": "text", "label": "vrf", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "enable_routing", "fieldId": "ENABLE_ROUTING", "type": "dropdown", "label": "enable_routing", "default": "TRUE", "options": [["true", "TRUE"], ["false", "FALSE"]] },
+        { "key": "l2_unknown_unicast", "fieldId": "L2_UNKNOWN_UNICAST", "type": "dropdown", "label": "l2_unknown_unicast", "default": "proxy", "options": [["proxy", "proxy"], ["flood", "flood"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_bd_subnet",
+      "blockType": "cisco_aci_bd_subnet",
+      "label": "aci_bd_subnet",
+      "tooltip": "Manage subnets on bridge domains in ACI (cisco.aci.aci_bd_subnet)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_bd_subnet_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "bd", "fieldId": "BD", "type": "text", "label": "bd", "default": "" },
+        { "key": "gateway", "fieldId": "GATEWAY", "type": "text", "label": "gateway", "default": "" },
+        { "key": "mask", "fieldId": "MASK", "type": "number", "label": "mask", "default": 24, "min": 0, "max": 128 },
+        { "key": "scope", "fieldId": "SCOPE", "type": "dropdown", "label": "scope", "default": "private", "options": [["private", "private"], ["public", "public"], ["shared", "shared"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_ap",
+      "blockType": "cisco_aci_ap",
+      "label": "aci_ap",
+      "tooltip": "Manage application profiles in ACI (cisco.aci.aci_ap)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_ap_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "ap", "fieldId": "AP", "type": "text", "label": "ap", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_epg",
+      "blockType": "cisco_aci_epg",
+      "label": "aci_epg",
+      "tooltip": "Manage endpoint groups in ACI (cisco.aci.aci_epg)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_epg_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "ap", "fieldId": "AP", "type": "text", "label": "ap", "default": "" },
+        { "key": "epg", "fieldId": "EPG", "type": "text", "label": "epg", "default": "" },
+        { "key": "bd", "fieldId": "BD", "type": "text", "label": "bd", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_contract",
+      "blockType": "cisco_aci_contract",
+      "label": "aci_contract",
+      "tooltip": "Manage contracts in ACI (cisco.aci.aci_contract)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_contract_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "contract", "fieldId": "CONTRACT", "type": "text", "label": "contract", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "scope", "fieldId": "SCOPE", "type": "dropdown", "label": "scope", "default": "context", "options": [["context", "context"], ["global", "global"], ["tenant", "tenant"], ["application-profile", "application-profile"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_contract_subject",
+      "blockType": "cisco_aci_contract_subject",
+      "label": "aci_contract_subject",
+      "tooltip": "Manage contract subjects in ACI (cisco.aci.aci_contract_subject)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_contract_subject_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "contract", "fieldId": "CONTRACT", "type": "text", "label": "contract", "default": "" },
+        { "key": "subject", "fieldId": "SUBJECT", "type": "text", "label": "subject", "default": "" },
+        { "key": "reverse_filter", "fieldId": "REVERSE_FILTER", "type": "dropdown", "label": "reverse_filter", "default": "TRUE", "options": [["true", "TRUE"], ["false", "FALSE"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_filter",
+      "blockType": "cisco_aci_filter",
+      "label": "aci_filter",
+      "tooltip": "Manage filters in ACI (cisco.aci.aci_filter)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_filter_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "filter", "fieldId": "FILTER", "type": "text", "label": "filter", "default": "" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_filter_entry",
+      "blockType": "cisco_aci_filter_entry",
+      "label": "aci_filter_entry",
+      "tooltip": "Manage filter entries in ACI (cisco.aci.aci_filter_entry)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_filter_entry_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "filter", "fieldId": "FILTER", "type": "text", "label": "filter", "default": "" },
+        { "key": "entry", "fieldId": "ENTRY", "type": "text", "label": "entry", "default": "" },
+        { "key": "ether_type", "fieldId": "ETHER_TYPE", "type": "dropdown", "label": "ether_type", "default": "unspecified", "options": [["unspecified", "unspecified"], ["ip", "ip"], ["arp", "arp"]] },
+        { "key": "ip_protocol", "fieldId": "IP_PROTOCOL", "type": "dropdown", "label": "ip_protocol", "default": "unspecified", "options": [["unspecified", "unspecified"], ["tcp", "tcp"], ["udp", "udp"], ["icmp", "icmp"]] },
+        { "key": "dst_port", "fieldId": "DST_PORT", "type": "text", "label": "dst_port", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_epg_to_contract",
+      "blockType": "cisco_aci_epg_to_contract",
+      "label": "aci_epg_to_contract",
+      "tooltip": "Bind EPGs to contracts in ACI (cisco.aci.aci_epg_to_contract)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_epg_to_contract_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "ap", "fieldId": "AP", "type": "text", "label": "ap", "default": "" },
+        { "key": "epg", "fieldId": "EPG", "type": "text", "label": "epg", "default": "" },
+        { "key": "contract", "fieldId": "CONTRACT", "type": "text", "label": "contract", "default": "" },
+        { "key": "contract_type", "fieldId": "CONTRACT_TYPE", "type": "dropdown", "label": "contract_type", "default": "provider", "options": [["provider", "provider"], ["consumer", "consumer"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_epg_to_domain",
+      "blockType": "cisco_aci_epg_to_domain",
+      "label": "aci_epg_to_domain",
+      "tooltip": "Bind EPGs to domains in ACI (cisco.aci.aci_epg_to_domain)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_epg_to_domain_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "ap", "fieldId": "AP", "type": "text", "label": "ap", "default": "" },
+        { "key": "epg", "fieldId": "EPG", "type": "text", "label": "epg", "default": "" },
+        { "key": "domain", "fieldId": "DOMAIN", "type": "text", "label": "domain", "default": "" },
+        { "key": "domain_type", "fieldId": "DOMAIN_TYPE", "type": "dropdown", "label": "domain_type", "default": "phys", "options": [["phys", "phys"], ["vmm", "vmm"], ["l2dom", "l2dom"], ["l3dom", "l3dom"]] },
+        { "key": "vm_provider", "fieldId": "VM_PROVIDER", "type": "text", "label": "vm_provider", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_l3out",
+      "blockType": "cisco_aci_l3out",
+      "label": "aci_l3out",
+      "tooltip": "Manage L3Outs in ACI (cisco.aci.aci_l3out)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_l3out_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "l3out", "fieldId": "L3OUT", "type": "text", "label": "l3out", "default": "" },
+        { "key": "vrf", "fieldId": "VRF", "type": "text", "label": "vrf", "default": "" },
+        { "key": "domain", "fieldId": "DOMAIN", "type": "text", "label": "domain", "default": "" },
+        { "key": "route_control", "fieldId": "ROUTE_CONTROL", "type": "dropdown", "label": "route_control", "default": "export", "options": [["export", "export"], ["import", "import"]] },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.aci.aci_static_binding_to_domain",
+      "blockType": "cisco_aci_static_binding",
+      "label": "aci_static_binding",
+      "tooltip": "Manage static path bindings in ACI (cisco.aci.aci_static_binding_to_domain)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_static_binding_to_domain_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "tenant", "fieldId": "TENANT", "type": "text", "label": "tenant", "default": "" },
+        { "key": "ap", "fieldId": "AP", "type": "text", "label": "ap", "default": "" },
+        { "key": "epg", "fieldId": "EPG", "type": "text", "label": "epg", "default": "" },
+        { "key": "encap_id", "fieldId": "ENCAP_ID", "type": "number", "label": "encap_id", "default": 1, "min": 1, "max": 4094 },
+        { "key": "deploy_immediacy", "fieldId": "DEPLOY_IMMEDIACY", "type": "dropdown", "label": "deploy_immediacy", "default": "lazy", "options": [["lazy", "lazy"], ["immediate", "immediate"]] },
+        { "key": "interface_type", "fieldId": "INTERFACE_TYPE", "type": "dropdown", "label": "interface_type", "default": "switch_port", "options": [["switch_port", "switch_port"], ["port_channel", "port_channel"], ["vpc", "vpc"], ["fex", "fex"]] },
+        { "key": "pod_id", "fieldId": "POD_ID", "type": "number", "label": "pod_id", "default": 1, "min": 1, "max": 255 },
+        { "key": "leafs", "fieldId": "LEAFS", "type": "text", "label": "leafs", "default": "" },
+        { "key": "interface", "fieldId": "INTERFACE", "type": "text", "label": "interface", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "present", "options": [["present", "present"], ["absent", "absent"], ["query", "query"]] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "netcommon",
+  "name": "Netcommon",
+  "collection": "ansible.netcommon",
+  "collectionVersion": "7.1.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#6366F1",
+  "blockStyleName": "netcommon_blocks",
+  "categoryStyleName": "netcommon_category",
+  "modules": [
+    {
+      "fqcn": "ansible.netcommon.netconf_config",
+      "blockType": "netcommon_netconf_config",
+      "label": "netconf_config",
+      "tooltip": "Edit NETCONF device configuration (ansible.netcommon.netconf_config)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/netconf_config_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "target",
+          "fieldId": "TARGET",
+          "type": "dropdown",
+          "label": "target",
+          "default": "auto",
+          "options": [["auto", "auto"], ["candidate", "candidate"], ["running", "running"]]
+        },
+        {
+          "key": "content",
+          "fieldId": "CONTENT",
+          "type": "text",
+          "label": "content",
+          "default": ""
+        },
+        {
+          "key": "default_operation",
+          "fieldId": "DEFAULT_OPERATION",
+          "type": "dropdown",
+          "label": "default_operation",
+          "default": "merge",
+          "options": [["merge", "merge"], ["replace", "replace"], ["none", "none"]]
+        },
+        {
+          "key": "validate",
+          "fieldId": "VALIDATE",
+          "type": "dropdown",
+          "label": "validate",
+          "default": "FALSE",
+          "options": [["false", "FALSE"], ["true", "TRUE"]]
+        },
+        {
+          "key": "commit",
+          "fieldId": "COMMIT",
+          "type": "dropdown",
+          "label": "commit",
+          "default": "TRUE",
+          "options": [["true", "TRUE"], ["false", "FALSE"]]
+        },
+        {
+          "key": "lock",
+          "fieldId": "LOCK",
+          "type": "dropdown",
+          "label": "lock",
+          "default": "always",
+          "options": [["always", "always"], ["never", "never"], ["if-supported", "if-supported"]]
+        },
+        {
+          "key": "error_option",
+          "fieldId": "ERROR_OPTION",
+          "type": "dropdown",
+          "label": "error_option",
+          "default": "stop-on-error",
+          "options": [["stop-on-error", "stop-on-error"], ["continue-on-error", "continue-on-error"], ["rollback-on-error", "rollback-on-error"]]
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.netcommon.netconf_get",
+      "blockType": "netcommon_netconf_get",
+      "label": "netconf_get",
+      "tooltip": "Get NETCONF device configuration or state data (ansible.netcommon.netconf_get)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/netconf_get_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "dropdown",
+          "label": "source",
+          "default": "running",
+          "options": [["running", "running"], ["candidate", "candidate"], ["startup", "startup"]]
+        },
+        {
+          "key": "filter",
+          "fieldId": "FILTER",
+          "type": "text",
+          "label": "filter",
+          "default": ""
+        },
+        {
+          "key": "display",
+          "fieldId": "DISPLAY",
+          "type": "dropdown",
+          "label": "display",
+          "default": "",
+          "options": [["(default)", ""], ["json", "json"], ["pretty", "pretty"], ["xml", "xml"]]
+        },
+        {
+          "key": "lock",
+          "fieldId": "LOCK",
+          "type": "dropdown",
+          "label": "lock",
+          "default": "never",
+          "options": [["never", "never"], ["always", "always"], ["if-supported", "if-supported"]]
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.netcommon.netconf_rpc",
+      "blockType": "netcommon_netconf_rpc",
+      "label": "netconf_rpc",
+      "tooltip": "Execute a NETCONF RPC on a device (ansible.netcommon.netconf_rpc)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/netconf_rpc_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "rpc",
+          "fieldId": "RPC",
+          "type": "text",
+          "label": "rpc",
+          "default": ""
+        },
+        {
+          "key": "xmlns",
+          "fieldId": "XMLNS",
+          "type": "text",
+          "label": "xmlns",
+          "default": ""
+        },
+        {
+          "key": "content",
+          "fieldId": "CONTENT",
+          "type": "text",
+          "label": "content",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.netcommon.cli_command",
+      "blockType": "netcommon_cli_command",
+      "label": "cli_command",
+      "tooltip": "Run a CLI command on a network device (ansible.netcommon.cli_command)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/cli_command_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "command",
+          "fieldId": "COMMAND",
+          "type": "text",
+          "label": "command",
+          "default": ""
+        },
+        {
+          "key": "prompt",
+          "fieldId": "PROMPT",
+          "type": "text",
+          "label": "prompt",
+          "default": ""
+        },
+        {
+          "key": "answer",
+          "fieldId": "ANSWER",
+          "type": "text",
+          "label": "answer",
+          "default": ""
+        },
+        {
+          "key": "sendonly",
+          "fieldId": "SENDONLY",
+          "type": "dropdown",
+          "label": "sendonly",
+          "default": "FALSE",
+          "options": [["false", "FALSE"], ["true", "TRUE"]]
+        },
+        {
+          "key": "check_all",
+          "fieldId": "CHECK_ALL",
+          "type": "dropdown",
+          "label": "check_all",
+          "default": "FALSE",
+          "options": [["false", "FALSE"], ["true", "TRUE"]]
+        }
+      ]
+    },
+    {
+      "fqcn": "ansible.netcommon.cli_config",
+      "blockType": "netcommon_cli_config",
+      "label": "cli_config",
+      "tooltip": "Push CLI configuration to a network device (ansible.netcommon.cli_config)",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/cli_config_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "config",
+          "fieldId": "CONFIG",
+          "type": "text",
+          "label": "config",
+          "default": ""
+        },
+        {
+          "key": "commit",
+          "fieldId": "COMMIT",
+          "type": "dropdown",
+          "label": "commit",
+          "default": "",
+          "options": [["(default)", ""], ["true", "TRUE"], ["false", "FALSE"]]
+        },
+        {
+          "key": "replace",
+          "fieldId": "REPLACE",
+          "type": "text",
+          "label": "replace",
+          "default": ""
+        },
+        {
+          "key": "diff_match",
+          "fieldId": "DIFF_MATCH",
+          "type": "dropdown",
+          "label": "diff_match",
+          "default": "line",
+          "options": [["line", "line"], ["strict", "strict"], ["exact", "exact"], ["none", "none"]]
+        },
+        {
+          "key": "diff_replace",
+          "fieldId": "DIFF_REPLACE",
+          "type": "dropdown",
+          "label": "diff_replace",
+          "default": "line",
+          "options": [["line", "line"], ["block", "block"], ["config", "config"]]
+        },
+        {
+          "key": "backup",
+          "fieldId": "BACKUP",
+          "type": "dropdown",
+          "label": "backup",
+          "default": "FALSE",
+          "options": [["false", "FALSE"], ["true", "TRUE"]]
+        }
+      ]
+    }
+  ]
+}

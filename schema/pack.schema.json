@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ansibleblocks.dev/schemas/pack.schema.json",
+  "title": "AnsibleBlocks Pack Schema",
+  "description": "Declarative JSON schema for an AnsibleBlocks downloadable block pack",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "packVersion",
+    "id",
+    "name",
+    "collection",
+    "collectionVersion",
+    "minAppVersion",
+    "testedWithAppVersion",
+    "publishedAt",
+    "qualityLevel",
+    "source",
+    "categoryColor",
+    "modules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Pack file format version"
+    },
+    "packVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "description": "Semantic version of the pack"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Stable pack identifier (lowercase, hyphens allowed)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Display name"
+    },
+    "collection": {
+      "type": "string",
+      "pattern": "^[a-z_][a-z0-9_]*\\.[a-z_][a-z0-9_]*$",
+      "description": "Ansible collection FQCN"
+    },
+    "collectionVersion": {
+      "type": "string",
+      "description": "Ansible collection version used to generate this pack"
+    },
+    "minAppVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "description": "Minimum compatible AnsibleBlocks version"
+    },
+    "testedWithAppVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "description": "Latest app version this pack was tested with"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 publish timestamp"
+    },
+    "qualityLevel": {
+      "type": "string",
+      "enum": ["official", "curated", "generated", "community"],
+      "description": "Quality classification"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["generated", "curated", "generated+curated"],
+      "description": "How this pack was created"
+    },
+    "categoryColor": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$",
+      "description": "Hex colour for the toolbox category"
+    },
+    "blockStyleName": {
+      "type": "string",
+      "pattern": "^[a-z_]+$",
+      "description": "Blockly block style name"
+    },
+    "categoryStyleName": {
+      "type": "string",
+      "pattern": "^[a-z_]+$",
+      "description": "Blockly category style name"
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "items": { "$ref": "#/$defs/module" },
+      "description": "Module definitions"
+    }
+  },
+  "$defs": {
+    "module": {
+      "type": "object",
+      "required": ["fqcn", "blockType", "label", "tooltip", "helpUrl", "structure", "fields"],
+      "additionalProperties": false,
+      "properties": {
+        "fqcn": {
+          "type": "string",
+          "pattern": "^[a-z_][a-z0-9_]*\\.[a-z_][a-z0-9_]*\\.[a-z_][a-z0-9_]*$",
+          "description": "Fully qualified collection name"
+        },
+        "blockType": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$",
+          "description": "Blockly block type identifier"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Display label on the block header"
+        },
+        "tooltip": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Tooltip text"
+        },
+        "helpUrl": {
+          "type": "string",
+          "pattern": "^https://",
+          "description": "Documentation URL (HTTPS only)"
+        },
+        "supportsRawParams": {
+          "type": "boolean",
+          "description": "Whether raw parameter input is allowed"
+        },
+        "structure": { "$ref": "#/$defs/structure" },
+        "fields": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "$ref": "#/$defs/field" },
+          "description": "Field definitions"
+        },
+        "validationRules": { "$ref": "#/$defs/validationRules" },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Example YAML snippets"
+        },
+        "deprecated": {
+          "type": "boolean",
+          "description": "Whether this module is deprecated"
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Alternative module names"
+        }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["flat", "wrapped", "deep"],
+          "description": "Nesting level"
+        },
+        "wrapper": {
+          "type": "string",
+          "description": "Wrapper key in params"
+        },
+        "wrapperType": {
+          "type": "string",
+          "enum": ["list-of-one", "object"],
+          "description": "How the wrapper is structured"
+        }
+      },
+      "if": {
+        "properties": { "type": { "enum": ["wrapped", "deep"] } }
+      },
+      "then": {
+        "required": ["wrapper", "wrapperType"]
+      }
+    },
+    "field": {
+      "type": "object",
+      "required": ["key", "fieldId", "type", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "YAML parameter key"
+        },
+        "fieldId": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "Blockly field ID (uppercase convention)"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["text", "dropdown", "number", "boolean"],
+          "description": "UI field type"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Display label"
+        },
+        "default": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "number" },
+            { "type": "boolean" }
+          ],
+          "description": "Default value"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Human-readable description"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Always emit value (skip default check)"
+        },
+        "advanced": {
+          "type": "boolean",
+          "description": "Hidden in beginner mode"
+        },
+        "yamlType": {
+          "type": "string",
+          "enum": ["list", "dict"],
+          "description": "YAML output type override"
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Placeholder text"
+        },
+        "multiline": {
+          "type": "boolean",
+          "description": "Multi-line text input"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "description": "Dropdown options as [displayLabel, value] tuples"
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Alternative YAML keys for import"
+        },
+        "deprecated": {
+          "type": "boolean"
+        },
+        "visibleWhen": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "hiddenWhen": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "group": {
+          "type": "string"
+        },
+        "repeatable": {
+          "type": "boolean"
+        },
+        "topLevel": {
+          "type": "boolean",
+          "description": "Field maps directly to params, not into the wrapper"
+        },
+        "yamlPath": {
+          "type": "string",
+          "description": "Dot-and-bracket path for nested placement"
+        },
+        "min": {
+          "type": "number",
+          "description": "Minimum value for number fields"
+        },
+        "max": {
+          "type": "number",
+          "description": "Maximum value for number fields"
+        }
+      }
+    },
+    "validationRules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requiredOneOf": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "At least one of these field keys must have a non-empty value"
+        },
+        "requiredTogether": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "description": "Groups of field keys that must all be present or all absent"
+        }
+      }
+    }
+  }
+}

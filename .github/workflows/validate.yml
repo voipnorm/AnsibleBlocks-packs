@@ -1,0 +1,75 @@
+name: Validate Packs
+
+on:
+  push:
+    branches: [main]
+    paths: ['packs/**', 'registry.json']
+  pull_request:
+    branches: [main]
+    paths: ['packs/**', 'registry.json']
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate pack JSON files are parseable
+        run: |
+          for f in packs/*.json; do
+            echo "Validating $f..."
+            python3 -c "import json; json.load(open('$f'))" || exit 1
+          done
+          echo "All pack files are valid JSON."
+
+      - name: Validate registry.json
+        run: python3 -c "import json; json.load(open('registry.json'))"
+
+      - name: Verify SHA-256 checksums
+        run: |
+          python3 -c "
+          import json, hashlib, sys
+          registry = json.load(open('registry.json'))
+          errors = []
+          for pack in registry['packs']:
+              path = f\"packs/{pack['id']}.json\"
+              with open(path, 'rb') as f:
+                  actual = hashlib.sha256(f.read()).hexdigest()
+              if actual != pack['sha256']:
+                  errors.append(f\"{pack['id']}: expected {pack['sha256']}, got {actual}\")
+              else:
+                  print(f\"  {pack['id']}: OK\")
+          if errors:
+              for e in errors:
+                  print(f'ERROR: {e}', file=sys.stderr)
+              sys.exit(1)
+          print('All checksums verified.')
+          "
+
+      - name: Validate pack structure
+        run: |
+          python3 -c "
+          import json, sys
+          errors = []
+          import glob
+          for path in sorted(glob.glob('packs/*.json')):
+              with open(path) as f:
+                  pack = json.load(f)
+              pid = pack.get('id', path)
+              if not pack.get('schemaVersion'):
+                  errors.append(f'{pid}: missing schemaVersion')
+              if not pack.get('id'):
+                  errors.append(f'{pid}: missing id')
+              if not pack.get('name'):
+                  errors.append(f'{pid}: missing name')
+              if not isinstance(pack.get('modules'), list):
+                  errors.append(f'{pid}: missing or invalid modules array')
+              elif len(pack['modules']) > 200:
+                  errors.append(f'{pid}: exceeds 200 module limit ({len(pack[\"modules\"])})')
+              print(f'  {pid}: {len(pack.get(\"modules\", []))} modules')
+          if errors:
+              for e in errors:
+                  print(f'ERROR: {e}', file=sys.stderr)
+              sys.exit(1)
+          print('All packs structurally valid.')
+          "

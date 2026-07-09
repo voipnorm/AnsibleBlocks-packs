@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "cisco-ios",
+  "name": "Cisco IOS",
+  "collection": "cisco.ios",
+  "collectionVersion": "9.1.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#0D9488",
+  "blockStyleName": "cisco_blocks",
+  "categoryStyleName": "cisco_category",
+  "modules": [
+    {
+      "fqcn": "cisco.ios.ios_config",
+      "blockType": "cisco_ios_config",
+      "label": "ios_config",
+      "tooltip": "Push configuration lines to a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_config_module.html",
+      "supportsRawParams": true,
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "lines",
+          "fieldId": "LINES",
+          "type": "text",
+          "label": "lines",
+          "yamlType": "list",
+          "default": "ip name-server 8.8.8.8",
+          "description": "Configuration lines to push"
+        },
+        {
+          "key": "parents",
+          "fieldId": "PARENTS",
+          "type": "text",
+          "label": "parents",
+          "yamlType": "list",
+          "default": "",
+          "description": "Parent configuration lines for context"
+        },
+        {
+          "key": "before",
+          "fieldId": "BEFORE",
+          "type": "text",
+          "label": "before",
+          "yamlType": "list",
+          "default": "",
+          "description": "Lines to add before configuration changes"
+        },
+        {
+          "key": "after",
+          "fieldId": "AFTER",
+          "type": "text",
+          "label": "after",
+          "yamlType": "list",
+          "default": "",
+          "description": "Lines to add after configuration changes"
+        },
+        {
+          "key": "match",
+          "fieldId": "MATCH",
+          "type": "dropdown",
+          "label": "match",
+          "default": "line",
+          "options": [
+            ["line", "line"],
+            ["strict", "strict"],
+            ["exact", "exact"],
+            ["none", "none"]
+          ],
+          "description": "Match algorithm for comparing running config"
+        },
+        {
+          "key": "replace",
+          "fieldId": "REPLACE",
+          "type": "dropdown",
+          "label": "replace",
+          "default": "line",
+          "options": [
+            ["line", "line"],
+            ["block", "block"]
+          ],
+          "description": "Replace strategy for config changes"
+        },
+        {
+          "key": "save_when",
+          "fieldId": "SAVE_WHEN",
+          "type": "dropdown",
+          "label": "save_when",
+          "default": "never",
+          "options": [
+            ["never", "never"],
+            ["always", "always"],
+            ["modified", "modified"],
+            ["changed", "changed"]
+          ],
+          "description": "When to save running config to startup"
+        }
+      ],
+      "validationRules": {
+        "requiredOneOf": ["lines", "src"]
+      }
+    },
+    {
+      "fqcn": "cisco.ios.ios_command",
+      "blockType": "cisco_ios_command",
+      "label": "ios_command",
+      "tooltip": "Run show commands on a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_command_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "commands",
+          "fieldId": "COMMANDS",
+          "type": "text",
+          "label": "commands",
+          "yamlType": "list",
+          "default": "show version",
+          "description": "Commands to run on the device"
+        },
+        {
+          "key": "wait_for",
+          "fieldId": "WAIT_FOR",
+          "type": "text",
+          "label": "wait_for",
+          "yamlType": "list",
+          "default": "",
+          "description": "Conditions to wait for in output"
+        },
+        {
+          "key": "match",
+          "fieldId": "MATCH",
+          "type": "dropdown",
+          "label": "match",
+          "default": "all",
+          "options": [
+            ["all", "all"],
+            ["any", "any"]
+          ],
+          "description": "Match mode for wait_for conditions"
+        },
+        {
+          "key": "retries",
+          "fieldId": "RETRIES",
+          "type": "number",
+          "label": "retries",
+          "default": 10,
+          "min": 1,
+          "max": 100,
+          "description": "Number of retries for wait_for"
+        },
+        {
+          "key": "interval",
+          "fieldId": "INTERVAL",
+          "type": "number",
+          "label": "interval",
+          "default": 1,
+          "min": 1,
+          "max": 60,
+          "description": "Seconds between retries"
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.ios.ios_facts",
+      "blockType": "cisco_ios_facts",
+      "label": "ios_facts",
+      "tooltip": "Gather facts from a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_facts_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "gather_subset",
+          "fieldId": "GATHER_SUBSET",
+          "type": "text",
+          "label": "gather_subset",
+          "yamlType": "list",
+          "default": "all",
+          "description": "Subset of facts to gather"
+        },
+        {
+          "key": "gather_network_resources",
+          "fieldId": "GATHER_NETWORK_RESOURCES",
+          "type": "text",
+          "label": "gather_network_resources",
+          "yamlType": "list",
+          "default": "",
+          "description": "Network resources to gather"
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.ios.ios_interfaces",
+      "blockType": "cisco_ios_interfaces",
+      "label": "ios_interfaces",
+      "tooltip": "Manage interfaces on a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_interfaces_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "default": "GigabitEthernet0/1",
+          "description": "Interface name"
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "default": "",
+          "description": "Interface description"
+        },
+        {
+          "key": "enabled",
+          "fieldId": "ENABLED",
+          "type": "boolean",
+          "label": "enabled",
+          "default": true,
+          "description": "Administrative state of the interface"
+        },
+        {
+          "key": "speed",
+          "fieldId": "SPEED",
+          "type": "text",
+          "label": "speed",
+          "default": "",
+          "description": "Interface speed"
+        },
+        {
+          "key": "duplex",
+          "fieldId": "DUPLEX",
+          "type": "dropdown",
+          "label": "duplex",
+          "default": "",
+          "options": [
+            ["(default)", ""],
+            ["auto", "auto"],
+            ["full", "full"],
+            ["half", "half"]
+          ],
+          "description": "Interface duplex mode"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "topLevel": true,
+          "options": [
+            ["merged", "merged"],
+            ["replaced", "replaced"],
+            ["overridden", "overridden"],
+            ["deleted", "deleted"]
+          ],
+          "description": "Resource module state"
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.ios.ios_vlans",
+      "blockType": "cisco_ios_vlans",
+      "label": "ios_vlans",
+      "tooltip": "Manage VLANs on a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_vlans_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "vlan_id",
+          "fieldId": "VLAN_ID",
+          "type": "number",
+          "label": "vlan_id",
+          "default": 10,
+          "required": true,
+          "min": 1,
+          "max": 4094,
+          "description": "VLAN ID"
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "default": "",
+          "description": "VLAN name"
+        },
+        {
+          "key": "shutdown",
+          "fieldId": "SHUTDOWN",
+          "type": "dropdown",
+          "label": "shutdown",
+          "default": "",
+          "options": [
+            ["(default)", ""],
+            ["enabled", "enabled"],
+            ["disabled", "disabled"]
+          ],
+          "description": "VLAN shutdown state"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "topLevel": true,
+          "options": [
+            ["merged", "merged"],
+            ["replaced", "replaced"],
+            ["overridden", "overridden"],
+            ["deleted", "deleted"]
+          ],
+          "description": "Resource module state"
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.ios.ios_ntp_global",
+      "blockType": "cisco_ios_ntp_global",
+      "label": "ios_ntp_global",
+      "tooltip": "Manage NTP global settings on a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_ntp_global_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "object"
+      },
+      "fields": [
+        {
+          "key": "server",
+          "fieldId": "SERVER",
+          "type": "text",
+          "label": "server",
+          "default": "time.google.com",
+          "yamlPath": "servers[0].server",
+          "description": "NTP server address"
+        },
+        {
+          "key": "source_interface",
+          "fieldId": "SOURCE_INTERFACE",
+          "type": "text",
+          "label": "source_interface",
+          "default": "",
+          "description": "Source interface for NTP"
+        },
+        {
+          "key": "authenticate",
+          "fieldId": "AUTHENTICATE",
+          "type": "boolean",
+          "label": "authenticate",
+          "default": false,
+          "description": "Enable NTP authentication"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "topLevel": true,
+          "options": [
+            ["merged", "merged"],
+            ["replaced", "replaced"],
+            ["overridden", "overridden"],
+            ["deleted", "deleted"]
+          ],
+          "description": "Resource module state"
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.ios.ios_acls",
+      "blockType": "cisco_ios_acls",
+      "label": "ios_acls",
+      "tooltip": "Manage ACLs on a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_acls_module.html",
+      "supportsRawParams": true,
+      "structure": {
+        "type": "deep",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "afi",
+          "fieldId": "AFI",
+          "type": "dropdown",
+          "label": "afi",
+          "default": "ipv4",
+          "options": [
+            ["ipv4", "ipv4"],
+            ["ipv6", "ipv6"]
+          ],
+          "description": "Address family indicator"
+        },
+        {
+          "key": "acl_name",
+          "fieldId": "ACL_NAME",
+          "type": "text",
+          "label": "acl name",
+          "default": "MY_ACL",
+          "yamlPath": "acls[0].name",
+          "description": "ACL name"
+        },
+        {
+          "key": "acl_type",
+          "fieldId": "ACL_TYPE",
+          "type": "dropdown",
+          "label": "acl type",
+          "default": "extended",
+          "yamlPath": "acls[0].acl_type",
+          "options": [
+            ["extended", "extended"],
+            ["standard", "standard"]
+          ],
+          "description": "ACL type"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "topLevel": true,
+          "options": [
+            ["merged", "merged"],
+            ["replaced", "replaced"],
+            ["overridden", "overridden"],
+            ["deleted", "deleted"]
+          ],
+          "description": "Resource module state"
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.ios.ios_static_routes",
+      "blockType": "cisco_ios_static_routes",
+      "label": "ios_static_routes",
+      "tooltip": "Manage static routes on a Cisco IOS device",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_static_routes_module.html",
+      "supportsRawParams": true,
+      "structure": {
+        "type": "deep",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "afi",
+          "fieldId": "AFI",
+          "type": "dropdown",
+          "label": "afi",
+          "default": "ipv4",
+          "options": [
+            ["ipv4", "ipv4"],
+            ["ipv6", "ipv6"]
+          ],
+          "description": "Address family indicator"
+        },
+        {
+          "key": "dest",
+          "fieldId": "DEST",
+          "type": "text",
+          "label": "dest",
+          "default": "192.168.1.0/24",
+          "yamlPath": "address_families[0].routes[0].dest",
+          "description": "Destination network"
+        },
+        {
+          "key": "next_hop",
+          "fieldId": "NEXT_HOP",
+          "type": "text",
+          "label": "next_hop",
+          "default": "10.0.0.1",
+          "yamlPath": "address_families[0].routes[0].next_hops[0].forward_router_address",
+          "description": "Next hop IP address"
+        },
+        {
+          "key": "interface",
+          "fieldId": "INTERFACE",
+          "type": "text",
+          "label": "interface",
+          "default": "",
+          "yamlPath": "address_families[0].routes[0].next_hops[0].interface",
+          "description": "Outgoing interface"
+        },
+        {
+          "key": "admin_distance",
+          "fieldId": "ADMIN_DISTANCE",
+          "type": "number",
+          "label": "admin_distance",
+          "default": 1,
+          "min": 1,
+          "max": 255,
+          "yamlPath": "address_families[0].routes[0].next_hops[0].admin_distance",
+          "description": "Administrative distance"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "topLevel": true,
+          "options": [
+            ["merged", "merged"],
+            ["replaced", "replaced"],
+            ["overridden", "overridden"],
+            ["deleted", "deleted"]
+          ],
+          "description": "Resource module state"
+        }
+      ]
+    }
+  ]
+}

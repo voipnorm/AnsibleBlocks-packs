@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "cisco-iosxr",
+  "name": "Cisco IOS-XR",
+  "collection": "cisco.iosxr",
+  "collectionVersion": "10.2.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#1B67A5",
+  "blockStyleName": "iosxr_blocks",
+  "categoryStyleName": "iosxr_category",
+  "modules": [
+    {
+      "fqcn": "cisco.iosxr.iosxr_command",
+      "blockType": "cisco_iosxr_command",
+      "label": "iosxr_command",
+      "tooltip": "Run commands on Cisco IOS-XR devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_command_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "commands", "fieldId": "COMMANDS", "type": "text", "label": "commands", "yamlType": "list", "default": "show version" },
+        { "key": "wait_for", "fieldId": "WAIT_FOR", "type": "text", "label": "wait_for", "yamlType": "list", "default": "" },
+        { "key": "match", "fieldId": "MATCH", "type": "dropdown", "label": "match", "default": "all", "options": [["all", "all"], ["any", "any"]] },
+        { "key": "retries", "fieldId": "RETRIES", "type": "number", "label": "retries", "default": 10, "min": 1, "max": 100 },
+        { "key": "interval", "fieldId": "INTERVAL", "type": "number", "label": "interval", "default": 1, "min": 1, "max": 60 }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_config",
+      "blockType": "cisco_iosxr_config",
+      "label": "iosxr_config",
+      "tooltip": "Manage Cisco IOS-XR configuration sections",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_config_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "lines", "fieldId": "LINES", "type": "text", "label": "lines", "yamlType": "list", "default": "" },
+        { "key": "parents", "fieldId": "PARENTS", "type": "text", "label": "parents", "yamlType": "list", "default": "" },
+        { "key": "before", "fieldId": "BEFORE", "type": "text", "label": "before", "yamlType": "list", "default": "" },
+        { "key": "after", "fieldId": "AFTER", "type": "text", "label": "after", "yamlType": "list", "default": "" },
+        { "key": "match", "fieldId": "MATCH", "type": "dropdown", "label": "match", "default": "line", "options": [["line", "line"], ["strict", "strict"], ["exact", "exact"], ["none", "none"]] },
+        { "key": "replace", "fieldId": "REPLACE", "type": "dropdown", "label": "replace", "default": "line", "options": [["line", "line"], ["block", "block"]] },
+        { "key": "comment", "fieldId": "COMMENT", "type": "text", "label": "comment", "default": "" }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_facts",
+      "blockType": "cisco_iosxr_facts",
+      "label": "iosxr_facts",
+      "tooltip": "Gather facts from IOS-XR devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_facts_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "gather_subset", "fieldId": "GATHER_SUBSET", "type": "text", "label": "gather_subset", "yamlType": "list", "default": "min" },
+        { "key": "gather_network_resources", "fieldId": "GATHER_NETWORK_RESOURCES", "type": "text", "label": "gather_network_resources", "yamlType": "list", "default": "" }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_interfaces",
+      "blockType": "cisco_iosxr_interfaces",
+      "label": "iosxr_interfaces",
+      "tooltip": "Manage interfaces on Cisco IOS-XR devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_interfaces_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "name", "fieldId": "NAME", "type": "text", "label": "name", "default": "GigabitEthernet0/0/0/0" },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "enabled", "fieldId": "ENABLED", "type": "dropdown", "label": "enabled", "default": "TRUE", "options": [["true", "TRUE"], ["false", "FALSE"]] },
+        { "key": "speed", "fieldId": "SPEED", "type": "text", "label": "speed", "default": "" },
+        { "key": "duplex", "fieldId": "DUPLEX", "type": "dropdown", "label": "duplex", "default": "auto", "options": [["auto", "auto"], ["full", "full"], ["half", "half"]] },
+        { "key": "mtu", "fieldId": "MTU", "type": "text", "label": "mtu", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_l3_interfaces",
+      "blockType": "cisco_iosxr_l3_interfaces",
+      "label": "iosxr_l3_interfaces",
+      "tooltip": "Manage Layer-3 interface IP addresses on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_l3_interfaces_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "name", "fieldId": "NAME", "type": "text", "label": "name", "default": "GigabitEthernet0/0/0/0" },
+        { "key": "ipv4_address", "fieldId": "IPV4_ADDRESS", "type": "text", "label": "ipv4_address", "default": "" },
+        { "key": "ipv4_secondary", "fieldId": "IPV4_SECONDARY", "type": "text", "label": "ipv4_secondary", "default": "" },
+        { "key": "ipv6_address", "fieldId": "IPV6_ADDRESS", "type": "text", "label": "ipv6_address", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_acls",
+      "blockType": "cisco_iosxr_acls",
+      "label": "iosxr_acls",
+      "tooltip": "Manage ACLs on Cisco IOS-XR devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_acls_module.html",
+      "structure": { "type": "deep", "wrapper": "config" },
+      "fields": [
+        { "key": "afi", "fieldId": "AFI", "type": "dropdown", "label": "afi", "default": "ipv4", "options": [["ipv4", "ipv4"], ["ipv6", "ipv6"]], "yamlPath": "config[0].afi" },
+        { "key": "acl_name", "fieldId": "ACL_NAME", "type": "text", "label": "acl_name", "default": "", "yamlPath": "config[0].acls[0].name" },
+        { "key": "grant", "fieldId": "ACTION", "type": "dropdown", "label": "action", "default": "permit", "options": [["permit", "permit"], ["deny", "deny"]], "yamlPath": "config[0].acls[0].aces[0].grant" },
+        { "key": "protocol", "fieldId": "PROTOCOL", "type": "dropdown", "label": "protocol", "default": "ip", "options": [["ip", "ip"], ["tcp", "tcp"], ["udp", "udp"], ["icmp", "icmp"]], "yamlPath": "config[0].acls[0].aces[0].protocol" },
+        { "key": "source", "fieldId": "SOURCE", "type": "text", "label": "source", "default": "any", "yamlPath": "config[0].acls[0].aces[0].source.prefix" },
+        { "key": "destination", "fieldId": "DESTINATION", "type": "text", "label": "destination", "default": "any", "yamlPath": "config[0].acls[0].aces[0].destination.prefix" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_static_routes",
+      "blockType": "cisco_iosxr_static_routes",
+      "label": "iosxr_static_routes",
+      "tooltip": "Manage static routes on Cisco IOS-XR devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_static_routes_module.html",
+      "structure": { "type": "deep", "wrapper": "config" },
+      "fields": [
+        { "key": "afi", "fieldId": "AFI", "type": "dropdown", "label": "afi", "default": "ipv4", "options": [["ipv4", "ipv4"], ["ipv6", "ipv6"]], "yamlPath": "config[0].address_families[0].afi" },
+        { "key": "dest", "fieldId": "DEST", "type": "text", "label": "dest", "default": "0.0.0.0/0", "yamlPath": "config[0].address_families[0].routes[0].dest" },
+        { "key": "forward_router_address", "fieldId": "NEXT_HOP", "type": "text", "label": "next_hop", "default": "", "yamlPath": "config[0].address_families[0].routes[0].next_hops[0].forward_router_address" },
+        { "key": "admin_distance", "fieldId": "ADMIN_DISTANCE", "type": "number", "label": "admin_distance", "default": 1, "min": 1, "max": 255, "yamlPath": "config[0].address_families[0].routes[0].next_hops[0].admin_distance" },
+        { "key": "vrf", "fieldId": "VRF", "type": "text", "label": "vrf", "default": "", "yamlPath": "config[0].vrf" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_bgp_global",
+      "blockType": "cisco_iosxr_bgp_global",
+      "label": "iosxr_bgp_global",
+      "tooltip": "Manage BGP global configuration on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_bgp_global_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "as_number", "fieldId": "AS_NUMBER", "type": "text", "label": "as_number", "default": "" },
+        { "key": "router_id", "fieldId": "ROUTER_ID", "type": "text", "label": "router_id", "default": "" },
+        { "key": "log_neighbor_changes", "fieldId": "LOG_NEIGHBOR_CHANGES", "type": "dropdown", "label": "log_neighbor_changes", "default": "FALSE", "options": [["false", "FALSE"], ["true", "TRUE"]] },
+        { "key": "neighbor_address", "fieldId": "NEIGHBOR_ADDRESS", "type": "text", "label": "neighbor_address", "default": "" },
+        { "key": "neighbor_remote_as", "fieldId": "NEIGHBOR_REMOTE_AS", "type": "text", "label": "neighbor_remote_as", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_bgp_address_family",
+      "blockType": "cisco_iosxr_bgp_address_family",
+      "label": "iosxr_bgp_address_family",
+      "tooltip": "Manage BGP address family configuration on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_bgp_address_family_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "as_number", "fieldId": "AS_NUMBER", "type": "text", "label": "as_number", "default": "" },
+        { "key": "afi", "fieldId": "AFI", "type": "dropdown", "label": "afi", "default": "ipv4", "options": [["ipv4", "ipv4"], ["ipv6", "ipv6"]] },
+        { "key": "safi", "fieldId": "SAFI", "type": "dropdown", "label": "safi", "default": "unicast", "options": [["unicast", "unicast"], ["multicast", "multicast"]] },
+        { "key": "networks", "fieldId": "NETWORKS", "type": "text", "label": "networks", "yamlType": "list", "default": "" },
+        { "key": "redistribute", "fieldId": "REDISTRIBUTE", "type": "text", "label": "redistribute", "yamlType": "list", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_ospfv2",
+      "blockType": "cisco_iosxr_ospfv2",
+      "label": "iosxr_ospfv2",
+      "tooltip": "Manage OSPFv2 configuration on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_ospfv2_module.html",
+      "structure": { "type": "wrapped", "wrapper": "processes", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "process_id", "fieldId": "PROCESS_ID", "type": "text", "label": "process_id", "default": "" },
+        { "key": "router_id", "fieldId": "ROUTER_ID", "type": "text", "label": "router_id", "default": "" },
+        { "key": "area_id", "fieldId": "AREA_ID", "type": "text", "label": "area_id", "default": "" },
+        { "key": "networks", "fieldId": "NETWORKS", "type": "text", "label": "networks", "yamlType": "list", "default": "" },
+        { "key": "redistribute", "fieldId": "REDISTRIBUTE", "type": "text", "label": "redistribute", "yamlType": "list", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_ntp_global",
+      "blockType": "cisco_iosxr_ntp_global",
+      "label": "iosxr_ntp_global",
+      "tooltip": "Manage NTP global settings on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_ntp_global_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "object" },
+      "fields": [
+        { "key": "servers", "fieldId": "SERVERS", "type": "text", "label": "servers", "default": "", "yamlPath": "servers[0].server" },
+        { "key": "peers", "fieldId": "PEERS", "type": "text", "label": "peers", "default": "", "yamlPath": "peers[0].peer" },
+        { "key": "source_interface", "fieldId": "SOURCE_INTERFACE", "type": "text", "label": "source_interface", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_snmp_server",
+      "blockType": "cisco_iosxr_snmp_server",
+      "label": "iosxr_snmp_server",
+      "tooltip": "Manage SNMP server configuration on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_snmp_server_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "community", "fieldId": "COMMUNITY", "type": "text", "label": "community", "default": "" },
+        { "key": "access", "fieldId": "ACCESS", "type": "dropdown", "label": "access", "default": "ro", "options": [["ro", "ro"], ["rw", "rw"]] },
+        { "key": "location", "fieldId": "LOCATION", "type": "text", "label": "location", "default": "" },
+        { "key": "contact", "fieldId": "CONTACT", "type": "text", "label": "contact", "default": "" },
+        { "key": "traps", "fieldId": "TRAPS", "type": "text", "label": "traps", "yamlType": "list", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_logging_global",
+      "blockType": "cisco_iosxr_logging_global",
+      "label": "iosxr_logging_global",
+      "tooltip": "Manage logging configuration on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_logging_global_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "server", "fieldId": "SERVER", "type": "text", "label": "server", "default": "" },
+        { "key": "severity", "fieldId": "SEVERITY", "type": "dropdown", "label": "severity", "default": "emergencies", "options": [["emergency", "emergencies"], ["alert", "alerts"], ["critical", "critical"], ["error", "errors"], ["warning", "warnings"], ["notification", "notifications"], ["informational", "informational"], ["debugging", "debugging"]] },
+        { "key": "source_interface", "fieldId": "SOURCE_INTERFACE", "type": "text", "label": "source_interface", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_prefix_lists",
+      "blockType": "cisco_iosxr_prefix_lists",
+      "label": "iosxr_prefix_lists",
+      "tooltip": "Manage prefix lists on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_prefix_lists_module.html",
+      "structure": { "type": "deep", "wrapper": "config" },
+      "fields": [
+        { "key": "afi", "fieldId": "AFI", "type": "dropdown", "label": "afi", "default": "ipv4", "options": [["ipv4", "ipv4"], ["ipv6", "ipv6"]], "yamlPath": "config[0].afi" },
+        { "key": "name", "fieldId": "NAME", "type": "text", "label": "name", "default": "", "yamlPath": "config[0].prefix_lists[0].name" },
+        { "key": "action", "fieldId": "ACTION", "type": "dropdown", "label": "action", "default": "permit", "options": [["permit", "permit"], ["deny", "deny"]], "yamlPath": "config[0].prefix_lists[0].entries[0].action" },
+        { "key": "prefix", "fieldId": "PREFIX", "type": "text", "label": "prefix", "default": "", "yamlPath": "config[0].prefix_lists[0].entries[0].prefix" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.iosxr.iosxr_hostname",
+      "blockType": "cisco_iosxr_hostname",
+      "label": "iosxr_hostname",
+      "tooltip": "Manage hostname and domain on IOS-XR",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/iosxr/iosxr_hostname_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "hostname", "fieldId": "HOSTNAME", "type": "text", "label": "hostname", "default": "" },
+        { "key": "domain_name", "fieldId": "DOMAIN_NAME", "type": "text", "label": "domain_name", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["replaced", "replaced"], ["deleted", "deleted"]] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "catalyst-center",
+  "name": "Catalyst Center",
+  "collection": "cisco.dnac",
+  "collectionVersion": "6.18.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#00BCEB",
+  "blockStyleName": "catalyst_center_blocks",
+  "categoryStyleName": "catalyst_center_category",
+  "modules": [
+    {
+      "fqcn": "cisco.dnac.site_intent",
+      "blockType": "dnac_site",
+      "label": "dnac_site",
+      "tooltip": "Manage Catalyst Center sites, buildings, and floors",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/site_intent_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "site_type", "fieldId": "SITE_TYPE", "type": "dropdown", "label": "site_type", "default": "area", "options": [["area", "area"], ["building", "building"], ["floor", "floor"]] },
+        { "key": "name", "fieldId": "NAME", "type": "text", "label": "name", "default": "" },
+        { "key": "parent_name", "fieldId": "PARENT_NAME", "type": "text", "label": "parent_name", "default": "Global" },
+        { "key": "address", "fieldId": "ADDRESS", "type": "text", "label": "address", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.inventory_intent",
+      "blockType": "dnac_inventory",
+      "label": "dnac_inventory",
+      "tooltip": "Manage device inventory in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/inventory_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "ip_address_list", "fieldId": "IP_ADDRESS", "type": "text", "label": "ip_address", "yamlType": "list", "default": "" },
+        { "key": "hostname", "fieldId": "HOSTNAME", "type": "text", "label": "hostname", "default": "" },
+        { "key": "cli_transport", "fieldId": "CLI_TRANSPORT", "type": "dropdown", "label": "cli_transport", "default": "ssh", "options": [["ssh", "ssh"], ["telnet", "telnet"]] },
+        { "key": "username", "fieldId": "USERNAME", "type": "text", "label": "username", "default": "" },
+        { "key": "password", "fieldId": "PASSWORD", "type": "text", "label": "password", "default": "" },
+        { "key": "enable_password", "fieldId": "ENABLE_PASSWORD", "type": "text", "label": "enable_password", "default": "" },
+        { "key": "snmp_version", "fieldId": "SNMP_VERSION", "type": "dropdown", "label": "snmp_version", "default": "v2", "options": [["v2", "v2"], ["v3", "v3"]] },
+        { "key": "snmp_community", "fieldId": "SNMP_COMMUNITY", "type": "text", "label": "snmp_community", "default": "" },
+        { "key": "netconf_port", "fieldId": "NETCONF_PORT", "type": "number", "label": "netconf_port", "default": 830, "min": 1, "max": 65535 },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.configuration_template",
+      "blockType": "dnac_template",
+      "label": "dnac_template",
+      "tooltip": "Create or update configuration templates in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/configuration_template_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "projectName", "fieldId": "PROJECT_NAME", "type": "text", "label": "project_name", "default": "Onboarding Configuration" },
+        { "key": "templateName", "fieldId": "TEMPLATE_NAME", "type": "text", "label": "template_name", "default": "" },
+        { "key": "language", "fieldId": "LANGUAGE", "type": "dropdown", "label": "language", "default": "JINJA", "options": [["JINJA", "JINJA"], ["VELOCITY", "VELOCITY"]] },
+        { "key": "softwareType", "fieldId": "SOFTWARE_TYPE", "type": "dropdown", "label": "software_type", "default": "IOS-XE", "options": [["IOS-XE", "IOS-XE"], ["IOS", "IOS"], ["NX-OS", "NX-OS"], ["IOS-XR", "IOS-XR"]] },
+        { "key": "templateContent", "fieldId": "TEMPLATE_CONTENT", "type": "text", "label": "template_content", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.template_intent",
+      "blockType": "dnac_template_deploy",
+      "label": "dnac_template_deploy",
+      "tooltip": "Deploy a configuration template to devices via Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/template_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "template_name", "fieldId": "TEMPLATE_NAME", "type": "text", "label": "template_name", "default": "" },
+        { "key": "project_name", "fieldId": "PROJECT_NAME", "type": "text", "label": "project_name", "default": "Onboarding Configuration" },
+        { "key": "target_device_ip", "fieldId": "TARGET_DEVICE_IP", "type": "text", "label": "target_device_ip", "default": "" },
+        { "key": "template_params", "fieldId": "TEMPLATE_PARAMS", "type": "text", "label": "template_params", "default": "key=value, key2=value2" },
+        { "key": "force_push", "fieldId": "FORCE_PUSH", "type": "dropdown", "label": "force_push", "default": "FALSE", "options": [["false", "FALSE"], ["true", "TRUE"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.pnp_intent",
+      "blockType": "dnac_pnp",
+      "label": "dnac_pnp",
+      "tooltip": "Plug and Play device onboarding via Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/pnp_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "serial_number", "fieldId": "SERIAL_NUMBER", "type": "text", "label": "serial_number", "default": "" },
+        { "key": "hostname", "fieldId": "HOSTNAME", "type": "text", "label": "hostname", "default": "" },
+        { "key": "pid", "fieldId": "PID", "type": "text", "label": "pid", "default": "" },
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "template_name", "fieldId": "TEMPLATE_NAME", "type": "text", "label": "template_name", "default": "" },
+        { "key": "project_name", "fieldId": "PROJECT_NAME", "type": "text", "label": "project_name", "default": "Onboarding Configuration" },
+        { "key": "image_name", "fieldId": "IMAGE_NAME", "type": "text", "label": "image_name", "default": "" },
+        { "key": "golden_image", "fieldId": "GOLDEN_IMAGE", "type": "dropdown", "label": "golden_image", "default": "TRUE", "options": [["true", "TRUE"], ["false", "FALSE"]] },
+        { "key": "template_params", "fieldId": "TEMPLATE_PARAMS", "type": "text", "label": "template_params", "default": "hostname=Switch-1" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.swim_intent",
+      "blockType": "dnac_swim",
+      "label": "dnac_swim",
+      "tooltip": "Software Image Management — import, tag, distribute, and activate images",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/swim_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "image_name", "fieldId": "IMAGE_NAME", "type": "text", "label": "image_name", "default": "" },
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "family_name", "fieldId": "FAMILY_NAME", "type": "text", "label": "family_name", "default": "Switches and Hubs" },
+        { "key": "device_role", "fieldId": "DEVICE_ROLE", "type": "dropdown", "label": "device_role", "default": "ALL", "options": [["ALL", "ALL"], ["ACCESS", "ACCESS"], ["DISTRIBUTION", "DISTRIBUTION"], ["CORE", "CORE"], ["BORDER ROUTER", "BORDER ROUTER"]] },
+        { "key": "import_image_url", "fieldId": "IMPORT_URL", "type": "text", "label": "import_url", "default": "" },
+        { "key": "golden_image", "fieldId": "GOLDEN_IMAGE", "type": "dropdown", "label": "golden_image", "default": "TRUE", "options": [["true", "TRUE"], ["false", "FALSE"]] },
+        { "key": "distribute", "fieldId": "DISTRIBUTE", "type": "dropdown", "label": "distribute", "default": "FALSE", "options": [["false", "FALSE"], ["true", "TRUE"]] },
+        { "key": "activate", "fieldId": "ACTIVATE", "type": "dropdown", "label": "activate", "default": "FALSE", "options": [["false", "FALSE"], ["true", "TRUE"]] }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.command_runner_run_command",
+      "blockType": "dnac_command_runner",
+      "label": "dnac_command_runner",
+      "tooltip": "Run CLI commands on devices via Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/command_runner_run_command_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        { "key": "commands", "fieldId": "COMMANDS", "type": "text", "label": "commands", "yamlType": "list", "default": "show version" },
+        { "key": "deviceUuids", "fieldId": "DEVICE_IPS", "type": "text", "label": "device_ips", "yamlType": "list", "default": "" },
+        { "key": "timeout", "fieldId": "TIMEOUT", "type": "number", "label": "timeout", "default": 30, "min": 1, "max": 300 }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.network_settings_intent",
+      "blockType": "dnac_network_settings",
+      "label": "dnac_network_settings",
+      "tooltip": "Manage network settings (DNS, DHCP, NTP, SNMP, Syslog) in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/network_settings_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "dns_server_primary", "fieldId": "DNS_PRIMARY", "type": "text", "label": "dns_primary", "default": "" },
+        { "key": "dns_server_secondary", "fieldId": "DNS_SECONDARY", "type": "text", "label": "dns_secondary", "default": "" },
+        { "key": "dhcp_server", "fieldId": "DHCP_SERVER", "type": "text", "label": "dhcp_server", "yamlType": "list", "default": "" },
+        { "key": "ntp_server", "fieldId": "NTP_SERVER", "type": "text", "label": "ntp_server", "default": "" },
+        { "key": "syslog_server", "fieldId": "SYSLOG_SERVER", "type": "text", "label": "syslog_server", "default": "" },
+        { "key": "snmp_server", "fieldId": "SNMP_SERVER", "type": "text", "label": "snmp_server", "default": "" },
+        { "key": "timezone", "fieldId": "TIMEZONE", "type": "text", "label": "timezone", "default": "GMT" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.discovery_intent",
+      "blockType": "dnac_discovery",
+      "label": "dnac_discovery",
+      "tooltip": "Manage network discovery jobs in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/discovery_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "discovery_name", "fieldId": "DISCOVERY_NAME", "type": "text", "label": "discovery_name", "default": "" },
+        { "key": "discovery_type", "fieldId": "DISCOVERY_TYPE", "type": "dropdown", "label": "discovery_type", "default": "SINGLE", "options": [["SINGLE", "SINGLE"], ["RANGE", "RANGE"], ["CDP", "CDP"], ["LLDP", "LLDP"]] },
+        { "key": "ip_address_list", "fieldId": "IP_ADDRESS_LIST", "type": "text", "label": "ip_address_list", "yamlType": "list", "default": "" },
+        { "key": "cli_transport", "fieldId": "CLI_TRANSPORT", "type": "dropdown", "label": "cli_transport", "default": "ssh", "options": [["ssh", "ssh"], ["telnet", "telnet"]] },
+        { "key": "username", "fieldId": "USERNAME", "type": "text", "label": "username", "default": "" },
+        { "key": "password", "fieldId": "PASSWORD", "type": "text", "label": "password", "default": "" },
+        { "key": "enable_password", "fieldId": "ENABLE_PASSWORD", "type": "text", "label": "enable_password", "default": "" },
+        { "key": "preferred_mgmt_ip_method", "fieldId": "PREFERRED_IP", "type": "dropdown", "label": "preferred_ip", "default": "None", "options": [["None", "None"], ["UseLoopBack", "UseLoopBack"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.device_credential_intent",
+      "blockType": "dnac_credential",
+      "label": "dnac_credential",
+      "tooltip": "Manage global device credentials in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/device_credential_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "credential_type", "fieldId": "CREDENTIAL_TYPE", "type": "dropdown", "label": "credential_type", "default": "CLI", "options": [["CLI", "CLI"], ["SNMPV2_READ", "SNMPV2_READ"], ["SNMPV2_WRITE", "SNMPV2_WRITE"], ["SNMPV3", "SNMPV3"], ["HTTP_READ", "HTTP_READ"], ["HTTP_WRITE", "HTTP_WRITE"]] },
+        { "key": "description", "fieldId": "DESCRIPTION", "type": "text", "label": "description", "default": "" },
+        { "key": "username", "fieldId": "USERNAME", "type": "text", "label": "username", "default": "" },
+        { "key": "password", "fieldId": "PASSWORD", "type": "text", "label": "password", "default": "" },
+        { "key": "enable_password", "fieldId": "ENABLE_PASSWORD", "type": "text", "label": "enable_password", "default": "" },
+        { "key": "port", "fieldId": "PORT", "type": "number", "label": "port", "default": 22, "min": 1, "max": 65535 },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.assign_device_to_site",
+      "blockType": "dnac_assign_to_site",
+      "label": "dnac_assign_to_site",
+      "tooltip": "Assign a device to a specific site in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/assign_device_to_site_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "device_ip", "fieldId": "DEVICE_IP", "type": "text", "label": "device_ip", "yamlType": "list", "default": "" },
+        { "key": "device_hostname", "fieldId": "DEVICE_HOSTNAME", "type": "text", "label": "device_hostname", "yamlType": "list", "default": "" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.sda_fabric_devices",
+      "blockType": "dnac_sda_fabric",
+      "label": "dnac_sda_fabric",
+      "tooltip": "Manage SDA fabric device roles via Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/sda_fabric_devices_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "device_ip", "fieldId": "DEVICE_IP", "type": "text", "label": "device_ip", "default": "" },
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "device_role", "fieldId": "DEVICE_ROLE", "type": "dropdown", "label": "device_role", "default": "CONTROL_PLANE_NODE", "options": [["CONTROL_PLANE_NODE", "CONTROL_PLANE_NODE"], ["EDGE_NODE", "EDGE_NODE"], ["BORDER_NODE", "BORDER_NODE"], ["MAPSERVER", "MAPSERVER"]] },
+        { "key": "fabric_name", "fieldId": "FABRIC_NAME", "type": "text", "label": "fabric_name", "default": "" },
+        { "key": "border_type", "fieldId": "BORDER_TYPE", "type": "dropdown", "label": "border_type", "default": "", "options": [["(none)", ""], ["layer2", "layer2"], ["layer3", "layer3"], ["layer2_and_layer3", "layer2_and_layer3"]] },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.wireless_profile_intent",
+      "blockType": "dnac_wireless_profile",
+      "label": "dnac_wireless_profile",
+      "tooltip": "Manage wireless SSID profiles via Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/wireless_profile_intent_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "profile_name", "fieldId": "PROFILE_NAME", "type": "text", "label": "profile_name", "default": "" },
+        { "key": "ssid_name", "fieldId": "SSID_NAME", "type": "text", "label": "ssid_name", "default": "" },
+        { "key": "security", "fieldId": "SECURITY", "type": "dropdown", "label": "security", "default": "WPA2_ENTERPRISE", "options": [["WPA2_ENTERPRISE", "WPA2_ENTERPRISE"], ["WPA2_PERSONAL", "WPA2_PERSONAL"], ["WPA3_ENTERPRISE", "WPA3_ENTERPRISE"], ["WPA3_PERSONAL", "WPA3_PERSONAL"], ["OPEN", "OPEN"]] },
+        { "key": "passphrase", "fieldId": "PASSPHRASE", "type": "text", "label": "passphrase", "default": "" },
+        { "key": "band", "fieldId": "BAND", "type": "dropdown", "label": "band", "default": "2.4GHz and 5GHz", "options": [["2.4GHz and 5GHz", "2.4GHz and 5GHz"], ["2.4GHz", "2.4GHz"], ["5GHz", "5GHz"], ["6GHz", "6GHz"]] },
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    },
+    {
+      "fqcn": "cisco.dnac.reserve_ip_subpool",
+      "blockType": "dnac_ip_pool",
+      "label": "dnac_ip_pool",
+      "tooltip": "Manage IP address pool reservations in Catalyst Center",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/dnac/reserve_ip_subpool_module.html",
+      "structure": { "type": "wrapped", "wrapper": "config", "wrapperType": "list-of-one" },
+      "fields": [
+        { "key": "pool_name", "fieldId": "POOL_NAME", "type": "text", "label": "pool_name", "default": "" },
+        { "key": "pool_type", "fieldId": "POOL_TYPE", "type": "dropdown", "label": "pool_type", "default": "Generic", "options": [["Generic", "Generic"], ["LAN", "LAN"], ["Management", "Management"], ["Service", "Service"], ["WAN", "WAN"]] },
+        { "key": "cidr", "fieldId": "CIDR", "type": "text", "label": "cidr", "default": "10.0.0.0/24" },
+        { "key": "gateway", "fieldId": "GATEWAY", "type": "text", "label": "gateway", "default": "" },
+        { "key": "dhcp_server", "fieldId": "DHCP_SERVER", "type": "text", "label": "dhcp_server", "yamlType": "list", "default": "" },
+        { "key": "dns_server", "fieldId": "DNS_SERVER", "type": "text", "label": "dns_server", "yamlType": "list", "default": "" },
+        { "key": "site_name", "fieldId": "SITE_NAME", "type": "text", "label": "site_name", "default": "Global" },
+        { "key": "state", "fieldId": "STATE", "type": "dropdown", "label": "state", "default": "merged", "options": [["merged", "merged"], ["deleted", "deleted"]], "topLevel": true }
+      ]
+    }
+  ]
+}

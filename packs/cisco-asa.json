@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "cisco-asa",
+  "name": "Cisco ASA",
+  "collection": "cisco.asa",
+  "collectionVersion": "6.0.0",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "1.0.0",
+  "publishedAt": "2026-07-08T00:00:00Z",
+  "qualityLevel": "official",
+  "source": "curated",
+  "categoryColor": "#C62828",
+  "blockStyleName": "asa_blocks",
+  "categoryStyleName": "asa_category",
+  "modules": [
+    {
+      "fqcn": "cisco.asa.asa_command",
+      "blockType": "cisco_asa_command",
+      "label": "asa_command",
+      "tooltip": "Run commands on Cisco ASA devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/asa/asa_command_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "commands",
+          "fieldId": "COMMANDS",
+          "type": "text",
+          "label": "commands",
+          "yamlType": "list",
+          "default": "show version"
+        },
+        {
+          "key": "wait_for",
+          "fieldId": "WAIT_FOR",
+          "type": "text",
+          "label": "wait_for",
+          "yamlType": "list",
+          "default": ""
+        },
+        {
+          "key": "match",
+          "fieldId": "MATCH",
+          "type": "dropdown",
+          "label": "match",
+          "default": "all",
+          "options": [["all", "all"], ["any", "any"]]
+        },
+        {
+          "key": "retries",
+          "fieldId": "RETRIES",
+          "type": "number",
+          "label": "retries",
+          "default": 10,
+          "min": 1,
+          "max": 100
+        },
+        {
+          "key": "interval",
+          "fieldId": "INTERVAL",
+          "type": "number",
+          "label": "interval",
+          "default": 1,
+          "min": 1,
+          "max": 60
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.asa.asa_config",
+      "blockType": "cisco_asa_config",
+      "label": "asa_config",
+      "tooltip": "Manage Cisco ASA configuration sections",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/asa/asa_config_module.html",
+      "structure": { "type": "flat" },
+      "fields": [
+        {
+          "key": "lines",
+          "fieldId": "LINES",
+          "type": "text",
+          "label": "lines",
+          "yamlType": "list",
+          "default": ""
+        },
+        {
+          "key": "parents",
+          "fieldId": "PARENTS",
+          "type": "text",
+          "label": "parents",
+          "yamlType": "list",
+          "default": ""
+        },
+        {
+          "key": "before",
+          "fieldId": "BEFORE",
+          "type": "text",
+          "label": "before",
+          "yamlType": "list",
+          "default": ""
+        },
+        {
+          "key": "after",
+          "fieldId": "AFTER",
+          "type": "text",
+          "label": "after",
+          "yamlType": "list",
+          "default": ""
+        },
+        {
+          "key": "match",
+          "fieldId": "MATCH",
+          "type": "dropdown",
+          "label": "match",
+          "default": "line",
+          "options": [["line", "line"], ["strict", "strict"], ["exact", "exact"], ["none", "none"]]
+        },
+        {
+          "key": "replace",
+          "fieldId": "REPLACE",
+          "type": "dropdown",
+          "label": "replace",
+          "default": "line",
+          "options": [["line", "line"], ["block", "block"]]
+        },
+        {
+          "key": "save_when",
+          "fieldId": "SAVE_WHEN",
+          "type": "dropdown",
+          "label": "save_when",
+          "default": "never",
+          "options": [["never", "never"], ["always", "always"], ["modified", "modified"], ["changed", "changed"]]
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.asa.asa_acls",
+      "blockType": "cisco_asa_acls",
+      "label": "asa_acls",
+      "tooltip": "Manage ACLs on Cisco ASA firewalls",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/asa/asa_acls_module.html",
+      "structure": {
+        "type": "deep",
+        "wrapper": "config"
+      },
+      "fields": [
+        {
+          "key": "afi",
+          "fieldId": "AFI",
+          "type": "dropdown",
+          "label": "afi",
+          "default": "ipv4",
+          "options": [["ipv4", "ipv4"], ["ipv6", "ipv6"]],
+          "yamlPath": "config[0].afi"
+        },
+        {
+          "key": "acl_name",
+          "fieldId": "ACL_NAME",
+          "type": "text",
+          "label": "acl_name",
+          "default": "",
+          "yamlPath": "config[0].acls[0].name"
+        },
+        {
+          "key": "acl_type",
+          "fieldId": "ACL_TYPE",
+          "type": "dropdown",
+          "label": "acl_type",
+          "default": "extended",
+          "options": [["extended", "extended"], ["standard", "standard"]],
+          "yamlPath": "config[0].acls[0].acl_type"
+        },
+        {
+          "key": "grant",
+          "fieldId": "ACTION",
+          "type": "dropdown",
+          "label": "action",
+          "default": "permit",
+          "options": [["permit", "permit"], ["deny", "deny"]],
+          "yamlPath": "config[0].acls[0].aces[0].grant"
+        },
+        {
+          "key": "protocol",
+          "fieldId": "PROTOCOL",
+          "type": "dropdown",
+          "label": "protocol",
+          "default": "ip",
+          "options": [["ip", "ip"], ["tcp", "tcp"], ["udp", "udp"], ["icmp", "icmp"]],
+          "yamlPath": "config[0].acls[0].aces[0].protocol"
+        },
+        {
+          "key": "source",
+          "fieldId": "SOURCE",
+          "type": "text",
+          "label": "source",
+          "default": "any",
+          "yamlPath": "config[0].acls[0].aces[0].source.address"
+        },
+        {
+          "key": "destination",
+          "fieldId": "DESTINATION",
+          "type": "text",
+          "label": "destination",
+          "default": "any",
+          "yamlPath": "config[0].acls[0].aces[0].destination.address"
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]],
+          "topLevel": true
+        }
+      ]
+    },
+    {
+      "fqcn": "cisco.asa.asa_ogs",
+      "blockType": "cisco_asa_ogs",
+      "label": "asa_ogs",
+      "tooltip": "Manage object groups on Cisco ASA firewalls",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/cisco/asa/asa_ogs_module.html",
+      "structure": {
+        "type": "wrapped",
+        "wrapper": "config",
+        "wrapperType": "list-of-one"
+      },
+      "fields": [
+        {
+          "key": "object_type",
+          "fieldId": "OBJECT_TYPE",
+          "type": "dropdown",
+          "label": "object_type",
+          "default": "network",
+          "options": [["network", "network"], ["service", "service"], ["protocol", "protocol"], ["security", "security"], ["user", "user"]]
+        },
+        {
+          "key": "name",
+          "fieldId": "NAME",
+          "type": "text",
+          "label": "name",
+          "default": ""
+        },
+        {
+          "key": "description",
+          "fieldId": "DESCRIPTION",
+          "type": "text",
+          "label": "description",
+          "default": ""
+        },
+        {
+          "key": "members",
+          "fieldId": "MEMBERS",
+          "type": "text",
+          "label": "members",
+          "yamlType": "list",
+          "default": ""
+        },
+        {
+          "key": "state",
+          "fieldId": "STATE",
+          "type": "dropdown",
+          "label": "state",
+          "default": "merged",
+          "options": [["merged", "merged"], ["replaced", "replaced"], ["overridden", "overridden"], ["deleted", "deleted"]],
+          "topLevel": true
+        }
+      ]
+    }
+  ]
+}
