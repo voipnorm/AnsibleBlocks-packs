@@ -1,0 +1,113 @@
+{
+  "qualityLevel": "curated",
+  "source": "generated+curated",
+  "modules": {
+    "ansible.builtin.copy": {
+      "tooltip": "Copy files to remote hosts",
+      "fieldOrder": ["src", "dest", "content", "mode", "owner", "group", "state"],
+      "fieldOverrides": {
+        "src":  { "label": "source", "required": true },
+        "dest": { "label": "destination", "required": true },
+        "mode": { "label": "permissions" }
+      },
+      "hideFields": ["attributes", "unsafe_writes"],
+      "advancedFields": ["backup", "checksum", "directory_mode", "follow", "local_follow", "validate", "selevel", "setype", "seuser", "serole"]
+    },
+    "ansible.builtin.template": {
+      "tooltip": "Template a file out to a target host",
+      "fieldOrder": ["src", "dest", "mode", "owner", "group", "state"],
+      "fieldOverrides": {
+        "src":  { "label": "source template", "required": true },
+        "dest": { "label": "destination", "required": true }
+      },
+      "hideFields": ["attributes", "unsafe_writes", "newline_sequence", "output_encoding"],
+      "advancedFields": ["backup", "follow", "validate", "trim_blocks", "lstrip_blocks", "block_start_string", "block_end_string", "variable_start_string", "variable_end_string"]
+    },
+    "ansible.builtin.debug": {
+      "tooltip": "Print debug messages during playbook execution",
+      "fieldOrder": ["msg", "var", "verbosity"]
+    },
+    "ansible.builtin.command": {
+      "tooltip": "Execute commands on targets",
+      "fieldOrder": ["cmd", "chdir", "creates", "removes"],
+      "fieldOverrides": {
+        "cmd": { "label": "command", "required": true }
+      },
+      "advancedFields": ["stdin", "stdin_add_newline", "strip_empty_ends"]
+    },
+    "ansible.builtin.shell": {
+      "tooltip": "Execute shell commands on targets",
+      "fieldOrder": ["cmd", "chdir", "creates", "removes", "executable"],
+      "fieldOverrides": {
+        "cmd": { "label": "command", "required": true }
+      },
+      "advancedFields": ["stdin", "stdin_add_newline"]
+    },
+    "ansible.builtin.file": {
+      "tooltip": "Manage files and file properties",
+      "fieldOrder": ["path", "state", "mode", "owner", "group", "src"],
+      "fieldOverrides": {
+        "path": { "label": "path", "required": true },
+        "state": { "label": "state" }
+      },
+      "advancedFields": ["access_time", "modification_time", "access_time_format", "modification_time_format", "attributes", "follow", "force", "recurse", "selevel", "setype", "seuser", "serole", "unsafe_writes"]
+    },
+    "ansible.builtin.service": {
+      "tooltip": "Manage services",
+      "fieldOrder": ["name", "state", "enabled"],
+      "fieldOverrides": {
+        "name": { "label": "service name", "required": true }
+      },
+      "advancedFields": ["arguments", "pattern", "runlevel", "sleep", "use"]
+    },
+    "ansible.builtin.lineinfile": {
+      "tooltip": "Manage lines in text files",
+      "fieldOrder": ["path", "line", "regexp", "state", "insertafter", "insertbefore"],
+      "fieldOverrides": {
+        "path": { "label": "file path", "required": true }
+      },
+      "advancedFields": ["backup", "create", "firstmatch", "validate", "attributes", "selevel", "setype", "seuser", "serole", "unsafe_writes"]
+    },
+    "ansible.builtin.user": {
+      "tooltip": "Manage user accounts",
+      "fieldOrder": ["name", "state", "uid", "group", "groups", "shell", "home", "password"],
+      "fieldOverrides": {
+        "name": { "label": "username", "required": true }
+      },
+      "advancedFields": ["comment", "create_home", "expires", "force", "generate_ssh_key", "hidden", "local", "login_class", "move_home", "non_unique", "password_expire_max", "password_expire_min", "password_expire_warn", "password_lock", "profile", "remove", "seuser", "skeleton", "ssh_key_bits", "ssh_key_comment", "ssh_key_file", "ssh_key_passphrase", "ssh_key_type", "system", "umask", "update_password", "authorization", "role"]
+    },
+    "ansible.builtin.apt": {
+      "tooltip": "Manage apt packages",
+      "fieldOrder": ["name", "state", "update_cache"],
+      "fieldOverrides": {
+        "name": { "label": "package name" }
+      },
+      "advancedFields": ["allow_change_held_packages", "allow_downgrade", "allow_unauthenticated", "autoclean", "autoremove", "cache_valid_time", "clean", "deb", "default_release", "dpkg_options", "fail_on_autoremove", "force", "force_apt_get", "install_recommends", "lock_timeout", "only_upgrade", "policy_rc_d", "purge", "update_cache_retries", "update_cache_retry_max_delay"]
+    },
+    "ansible.builtin.yum": {
+      "tooltip": "Manage yum packages",
+      "fieldOrder": ["name", "state"],
+      "fieldOverrides": {
+        "name": { "label": "package name" }
+      },
+      "advancedFields": ["allow_downgrade", "autoremove", "bugfix", "cacheonly", "conf_file", "disable_excludes", "disable_gpg_check", "disable_plugin", "disablerepo", "download_dir", "download_only", "enable_plugin", "enablerepo", "exclude", "install_repoquery", "install_weak_deps", "installroot", "list", "lock_timeout", "releasever", "security", "skip_broken", "sslverify", "update_cache", "update_only", "validate_certs"]
+    },
+    "ansible.builtin.pip": {
+      "tooltip": "Manage Python library dependencies",
+      "fieldOrder": ["name", "state", "version", "virtualenv", "requirements"],
+      "fieldOverrides": {
+        "name": { "label": "package name" }
+      },
+      "advancedFields": ["chdir", "editable", "executable", "extra_args", "umask", "virtualenv_command", "virtualenv_python", "virtualenv_site_packages"]
+    },
+    "ansible.builtin.git": {
+      "tooltip": "Deploy software from git checkouts",
+      "fieldOrder": ["repo", "dest", "version", "clone", "update"],
+      "fieldOverrides": {
+        "repo": { "label": "repository URL", "required": true },
+        "dest": { "label": "destination", "required": true }
+      },
+      "advancedFields": ["accept_hostkey", "accept_newhostkey", "archive", "archive_prefix", "bare", "depth", "executable", "force", "gpg_allowlist", "key_file", "recursive", "reference", "refspec", "remote", "separate_git_dir", "single_branch", "ssh_opts", "track_submodules", "umask", "verify_commit"]
+    }
+  }
+}
