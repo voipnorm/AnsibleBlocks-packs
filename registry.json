@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-17T19:38:58Z",
+  "generatedAt": "2026-07-17T19:42:13Z",
   "packs": [
     {
       "id": "amazon-aws",
@@ -11,11 +11,11 @@
       "moduleCount": 141,
       "size": 1305410,
       "sha256": "2f0e57f07296d5875e22d94b8034cc02a423d64d1ff18828804d6a270cfa94f5",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/amazon-aws.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/amazon-aws.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -27,11 +27,11 @@
       "moduleCount": 71,
       "size": 368654,
       "sha256": "4bc2ef2f7eb1c0f940123b02656fe9bdcad4d84702938c20612ed752e344f3ac",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/ansible-builtin.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/ansible-builtin.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -43,11 +43,11 @@
       "moduleCount": 13,
       "size": 50600,
       "sha256": "17ad5e6955081c31799deb81297f15c3620dfb59d0901963c6600edb8a519317",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/ansible-posix.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/ansible-posix.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -59,11 +59,11 @@
       "moduleCount": 65,
       "size": 221924,
       "sha256": "d14d2d12f426d7947fce87ac2604fb8327e7a9f3a92d8e7d4d188133a5ce977e",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/ansible-windows.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/ansible-windows.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -75,11 +75,11 @@
       "moduleCount": 33,
       "size": 102198,
       "sha256": "df80f897aa073ba1c934ad60b82a4ef61677956a670e121208510432458e024f",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/arista-eos.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/arista-eos.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -91,11 +91,11 @@
       "moduleCount": 442,
       "size": 4936641,
       "sha256": "25c9cf520fa1c3db99f01547650a40ecc93a630923f49991f591d21b3741754b",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/azure-azcollection.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/azure-azcollection.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -107,11 +107,11 @@
       "moduleCount": 14,
       "size": 20930,
       "sha256": "88ee300eb82e0f2b06ca62f6958d41963550b986ccf336d15cfbd3e3160e6a48",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/catalyst-center.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/catalyst-center.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -123,11 +123,11 @@
       "moduleCount": 408,
       "size": 1554750,
       "sha256": "37b58ffdb0d88d7786903e0b41e23af860a2be518e34c263a69ed75cdaf561eb",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/check_point-mgmt.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/check_point-mgmt.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -139,11 +139,11 @@
       "moduleCount": 14,
       "size": 16548,
       "sha256": "06922edd193e70ec59a2feb114e4f92a269a47b599f845939f4480ad3218b66a",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/cisco-aci.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/cisco-aci.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -155,11 +155,11 @@
       "moduleCount": 4,
       "size": 7818,
       "sha256": "5f9b5a58c51317403659d8cb9be9725dc8135cbe39fadbf058df30882ca1d57a",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/cisco-asa.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/cisco-asa.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -171,11 +171,11 @@
       "moduleCount": 8,
       "size": 15350,
       "sha256": "fc8ca28deb05cefd335d315850720ddc7aa4c3a09611d2077647068fbcd41d6e",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/cisco-ios.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/cisco-ios.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -187,11 +187,11 @@
       "moduleCount": 15,
       "size": 18558,
       "sha256": "6c0472f8bb81a0a1ba4aea20793a7c4f4ae40b7bc81399fce055ea79d74a5ce8",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/cisco-iosxr.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/cisco-iosxr.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -203,11 +203,11 @@
       "moduleCount": 18,
       "size": 22156,
       "sha256": "b2cad909c2cd183e5f006b68afa5e0c64ef2e62fcac8fe4396c0b689dc9e5308",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/cisco-nxos.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/cisco-nxos.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -219,11 +219,11 @@
       "moduleCount": 3,
       "size": 15202,
       "sha256": "dc2a894514aeeea2b4b17de79fabc086a102cf81df4c1a77b4bdb6378b5b7f0a",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/cloud-terraform.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/cloud-terraform.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -235,11 +235,11 @@
       "moduleCount": 37,
       "size": 348247,
       "sha256": "68001d95aadf0150e7b5d34dbe090cdf7e338e279c1ed76ccafb9e4c3c25975e",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-crypto.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-crypto.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -251,11 +251,11 @@
       "moduleCount": 37,
       "size": 375448,
       "sha256": "b72fb2b3a876e10c0076a24827165128da76e44d83f24aa6bfaa7256a7930632",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-docker.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-docker.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -267,11 +267,11 @@
       "moduleCount": 568,
       "size": 2412046,
       "sha256": "e9262b3bea11e30842111245780d752ca40ad2a0f4d6e868078c3fa91389d846",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-general.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-general.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -283,11 +283,11 @@
       "moduleCount": 25,
       "size": 330809,
       "sha256": "c0b6a3d22914f403ae710414a2a97722e49be9c77aca81098610236ba809433f",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-hashi_vault.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-hashi_vault.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -299,11 +299,11 @@
       "moduleCount": 171,
       "size": 707528,
       "sha256": "ea657d3437b08ad0c5b4c07e4c8df1f660bdab2359a8f7df12e68cd0312aa8dc",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-vmware.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-vmware.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -315,11 +315,11 @@
       "moduleCount": 54,
       "size": 174943,
       "sha256": "c9fe013ecd2b3c3ea368f7f901ca607e5a5efc011c5ba02357477b69d5316cd6",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-windows.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-windows.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -331,11 +331,11 @@
       "moduleCount": 48,
       "size": 200056,
       "sha256": "fc80da888d080b454534ce32cb79bdc423fcbd93e200cad46ac843b639cadcf3",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/community-zabbix.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/community-zabbix.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -347,11 +347,11 @@
       "moduleCount": 89,
       "size": 228525,
       "sha256": "22ab317618c9647cfda591ebf6f6228c5d5ca1c0edec96ee64e174ac4e5865fd",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/dellemc-enterprise_sonic.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/dellemc-enterprise_sonic.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -363,11 +363,11 @@
       "moduleCount": 177,
       "size": 906764,
       "sha256": "4a3c3c9c9c51032eed3e01404e4c6dde256910d9d5c7d86d0a6e58aa0a4b7576",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/f5networks-f5_modules.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/f5networks-f5_modules.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -379,11 +379,11 @@
       "moduleCount": 709,
       "size": 1858635,
       "sha256": "21eced50229a176b94ca48a007acd0bcb01f1ba442ed52aef23012cdc48bcd30",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/fortinet-fortios.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/fortinet-fortios.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -395,11 +395,11 @@
       "moduleCount": 104,
       "size": 466181,
       "sha256": "659e099f35c091f800ac14d5574215ecc9388a6502dde771702029cfc0e59e9a",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/freeipa-ansible_freeipa.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/freeipa-ansible_freeipa.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -411,11 +411,11 @@
       "moduleCount": 198,
       "size": 1010785,
       "sha256": "49049f5debb6c97ce9f9b9152a7f0218484e9379bd063c35141433503ed15d9c",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/google-cloud.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/google-cloud.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -427,11 +427,11 @@
       "moduleCount": 9,
       "size": 21795,
       "sha256": "a5a8334ae9fd107e3ce2b32af5e5edcec749f8976e17c00c644da9fd63f2ab26",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/grafana-grafana.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/grafana-grafana.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -443,11 +443,11 @@
       "moduleCount": 40,
       "size": 119054,
       "sha256": "0e2f74bc41df6c575ce561179c5e4c9fce04f24513c43e564a5c2df0fb5b2dd0",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/hetzner-hcloud.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/hetzner-hcloud.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -459,11 +459,11 @@
       "moduleCount": 35,
       "size": 125246,
       "sha256": "716b744dbaea013567f1646d9df5eacf8e344e189d40e9aea84acd41a8e6598c",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/infoblox-nios_modules.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/infoblox-nios_modules.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -475,11 +475,11 @@
       "moduleCount": 54,
       "size": 356516,
       "sha256": "2fa83ec3cdf518530de5c65405fa6ccba8664080786c4939121c29ab5cfa2249",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/juniper-device.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/juniper-device.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -491,11 +491,11 @@
       "moduleCount": 21,
       "size": 158420,
       "sha256": "23743a6a4a7fd9ce59d0d720c4663b1b8d4216f3da37eced5f1b78df6d29a5d5",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/kubernetes-core.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/kubernetes-core.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -507,11 +507,11 @@
       "moduleCount": 8,
       "size": 10951,
       "sha256": "4ffecf0dee0f909c8f6aa34580151a8c292bd13b9827def06bb290bc6dbce8d8",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/meraki.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/meraki.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -523,11 +523,11 @@
       "moduleCount": 5,
       "size": 7945,
       "sha256": "e9e7fdae1a2638b008514e3c8cd9c78448a114529c951ead3f57611d9bfceab7",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/netcommon.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/netcommon.json",
       "qualityLevel": "official",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -539,11 +539,11 @@
       "moduleCount": 118,
       "size": 657706,
       "sha256": "614cfad8aa9c75640b67ae8b0bf0c2a70815e314a14b6a4458fed890af0cddd5",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/paloaltonetworks-panos.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/paloaltonetworks-panos.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -555,11 +555,11 @@
       "moduleCount": 17,
       "size": 78967,
       "sha256": "1eb8a22358f3cca87be14fffa91ebe0bf5db97b6fb98b6d3d80efd219bc2fa68",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/splunk-es.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/splunk-es.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     },
     {
@@ -571,11 +571,11 @@
       "moduleCount": 28,
       "size": 78391,
       "sha256": "04db5e6f6ca420385cffae73d32a9c0e67a16d83bf3f8b04dcf8e1a786fc8f8f",
-      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.2.0/vyos-vyos.json",
+      "downloadUrl": "https://github.com/voipnorm/AnsibleBlocks-packs/releases/download/v1.3.0/vyos-vyos.json",
       "qualityLevel": "generated",
       "minAppVersion": "0.1.0",
       "testedWithAppVersion": "0.1.0",
-      "publishedAt": "2026-07-17T19:38:58Z",
+      "publishedAt": "2026-07-17T19:42:13Z",
       "tags": []
     }
   ]
