@@ -36,6 +36,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Fortinet FortiOS | `fortinet.fortios` | 709 | 1.0.0 |
 | Check Point MGMT | `check_point.mgmt` | 408 | 1.0.0 |
 | VyOS | `vyos.vyos` | 28 | 1.0.0 |
+| Dell Enterprise SONiC | `dellemc.enterprise_sonic` | 89 | 1.0.0 |
 | Infoblox NIOS | `infoblox.nios_modules` | 35 | 1.0.0 |
 
 ### Cloud & Infrastructure
@@ -74,7 +75,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Community General | `community.general` | 568 | 1.0.0 |
 | Community Windows | `community.windows` | 54 | 1.0.0 |
 
-**Total: 3,821 modules across 35 packs**
+**Total: 3,910 modules across 36 packs**
 
 ## Structure
 
