@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "packVersion": "1.0.0",
+  "id": "voipnorm-roomos",
+  "name": "Voipnorm Roomos",
+  "collection": "voipnorm.roomos",
+  "collectionVersion": "0.1.3",
+  "minAppVersion": "1.0.0",
+  "testedWithAppVersion": "0.1.0",
+  "publishedAt": "2026-07-27T20:11:09Z",
+  "qualityLevel": "generated",
+  "source": "generated",
+  "categoryColor": "#14B8A6",
+  "blockStyleName": "voipnorm_roomos_blocks",
+  "categoryStyleName": "voipnorm_roomos_category",
+  "modules": [
+    {
+      "fqcn": "voipnorm.roomos.roomos_command",
+      "blockType": "voipnorm_roomos_command",
+      "label": "roomos_command",
+      "tooltip": "Execute xCommands on Cisco RoomOS devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/voipnorm/roomos/roomos_command_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "arguments",
+          "fieldId": "ARGUMENTS",
+          "type": "text",
+          "label": "arguments",
+          "yamlType": "dict",
+          "description": "Dictionary of arguments to pass to the xCommand."
+        },
+        {
+          "key": "command",
+          "fieldId": "COMMAND",
+          "type": "text",
+          "label": "command",
+          "description": "The xCommand path to execute. Use dot notation, e.g. C(SystemUnit.Boot) or C(Audio.Volume.Set).",
+          "required": true
+        },
+        {
+          "key": "device_id",
+          "fieldId": "DEVICE_ID",
+          "type": "text",
+          "label": "device id",
+          "description": "Webex device ID. Required when C(transport=cloud). Falls back to C(roomos_device_id) inventory variable or C(ROOMOS_DEVICE_ID) environment variable."
+        },
+        {
+          "key": "token",
+          "fieldId": "TOKEN",
+          "type": "text",
+          "label": "token",
+          "description": "Webex API bearer token. Required when C(transport=cloud). Falls back to C(roomos_token) inventory variable or C(ROOMOS_TOKEN) environment variable. Use C(lookup('env', 'WEBEX_TOKEN')) or Ansible Vault \u2014 never hardcode tokens."
+        },
+        {
+          "key": "validate_certs",
+          "fieldId": "VALIDATE_CERTS",
+          "type": "boolean",
+          "label": "validate certs",
+          "default": false,
+          "description": "Whether to validate TLS certificates. Most RoomOS devices use self-signed certificates, so this defaults to C(false). Set to C(true) in production environments with proper CA-signed certificates."
+        }
+      ]
+    },
+    {
+      "fqcn": "voipnorm.roomos.roomos_config",
+      "blockType": "voipnorm_roomos_config",
+      "label": "roomos_config",
+      "tooltip": "Set xConfigurations on Cisco RoomOS devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/voipnorm/roomos/roomos_config_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "config",
+          "fieldId": "CONFIG",
+          "type": "text",
+          "label": "config",
+          "yamlType": "dict",
+          "description": "Dictionary of xConfiguration path/value pairs to set. Use dot notation for paths, e.g. C(NetworkServices.NTP.Server1.Address).",
+          "required": true
+        },
+        {
+          "key": "device_id",
+          "fieldId": "DEVICE_ID",
+          "type": "text",
+          "label": "device id",
+          "description": "Webex device ID. Required when C(transport=cloud). Falls back to C(roomos_device_id) inventory variable or C(ROOMOS_DEVICE_ID) environment variable."
+        },
+        {
+          "key": "failure_mode",
+          "fieldId": "FAILURE_MODE",
+          "type": "dropdown",
+          "label": "failure mode",
+          "default": "fail",
+          "description": "How to handle individual config path failures. C(fail) fails the entire task on any invalid path. C(warn) applies valid configs and warns about failures. C(ignore) silently skips invalid paths.",
+          "options": [
+            [
+              "fail",
+              "fail"
+            ],
+            [
+              "warn",
+              "warn"
+            ],
+            [
+              "ignore",
+              "ignore"
+            ]
+          ]
+        },
+        {
+          "key": "token",
+          "fieldId": "TOKEN",
+          "type": "text",
+          "label": "token",
+          "description": "Webex API bearer token. Required when C(transport=cloud). Falls back to C(roomos_token) inventory variable or C(ROOMOS_TOKEN) environment variable. Use C(lookup('env', 'WEBEX_TOKEN')) or Ansible Vault \u2014 never hardcode tokens."
+        },
+        {
+          "key": "validate_certs",
+          "fieldId": "VALIDATE_CERTS",
+          "type": "boolean",
+          "label": "validate certs",
+          "default": false,
+          "description": "Whether to validate TLS certificates. Most RoomOS devices use self-signed certificates, so this defaults to C(false). Set to C(true) in production environments with proper CA-signed certificates."
+        }
+      ]
+    },
+    {
+      "fqcn": "voipnorm.roomos.roomos_status",
+      "blockType": "voipnorm_roomos_status",
+      "label": "roomos_status",
+      "tooltip": "Query xStatus values from Cisco RoomOS devices",
+      "helpUrl": "https://docs.ansible.com/ansible/latest/collections/voipnorm/roomos/roomos_status_module.html",
+      "structure": {
+        "type": "flat"
+      },
+      "fields": [
+        {
+          "key": "device_id",
+          "fieldId": "DEVICE_ID",
+          "type": "text",
+          "label": "device id",
+          "description": "Webex device ID. Required when C(transport=cloud). Falls back to C(roomos_device_id) inventory variable or C(ROOMOS_DEVICE_ID) environment variable."
+        },
+        {
+          "key": "on_missing",
+          "fieldId": "ON_MISSING",
+          "type": "dropdown",
+          "label": "on missing",
+          "default": "warn",
+          "description": "How to handle status paths that don't exist on the device. C(warn) returns null and emits a warning. C(fail) causes the module to fail. C(ignore) silently returns null.",
+          "options": [
+            [
+              "warn",
+              "warn"
+            ],
+            [
+              "fail",
+              "fail"
+            ],
+            [
+              "ignore",
+              "ignore"
+            ]
+          ]
+        },
+        {
+          "key": "paths",
+          "fieldId": "PATHS",
+          "type": "text",
+          "label": "paths",
+          "yamlType": "list",
+          "description": "List of xStatus paths to query. Use dot notation, e.g. C(Standby.State) or C(SystemUnit.Uptime).",
+          "required": true
+        },
+        {
+          "key": "token",
+          "fieldId": "TOKEN",
+          "type": "text",
+          "label": "token",
+          "description": "Webex API bearer token. Required when C(transport=cloud). Falls back to C(roomos_token) inventory variable or C(ROOMOS_TOKEN) environment variable. Use C(lookup('env', 'WEBEX_TOKEN')) or Ansible Vault \u2014 never hardcode tokens."
+        },
+        {
+          "key": "validate_certs",
+          "fieldId": "VALIDATE_CERTS",
+          "type": "boolean",
+          "label": "validate certs",
+          "default": false,
+          "description": "Whether to validate TLS certificates. Most RoomOS devices use self-signed certificates, so this defaults to C(false). Set to C(true) in production environments with proper CA-signed certificates."
+        }
+      ]
+    }
+  ]
+}

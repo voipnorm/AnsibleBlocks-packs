@@ -24,6 +24,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Cisco IOS-XR | `cisco.iosxr` | 15 | 1.0.0 |
 | Cisco NX-OS | `cisco.nxos` | 18 | 1.0.0 |
 | Meraki | `cisco.meraki` | 8 | 1.0.0 |
+| RoomOS | `voipnorm.roomos` | 3 | 1.0.0 |
 
 ### Networking — Multi-Vendor
 
@@ -75,7 +76,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Community General | `community.general` | 568 | 1.0.0 |
 | Community Windows | `community.windows` | 54 | 1.0.0 |
 
-**Total: 3,910 modules across 36 packs**
+**Total: 3,913 modules across 37 packs**
 
 ## Structure
 
