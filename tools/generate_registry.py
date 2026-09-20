@@ -48,10 +48,14 @@ def generate_registry(
                 "sha256": sha256,
                 "downloadUrl": download_url,
                 "qualityLevel": data.get("qualityLevel", "generated"),
-                "minAppVersion": min_app_version,
-                "testedWithAppVersion": min_app_version,
-                "publishedAt": datetime.now(timezone.utc).strftime(
-                    "%Y-%m-%dT%H:%M:%SZ"
+                "minAppVersion": data.get("minAppVersion", min_app_version),
+                "testedWithAppVersion": data.get(
+                    "testedWithAppVersion",
+                    data.get("minAppVersion", min_app_version),
+                ),
+                "publishedAt": data.get(
+                    "publishedAt",
+                    datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                 ),
                 "tags": data.get("tags", []),
             }

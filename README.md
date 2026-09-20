@@ -24,7 +24,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Cisco IOS-XR | `cisco.iosxr` | 15 | 1.0.0 |
 | Cisco NX-OS | `cisco.nxos` | 18 | 1.0.0 |
 | Meraki | `cisco.meraki` | 8 | 1.0.0 |
-| RoomOS | `voipnorm.roomos` | 3 | 1.0.0 |
+| RoomOS | `voipnorm.roomos` | 3 | 1.1.0 |
 
 ### Networking — Multi-Vendor
 
@@ -82,6 +82,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 
 ```
 registry.json          # Pack catalog with SHA-256 checksums
+suite-compatibility.json # Cross-project version and compatibility contract
 schema/
   pack.schema.json     # JSON Schema for pack validation
 packs/

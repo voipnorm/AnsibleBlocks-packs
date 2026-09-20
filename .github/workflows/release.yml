@@ -45,6 +45,24 @@ jobs:
           print('All checksums verified.')
           "
 
+      - name: Validate suite compatibility contract
+        run: |
+          python3 - <<'PY'
+          import json
+
+          with open('suite-compatibility.json', encoding='utf-8') as stream:
+              compatibility = json.load(stream)
+          with open('packs/voipnorm-roomos.json', encoding='utf-8') as stream:
+              roomos_pack = json.load(stream)
+
+          components = compatibility['components']
+          assert roomos_pack['schemaVersion'] == components['ansibleBlocks']['packSchemaVersion']
+          assert roomos_pack['packVersion'] == components['ansibleBlocksPacks']['roomosPackVersion']
+          assert roomos_pack['collectionVersion'] == components['roomosCollection']['version']
+          assert roomos_pack['collection'] == components['roomosCollection']['galaxyName']
+          print('Suite compatibility contract is synchronized.')
+          PY
+
       - name: Commit updated registry.json
         run: |
           git config user.name "github-actions[bot]"
@@ -72,4 +90,5 @@ jobs:
             --title "Pack Release ${{ steps.tag.outputs.TAG }}" \
             --notes "Automated pack release with $(ls packs/*.json | wc -l | tr -d ' ') packs." \
             --latest \
+            suite-compatibility.json \
             $ASSETS

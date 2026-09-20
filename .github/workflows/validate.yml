@@ -3,10 +3,10 @@ name: Validate Packs
 on:
   push:
     branches: [main]
-    paths: ['packs/**', 'registry.json']
+    paths: ['packs/**', 'registry.json', 'suite-compatibility.json']
   pull_request:
     branches: [main]
-    paths: ['packs/**', 'registry.json']
+    paths: ['packs/**', 'registry.json', 'suite-compatibility.json']
 
 jobs:
   validate:
@@ -24,6 +24,25 @@ jobs:
 
       - name: Validate registry.json
         run: python3 -c "import json; json.load(open('registry.json'))"
+
+      - name: Validate suite compatibility contract
+        run: |
+          python3 - <<'PY'
+          import json
+
+          with open('suite-compatibility.json', encoding='utf-8') as stream:
+              compatibility = json.load(stream)
+          with open('packs/voipnorm-roomos.json', encoding='utf-8') as stream:
+              roomos_pack = json.load(stream)
+
+          components = compatibility['components']
+          assert compatibility['schemaVersion'] == 1
+          assert roomos_pack['schemaVersion'] == components['ansibleBlocks']['packSchemaVersion']
+          assert roomos_pack['packVersion'] == components['ansibleBlocksPacks']['roomosPackVersion']
+          assert roomos_pack['collectionVersion'] == components['roomosCollection']['version']
+          assert roomos_pack['collection'] == components['roomosCollection']['galaxyName']
+          print('Suite compatibility contract is synchronized.')
+          PY
 
       - name: Verify SHA-256 checksums
         run: |

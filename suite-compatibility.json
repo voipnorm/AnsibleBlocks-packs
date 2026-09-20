@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-20",
+  "components": {
+    "ansibleBlocks": {
+      "repository": "voipnorm/AnsibleBlocks",
+      "version": "1.0.0",
+      "packSchemaVersion": 1
+    },
+    "ansibleBlocksPacks": {
+      "repository": "voipnorm/AnsibleBlocks-packs",
+      "version": "1.5.0",
+      "roomosPackVersion": "1.1.0"
+    },
+    "roomosCollection": {
+      "repository": "voipnorm/ansible-collection-roomos",
+      "version": "0.1.5",
+      "galaxyName": "voipnorm.roomos"
+    },
+    "ceDeploy": {
+      "repository": "voipnorm/CE-Deploy",
+      "version": "16.3.1"
+    }
+  },
+  "contracts": {
+    "roomosPack": {
+      "requiresCollection": ">=0.1.5 <0.2.0",
+      "requiresAnsibleBlocks": ">=1.0.0 <2.0.0"
+    },
+    "ceDeployInventory": {
+      "requiresCollection": ">=0.1.5 <0.2.0",
+      "inventoryContract": 1
+    }
+  }
+}
