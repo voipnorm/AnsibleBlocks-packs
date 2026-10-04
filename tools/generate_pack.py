@@ -10,7 +10,7 @@ Usage:
     python3 tools/generate_pack.py arista.eos --color '#4E8CC2' --out packs/arista-eos.json
 
 Requirements:
-    - Python 3.9+
+    - Python 3.10+
     - ansible-core installed (ansible-doc available)
     - Target collection installed via `ansible-galaxy collection install`
 """
@@ -55,6 +55,8 @@ SKIP_OPTIONS = {
 
 def run_ansible_doc(module_fqcn: str) -> dict[str, Any]:
     """Run ansible-doc --json for a single module and return parsed JSON."""
+    if not re.fullmatch(r'[a-z_][a-z0-9_]*\.[a-z_][a-z0-9_]*\.[a-zA-Z_][a-zA-Z0-9_.]*', module_fqcn):
+        raise ValueError('Invalid module FQCN')
     result = subprocess.run(
         [sys.executable, "-m", "ansible", "doc", module_fqcn, "--json"],
         capture_output=True, text=True, timeout=30,
@@ -117,7 +119,7 @@ def option_to_field(key: str, opt: dict[str, Any]) -> dict[str, Any] | None:
     default = opt.get("default")
     if default is not None and default != "":
         if mapping["type"] == "boolean":
-            field["default"] = bool(default)
+            field["default"] = str(default).lower() in {"true", "yes", "1"} if isinstance(default, str) else bool(default)
         elif mapping["type"] == "number":
             try:
                 field["default"] = int(default) if isinstance(default, int) else float(default)
@@ -125,6 +127,9 @@ def option_to_field(key: str, opt: dict[str, Any]) -> dict[str, Any] | None:
                 pass
         elif isinstance(default, str):
             field["default"] = default
+
+    if field.get('yamlType') == 'dict' and str(field.get('default', '')).lower() in {'none', 'null'}:
+        field.pop('default', None)
 
     # Description
     desc = opt.get("description")
@@ -141,6 +146,11 @@ def option_to_field(key: str, opt: dict[str, Any]) -> dict[str, Any] | None:
         # Remove yamlType if it was set (dropdowns don't need it)
         field.pop("yamlType", None)
         field.pop("multiline", None)
+        if 'default' in field and not any(str(field['default']).lower() == choice[1].lower() for choice in field['options']):
+            field.pop('default')
+
+    # Blockly field IDs must be unique across wrapper/top-level fields.
+    field['fieldId'] = re.sub(r'[^A-Z0-9_]', '_', field['fieldId'])
 
     # Required
     if opt.get("required"):
@@ -225,6 +235,7 @@ def generate_module(fqcn: str, doc_data: dict[str, Any]) -> dict[str, Any] | Non
                 field = option_to_field(key, opt)
                 if field:
                     field["topLevel"] = True
+                    field["fieldId"] = "TOP_" + field["fieldId"]
                     fields.append(field)
 
         # Then add wrapped suboptions
@@ -254,6 +265,14 @@ def generate_module(fqcn: str, doc_data: dict[str, Any]) -> dict[str, Any] | Non
 
     if not fields:
         return None
+    used = set()
+    for field in fields:
+        base = field['fieldId']
+        suffix = 2
+        while field['fieldId'] in used or field['fieldId'] == 'RAW_PARAMS':
+            field['fieldId'] = f'{base}_{suffix}'
+            suffix += 1
+        used.add(field['fieldId'])
 
     # Always add state field if it exists in options
     module_def: dict[str, Any] = {
@@ -264,6 +283,7 @@ def generate_module(fqcn: str, doc_data: dict[str, Any]) -> dict[str, Any] | Non
         "helpUrl": f"https://docs.ansible.com/ansible/latest/collections/{fqcn.replace('.', '/')}_module.html",
         "structure": structure,
         "fields": fields,
+        "supportsRawParams": True,
     }
 
     if unmapped:
@@ -282,6 +302,8 @@ def generate_pack(
 ) -> dict[str, Any]:
     """Generate a complete pack definition for an Ansible collection."""
 
+    if not re.fullmatch(r'[a-z_][a-z0-9_]*\.[a-z_][a-z0-9_]*', collection):
+        raise ValueError('Invalid collection name')
     print(f"Listing modules in {collection}...")
     modules = list_collection_modules(collection)
     print(f"Found {len(modules)} modules")
@@ -390,6 +412,9 @@ def main():
     args = parser.parse_args()
 
     pack = generate_pack(args.collection, args.color, args.version)
+
+    from validate_packs import validate_pack
+    validate_pack(pack)
 
     out_path = args.out or f"packs/{args.collection.replace('.', '-')}.json"
     with open(out_path, "w") as f:

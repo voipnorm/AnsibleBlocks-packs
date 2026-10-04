@@ -78,12 +78,17 @@ Overlays improve generated packs without re-running the generator. Create a JSON
 2. Generate and/or curate your pack
 3. Run the CI validation locally:
    ```bash
-   python3 -c "import json; json.load(open('packs/your-pack.json'))"
+   python3 -m pip install -r tools/requirements.txt
+   python3 -m unittest discover -s tests -v
+   python3 tools/generate_registry.py --repo voipnorm/AnsibleBlocks-packs --tag v0.0.0 --out /tmp/candidate-registry.json
+   python3 tools/validate_packs.py --registry /tmp/candidate-registry.json
    ```
 4. Open a PR with:
    - The pack JSON in `packs/`
    - Any overlay in `overlays/`
-   - Updated `registry.json` entry (maintainers will help with checksums)
+   - Leave the published `registry.json` unchanged. CI validates a temporary
+     candidate manifest; the release workflow updates discovery after publishing
+     all assets. Use Python 3.10 or newer for these tools.
 
 ## Pack Schema
 
@@ -91,9 +96,20 @@ All packs must conform to `schema/pack.schema.json`. Key constraints:
 
 - `schemaVersion: 1`
 - `id`, `name`, `collection`, `modules` are required
-- Max 200 modules per pack
-- Max 2MB file size
+- Max 1,000 modules per pack
+- Max 8MB file size
 - Each module needs `fqcn`, `blockType`, `label`, `structure`, `fields`
+
+Semantic checks also reject escaping IDs, reserved object properties, unsafe
+YAML paths, invalid collection names, and module/block collisions. Keep the
+producer schema synchronized with `src/shared/packSchema.json` in AnsibleBlocks.
+
+Release tags must be `vMAJOR.MINOR.PATCH` and point to a commit on main. Releases
+are staged as drafts with every pack and its checksum manifest, published, then
+advertised by updating `registry.json`. The registry push is a normal fast-forward
+push; branch protection or concurrent main changes can reject it safely. In that
+case, maintainers must reconcile the manifest from the published release before
+advertising it. Never replace already published asset bytes under the same tag.
 
 ## File Structure
 

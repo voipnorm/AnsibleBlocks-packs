@@ -28,13 +28,14 @@
     },
     "packVersion": {
       "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
       "description": "Semantic version of the pack"
     },
     "id": {
       "type": "string",
-      "pattern": "^[a-z][a-z0-9-]*$",
-      "description": "Stable pack identifier (lowercase, hyphens allowed)"
+      "pattern": "^[a-z][a-z0-9_-]{0,99}$",
+      "description": "Stable pack identifier (lowercase, hyphens allowed)",
+      "maxLength": 100
     },
     "name": {
       "type": "string",
@@ -53,12 +54,12 @@
     },
     "minAppVersion": {
       "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
       "description": "Minimum compatible AnsibleBlocks version"
     },
     "testedWithAppVersion": {
       "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
       "description": "Latest app version this pack was tested with"
     },
     "publishedAt": {
@@ -68,12 +69,21 @@
     },
     "qualityLevel": {
       "type": "string",
-      "enum": ["official", "curated", "generated", "community"],
+      "enum": [
+        "official",
+        "curated",
+        "generated",
+        "community"
+      ],
       "description": "Quality classification"
     },
     "source": {
       "type": "string",
-      "enum": ["generated", "curated", "generated+curated"],
+      "enum": [
+        "generated",
+        "curated",
+        "generated+curated"
+      ],
       "description": "How this pack was created"
     },
     "categoryColor": {
@@ -83,26 +93,44 @@
     },
     "blockStyleName": {
       "type": "string",
-      "pattern": "^[a-z_]+$",
+      "pattern": "^[a-z_][a-z0-9_]*$",
       "description": "Blockly block style name"
     },
     "categoryStyleName": {
       "type": "string",
-      "pattern": "^[a-z_]+$",
+      "pattern": "^[a-z_][a-z0-9_]*$",
       "description": "Blockly category style name"
     },
     "modules": {
       "type": "array",
       "minItems": 1,
       "maxItems": 1000,
-      "items": { "$ref": "#/$defs/module" },
+      "items": {
+        "$ref": "#/$defs/module"
+      },
       "description": "Module definitions"
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "string",
+        "maxLength": 100
+      }
     }
   },
   "$defs": {
     "module": {
       "type": "object",
-      "required": ["fqcn", "blockType", "label", "tooltip", "helpUrl", "structure", "fields"],
+      "required": [
+        "fqcn",
+        "blockType",
+        "label",
+        "tooltip",
+        "helpUrl",
+        "structure",
+        "fields"
+      ],
       "additionalProperties": false,
       "properties": {
         "fqcn": {
@@ -118,12 +146,12 @@
         "label": {
           "type": "string",
           "minLength": 1,
-          "maxLength": 100,
+          "maxLength": 500,
           "description": "Display label on the block header"
         },
         "tooltip": {
           "type": "string",
-          "maxLength": 500,
+          "maxLength": 20000,
           "description": "Tooltip text"
         },
         "helpUrl": {
@@ -135,17 +163,25 @@
           "type": "boolean",
           "description": "Whether raw parameter input is allowed"
         },
-        "structure": { "$ref": "#/$defs/structure" },
+        "structure": {
+          "$ref": "#/$defs/structure"
+        },
         "fields": {
           "type": "array",
-          "maxItems": 100,
-          "items": { "$ref": "#/$defs/field" },
+          "maxItems": 500,
+          "items": {
+            "$ref": "#/$defs/field"
+          },
           "description": "Field definitions"
         },
-        "validationRules": { "$ref": "#/$defs/validationRules" },
+        "validationRules": {
+          "$ref": "#/$defs/validationRules"
+        },
         "examples": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Example YAML snippets"
         },
         "deprecated": {
@@ -154,19 +190,35 @@
         },
         "aliases": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Alternative module names"
+        },
+        "unmappedParams": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "maxLength": 1000
+          }
         }
       }
     },
     "structure": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["flat", "wrapped", "deep"],
+          "enum": [
+            "flat",
+            "wrapped",
+            "deep"
+          ],
           "description": "Nesting level"
         },
         "wrapper": {
@@ -175,20 +227,37 @@
         },
         "wrapperType": {
           "type": "string",
-          "enum": ["list-of-one", "object"],
+          "enum": [
+            "list-of-one",
+            "object"
+          ],
           "description": "How the wrapper is structured"
         }
       },
       "if": {
-        "properties": { "type": { "enum": ["wrapped", "deep"] } }
+        "properties": {
+          "type": {
+            "enum": [
+              "wrapped",
+              "deep"
+            ]
+          }
+        }
       },
       "then": {
-        "required": ["wrapper", "wrapperType"]
+        "required": [
+          "wrapper"
+        ]
       }
     },
     "field": {
       "type": "object",
-      "required": ["key", "fieldId", "type", "label"],
+      "required": [
+        "key",
+        "fieldId",
+        "type",
+        "label"
+      ],
       "additionalProperties": false,
       "properties": {
         "key": {
@@ -197,30 +266,41 @@
         },
         "fieldId": {
           "type": "string",
-          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "pattern": "^[A-Z_][A-Z0-9_-]*$",
           "description": "Blockly field ID (uppercase convention)"
         },
         "type": {
           "type": "string",
-          "enum": ["text", "dropdown", "number", "boolean"],
+          "enum": [
+            "text",
+            "dropdown",
+            "number",
+            "boolean"
+          ],
           "description": "UI field type"
         },
         "label": {
           "type": "string",
-          "maxLength": 100,
+          "maxLength": 500,
           "description": "Display label"
         },
         "default": {
           "oneOf": [
-            { "type": "string" },
-            { "type": "number" },
-            { "type": "boolean" }
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
           ],
           "description": "Default value"
         },
         "description": {
           "type": "string",
-          "maxLength": 500,
+          "maxLength": 20000,
           "description": "Human-readable description"
         },
         "required": {
@@ -233,7 +313,10 @@
         },
         "yamlType": {
           "type": "string",
-          "enum": ["list", "dict"],
+          "enum": [
+            "list",
+            "dict"
+          ],
           "description": "YAML output type override"
         },
         "placeholder": {
@@ -248,7 +331,9 @@
           "type": "array",
           "items": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": {
+              "type": "string"
+            },
             "minItems": 2,
             "maxItems": 2
           },
@@ -256,7 +341,9 @@
         },
         "aliases": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Alternative YAML keys for import"
         },
         "deprecated": {
@@ -264,11 +351,15 @@
         },
         "visibleWhen": {
           "type": "object",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "hiddenWhen": {
           "type": "object",
-          "additionalProperties": { "type": "string" }
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "group": {
           "type": "string"
@@ -300,14 +391,18 @@
       "properties": {
         "requiredOneOf": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "At least one of these field keys must have a non-empty value"
         },
         "requiredTogether": {
           "type": "array",
           "items": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "description": "Groups of field keys that must all be present or all absent"
         }

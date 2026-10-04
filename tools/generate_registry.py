@@ -14,6 +14,9 @@ import argparse
 import hashlib
 import json
 import sys
+import re
+from urllib.parse import quote
+from validate_packs import validate_pack, MAX_PACK_BYTES
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -24,16 +27,20 @@ def generate_registry(
     tag: str,
     min_app_version: str = "0.1.0",
 ) -> dict:
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repo) or not re.fullmatch(r'v[0-9][a-zA-Z0-9._-]*', tag):
+        raise ValueError('Invalid repository or release tag')
     packs = []
 
     for pack_path in sorted(packs_dir.glob("*.json")):
         raw = pack_path.read_bytes()
         sha256 = hashlib.sha256(raw).hexdigest()
+        if len(raw) > MAX_PACK_BYTES: raise ValueError('Pack exceeds 8MB')
         data = json.loads(raw)
+        validate_pack(data, pack_path.name)
 
         pack_id = data.get("id", pack_path.stem)
         download_url = (
-            f"https://github.com/{repo}/releases/download/{tag}/{pack_path.name}"
+            f"https://github.com/{repo}/releases/download/{quote(tag, safe='')}/{quote(pack_path.name, safe='')}"
         )
 
         packs.append(

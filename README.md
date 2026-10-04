@@ -104,4 +104,8 @@ All packs conform to the JSON Schema at `schema/pack.schema.json`. See the [Ansi
 
 ## License
 
+Validation and release requirements are documented in [CONTRIBUTING.md](CONTRIBUTING.md).
+See [the security and delivery audit](docs/security-defect-audit-2026-10-04.md)
+for findings, remediation, regression coverage and verification limits.
+
 MIT

@@ -41,6 +41,7 @@ import copy
 import json
 import sys
 from typing import Any
+from validate_packs import validate_pack
 
 
 def apply_overlay(pack: dict[str, Any], overlay: dict[str, Any]) -> dict[str, Any]:
@@ -72,13 +73,14 @@ def apply_overlay(pack: dict[str, Any], overlay: dict[str, Any]) -> dict[str, An
             module_def["structure"].update(mod_overlay["structure"])
 
         fields = module_def.get("fields", [])
-        fields_by_key = {f["key"]: f for f in fields}
+        fields_by_key = {f["fieldId"]: f for f in fields}
 
         # Apply field-level overrides
         field_overrides = mod_overlay.get("fieldOverrides", {})
         for field_key, overrides in field_overrides.items():
-            if field_key in fields_by_key:
-                fields_by_key[field_key].update(overrides)
+            matches = [fields_by_key[field_key]] if field_key in fields_by_key else [f for f in fields if f['key'] == field_key]
+            for field in matches:
+                field.update(overrides)
 
         # Mark fields as hidden (remove from fields list)
         hide_fields = set(mod_overlay.get("hideFields", []))
@@ -95,12 +97,12 @@ def apply_overlay(pack: dict[str, Any], overlay: dict[str, Any]) -> dict[str, An
         field_order = mod_overlay.get("fieldOrder")
         if field_order:
             ordered: list[dict[str, Any]] = []
-            remaining = {f["key"]: f for f in fields}
+            remaining = list(fields)
             for key in field_order:
-                if key in remaining:
-                    ordered.append(remaining.pop(key))
-            # Append any fields not in the order list
-            ordered.extend(remaining.values())
+                matching = [f for f in remaining if f['key'] == key or f['fieldId'] == key]
+                ordered.extend(matching)
+                remaining = [f for f in remaining if f not in matching]
+            ordered.extend(remaining)
             fields = ordered
 
         module_def["fields"] = fields
@@ -122,6 +124,7 @@ def main():
         overlay = json.load(f)
 
     result = apply_overlay(pack, overlay)
+    validate_pack(result)
 
     if args.out:
         with open(args.out, "w") as f:
