@@ -1,8 +1,37 @@
-# AnsibleBlocks Packs
+<h1 align="center">AnsibleBlocks Packs</h1>
 
-Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github.com/voipnorm/AnsibleBlocks).
+<p align="center"><strong>Downloadable Ansible module blocks for AnsibleBlocks</strong></p>
 
-## Available Packs
+<p align="center">
+  <a href="https://github.com/voipnorm/AnsibleBlocks-packs/releases/latest"><img src="https://img.shields.io/github/v/release/voipnorm/AnsibleBlocks-packs?style=flat-square" alt="Latest catalog release"></a>
+  <a href="https://github.com/voipnorm/AnsibleBlocks-packs/releases"><img src="https://img.shields.io/github/downloads/voipnorm/AnsibleBlocks-packs/total?style=flat-square" alt="Downloads"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT License"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/voipnorm/AnsibleBlocks-packs/releases/latest"><strong>Browse the latest pack release</strong></a>
+  · <a href="https://github.com/voipnorm/AnsibleBlocks-releases/releases/latest">Download AnsibleBlocks</a>
+</p>
+
+## Official pack registry
+
+This repository publishes the JSON block definitions and catalog used by AnsibleBlocks Pack Manager. Each pack maps modules from an Ansible collection to visual blocks. Install the corresponding Ansible collection on your controller to run playbooks you export from the app.
+
+## Install or upgrade a pack
+
+1. Open **Packs → Available** in AnsibleBlocks.
+2. Choose **Install** for a new pack or **Upgrade** for a newer version of an installed pack. The app verifies registry downloads with SHA-256 checksums.
+3. Restart AnsibleBlocks to load the blocks.
+
+For manual installation, download the pack’s JSON asset from the latest release and select it under **Packs → Import**. [Latest pack release](https://github.com/voipnorm/AnsibleBlocks-packs/releases/latest)
+
+## RoomOS compatibility
+
+Cisco RoomOS pack `1.1.1` targets `voipnorm.roomos` collection `0.1.6` and requires AnsibleBlocks `1.0.0` or later. In-app pack upgrades are available in AnsibleBlocks `1.0.1`. New RoomOS blocks default to certificate verification. Explicit settings in existing playbooks are preserved. [RoomOS collection on Galaxy](https://galaxy.ansible.com/ui/repo/published/voipnorm/roomos/) · [Suite compatibility](suite-compatibility.json)
+
+## Available packs
+
+**3,804 module definitions across 37 packs.** [Machine-readable catalog](registry.json)
 
 ### Ansible Core
 
@@ -24,7 +53,7 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Cisco IOS-XR | `cisco.iosxr` | 15 | 1.0.0 |
 | Cisco NX-OS | `cisco.nxos` | 18 | 1.0.0 |
 | Meraki | `cisco.meraki` | 8 | 1.0.0 |
-| RoomOS | `voipnorm.roomos` | 3 | 1.1.0 |
+| RoomOS | `voipnorm.roomos` | 3 | 1.1.1 |
 
 ### Networking — Multi-Vendor
 
@@ -76,36 +105,12 @@ Block pack registry and JSON pack definitions for [AnsibleBlocks](https://github
 | Community General | `community.general` | 568 | 1.0.0 |
 | Community Windows | `community.windows` | 54 | 1.0.0 |
 
-**Total: 3,913 modules across 37 packs**
+## Contributing
 
-## Structure
+Pack definitions live in [packs/](packs/) and are validated against the [pack schema](schema/pack.schema.json). The contribution guide covers generation, overlays, quality levels, and release validation. [Contribution guide](CONTRIBUTING.md) · [Security and delivery audit](docs/security-defect-audit-2026-10-04.md)
 
-```
-registry.json          # Pack catalog with SHA-256 checksums
-suite-compatibility.json # Cross-project version and compatibility contract
-schema/
-  pack.schema.json     # JSON Schema for pack validation
-packs/
-  cisco-ios.json       # Individual pack files
-  ...
-```
+## Support and license
 
-## Installation
+For a pack issue, include the pack version, collection version, and affected module name. [Pack issues](https://github.com/voipnorm/AnsibleBlocks-packs/issues)
 
-Packs are installed automatically through the AnsibleBlocks Pack Manager. You can also import packs manually:
-
-1. Download a `.json` pack file from the [Releases](https://github.com/voipnorm/AnsibleBlocks-packs/releases) page
-2. In AnsibleBlocks, open **Packs** > **Import**
-3. Select the downloaded file
-
-## Pack Schema
-
-All packs conform to the JSON Schema at `schema/pack.schema.json`. See the [AnsibleBlocks documentation](https://github.com/voipnorm/AnsibleBlocks) for the full pack specification.
-
-## License
-
-Validation and release requirements are documented in [CONTRIBUTING.md](CONTRIBUTING.md).
-See [the security and delivery audit](docs/security-defect-audit-2026-10-04.md)
-for findings, remediation, regression coverage and verification limits.
-
-MIT
+The materials in this repository are available under the [MIT License](LICENSE).
